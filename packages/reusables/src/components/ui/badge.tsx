@@ -1,19 +1,23 @@
 import * as Slot from '@rn-primitives/slot';
 import type { SlottableViewProps } from '@rn-primitives/types';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { View } from 'react-native';
+import * as React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import { cn } from '../../lib/utils';
-import { TextClassContext } from './text';
+import { TextSemiBold } from '../ui/text';
 
 const badgeVariants = cva(
-  'web:inline-flex items-center rounded-full border border-border px-2.5 py-0.5 web:transition-colors web:focus:outline-none web:focus:ring-2 web:focus:ring-ring web:focus:ring-offset-2',
+  'web:inline-flex items-center rounded-sm border border-border px-2 py-1 web:transition-colors web:focus:outline-none web:focus:ring-2 web:focus:ring-ring web:focus:ring-offset-2',
   {
     variants: {
       variant: {
-        default: 'border-transparent bg-primary web:hover:opacity-80 active:opacity-80',
-        secondary: 'border-transparent bg-secondary web:hover:opacity-80 active:opacity-80',
-        destructive: 'border-transparent bg-destructive web:hover:opacity-80 active:opacity-80',
-        outline: 'text-foreground',
+        brand: 'border-transparent bg-sys-surface-secondary-2',
+        default: 'border-sys-border-6 bg-transparent',
+        error: 'border-transparent bg-sys-fn-error',
+        success: 'border-transparent bg-sys-fn-success',
+        secondary: 'border-transparent bg-sys-surface-secondary-4',
+        warning: 'border-transparent bg-sys-fn-warning',
+        information: 'border-transparent bg-sys-fn-information',
       },
     },
     defaultVariants: {
@@ -22,13 +26,16 @@ const badgeVariants = cva(
   }
 );
 
-const badgeTextVariants = cva('text-xs font-semibold ', {
+const badgeTextVariants = cva('web:whitespace-nowrap', {
   variants: {
     variant: {
-      default: 'text-primary-foreground',
-      secondary: 'text-secondary-foreground',
-      destructive: 'text-destructive-foreground',
-      outline: 'text-foreground',
+      brand: 'text-sys-text-black',
+      default: 'text-sys-text-secondary',
+      error: 'text-sys-fn-error-text',
+      success: 'text-sys-fn-success-text',
+      secondary: 'text-sys-text-white',
+      warning: 'text-sys-fn-warning-text',
+      information: 'text-sys-fn-information-text',
     },
   },
   defaultVariants: {
@@ -36,16 +43,32 @@ const badgeTextVariants = cva('text-xs font-semibold ', {
   },
 });
 
-type BadgeProps = SlottableViewProps & VariantProps<typeof badgeVariants>;
+type BadgeProps = SlottableViewProps &
+  VariantProps<typeof badgeVariants> & {
+    children: React.ReactNode;
+  };
 
-function Badge({ className, variant, asChild, ...props }: BadgeProps) {
-  const Component = asChild ? Slot.View : View;
-  return (
-    <TextClassContext.Provider value={badgeTextVariants({ variant })}>
-      <Component className={cn(badgeVariants({ variant }), className)} {...props} />
-    </TextClassContext.Provider>
-  );
-}
+const Badge = React.forwardRef<React.ElementRef<typeof View>, BadgeProps>(
+  ({ className, variant, asChild, children, ...props }, ref) => {
+    const Component = asChild ? Slot.View : View;
+
+    const styles = StyleSheet.create({
+      text: {
+        fontFamily: 'Inter-Medium',
+      },
+    });
+
+    return (
+      <Component className={cn(badgeVariants({ variant }), className)} ref={ref} {...props}>
+        <TextSemiBold style={styles.text} className={cn(badgeTextVariants({ variant }))}>
+          {children}
+        </TextSemiBold>
+      </Component>
+    );
+  }
+);
+
+Badge.displayName = 'Badge';
 
 export { Badge, badgeTextVariants, badgeVariants };
 export type { BadgeProps };

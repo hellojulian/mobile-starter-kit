@@ -39,7 +39,7 @@ export default function DropdownMenuScreen() {
   };
 
   return (
-    <View className='flex-1 justify-center items-center p-6 gap-12'>
+    <View className='items-center justify-center flex-1 gap-12 p-6'>
       <Pressable
         className='absolute top-0 right-0 w-16 h-16 active:bg-primary/5'
         onPress={() => {
@@ -49,13 +49,11 @@ export default function DropdownMenuScreen() {
       />
       <DropdownMenu>
         <DropdownMenuTrigger ref={triggerRef} asChild>
-          <Button variant='outline'>
+          <Button variant='secondary'>
             <Text>Open</Text>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent insets={contentInsets} className='w-64 native:w-72'>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
               <Users className='text-foreground' size={14} />

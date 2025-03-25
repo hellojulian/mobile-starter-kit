@@ -20,18 +20,11 @@ export default function ComponentsScreen() {
     : COMPONENTS.filter((item) => item.toLowerCase().includes(search.toLowerCase()));
   return (
     <View className='flex-1 px-4'>
-      <View className='py-4'>
-        <Input
-          placeholder='Search UI...'
-          clearButtonMode='always'
-          value={search}
-          onChangeText={setSearch}
-        />
-      </View>
+      <View className='py-4'></View>
       <FlashList
         ref={ref}
         data={data}
-        className='native:overflow-hidden rounded-t-lg'
+        className='rounded-t-md native:overflow-hidden'
         estimatedItemSize={49}
         showsVerticalScrollIndicator={false}
         renderItem={({ item, index }) => (
@@ -41,12 +34,11 @@ export default function ComponentsScreen() {
               size='lg'
               className={cn(
                 'bg-secondary/40 pl-4 pr-1.5 border-x border-t border-foreground/5 rounded-none flex-row justify-between',
-                index === 0 && 'rounded-t-lg',
-                index === data.length - 1 && 'border-b rounded-b-lg'
+                index === 0 && 'rounded-t-md',
+                index === data.length - 1 && 'border-b rounded-b-md'
               )}
             >
-              <Text className='text-xl'>{toOptions(item)}</Text>
-              <ChevronRight className='text-foreground/50' />
+              <Text className='text-md'>{toOptions(item)}</Text>
             </Button>
           </Link>
         )}

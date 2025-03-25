@@ -45,7 +45,7 @@ export const columns: ColumnDef<User>[] = [
     size: 200,
     header: ({ column }) => <Header title='Name' column={column} />,
     cell: ({ row }) => {
-      return <Text className='text-foreground font-medium'>{row.getValue('name')}</Text>;
+      return <Text className='font-medium text-foreground'>{row.getValue('name')}</Text>;
     },
   },
   {

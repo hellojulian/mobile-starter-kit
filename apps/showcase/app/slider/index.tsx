@@ -10,14 +10,14 @@ export default function SliderScreen() {
   const [value, setValue] = React.useState(0.5);
   return (
     <>
-      <View className='p-6 w-full'>
+      <View className='w-full p-6'>
         <Alert icon={Code} className='max-w-xl'>
           <AlertTitle>FYI</AlertTitle>
           <AlertDescription>This reusable does not use "rn-primitives"</AlertDescription>
         </Alert>
       </View>
-      <View className='flex-1 justify-center p-6 gap-5'>
-        <Text nativeID='sliderLabel' className='text-5xl text-center text-foreground'>
+      <View className='justify-center flex-1 gap-5 p-6'>
+        <Text nativeID='sliderLabel' className='text-3xl text-center text-sys-secondary'>
           {Math.round(value * 100)}
         </Text>
         <Slider value={value} onValueChange={setValue} aria-labelledby='sliderLabel' />

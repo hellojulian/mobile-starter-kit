@@ -6,7 +6,7 @@ import { Text, View, ViewStyle } from 'react-native';
 import { cn } from '../../lib/utils';
 
 const alertVariants = cva(
-  'bg-background relative w-full rounded-lg border p-5 shadow shadow-foreground/10',
+  'bg-background relative w-full rounded-md border p-5 shadow shadow-foreground/10',
   {
     variants: {
       variant: {

@@ -36,7 +36,7 @@ export default function TypographyScreen() {
           colors. Birds chirped in harmony, butterflies danced in the air, and even the trees swayed
           to the rhythm of the wind.
         </P>
-        <View className='p-3' />
+        <View className='p-4' />
         <H3>The Enchanted Celebration</H3>
         <View className='p-0.5' />
         <P>

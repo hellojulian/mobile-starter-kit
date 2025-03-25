@@ -1,6 +1,6 @@
 import * as AccordionPrimitive from '@rn-primitives/accordion';
 import * as React from 'react';
-import { Platform, Pressable, View } from 'react-native';
+import { Platform, Pressable, View, StyleSheet, Text } from 'react-native';
 import Animated, {
   Extrapolation,
   FadeIn,
@@ -15,6 +15,15 @@ import Animated, {
 import { ChevronDown } from '../../lib/icons/ChevronDown';
 import { cn } from '../../lib/utils';
 import { TextClassContext } from './text';
+
+const styles = StyleSheet.create({
+  Inter: {
+    fontFamily: 'Inter',
+  },
+  Inter: {
+    fontFamily: 'Inter',
+  },
+});
 
 const Accordion = React.forwardRef<AccordionPrimitive.RootRef, AccordionPrimitive.RootProps>(
   ({ children, ...props }, ref) => {
@@ -63,18 +72,22 @@ const AccordionTrigger = React.forwardRef<
   }));
 
   return (
-    <TextClassContext.Provider value='native:text-lg font-medium web:group-hover:underline'>
+    <TextClassContext.Provider value='native:text-md text-sys-text-body font-medium web:group-hover:underline'>
       <AccordionPrimitive.Header className='flex'>
-        <AccordionPrimitive.Trigger ref={ref} {...props} asChild>
+        <AccordionPrimitive.Trigger 
+          ref={ref} 
+          {...props} 
+          asChild
+        >
           <Trigger
             className={cn(
               'flex flex-row web:flex-1 items-center justify-between py-4 web:transition-all group web:focus-visible:outline-none web:focus-visible:ring-1 web:focus-visible:ring-muted-foreground',
               className
             )}
           >
-            <>{children}</>
+            <Text style={styles.Inter}>{children}</Text>
             <Animated.View style={chevronStyle}>
-              <ChevronDown size={18} className={'text-foreground shrink-0'} />
+              <ChevronDown size={18} className={'text-sys-text-body shrink-0'} />
             </Animated.View>
           </Trigger>
         </AccordionPrimitive.Trigger>
@@ -90,7 +103,7 @@ const AccordionContent = React.forwardRef<
 >(({ className, children, ...props }, ref) => {
   const { isExpanded } = AccordionPrimitive.useItemContext();
   return (
-    <TextClassContext.Provider value='native:text-lg'>
+    <TextClassContext.Provider value='native:text-md text-sys-text-neutral-3'>
       <AccordionPrimitive.Content
         className={cn(
           'overflow-hidden text-sm web:transition-all',
@@ -99,7 +112,9 @@ const AccordionContent = React.forwardRef<
         ref={ref}
         {...props}
       >
-        <InnerContent className={cn('pb-4', className)}>{children}</InnerContent>
+        <InnerContent className={cn('pb-4', className)}>
+          <Text style={styles.Inter}>{children}</Text>
+        </InnerContent>
       </AccordionPrimitive.Content>
     </TextClassContext.Provider>
   );

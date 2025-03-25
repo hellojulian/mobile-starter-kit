@@ -1,6 +1,6 @@
 import { DeprecatedUi } from '@rnr/reusables';
 import * as React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { useColorScheme } from '~/lib/useColorScheme';
 
 const { Calendar, LocaleConfig } = DeprecatedUi;
@@ -9,10 +9,22 @@ const { Calendar, LocaleConfig } = DeprecatedUi;
 
 LocaleConfig.defaultLocale = 'en';
 
+const styles = StyleSheet.create({
+  Inter: {
+    fontFamily: 'Inter',
+  },
+});
+
 export default function CalendarScreen() {
   const { isDarkColorScheme } = useColorScheme();
   const [selectedDate, setSelectedDate] = React.useState('');
   const [selectedDates, setSelectedDates] = React.useState<string[]>([]);
+
+  const baseTheme = {
+    textDayfontFamily: 'Inter',
+    textMonthfontFamily: 'Inter',
+    textDayHeaderfontFamily: 'Inter',
+  };
 
   return (
     <ScrollView contentContainerStyle={{ flex: 1, padding: 16, gap: 32 }}>
@@ -27,6 +39,7 @@ export default function CalendarScreen() {
             selectedColor: isDarkColorScheme ? '#0ea5e9' : '#0284c7',
           },
         }}
+        theme={baseTheme}
       />
       <Calendar
         onDayPress={(day) => {
@@ -39,6 +52,7 @@ export default function CalendarScreen() {
         }}
         markedDates={getMarkedDates(selectedDates)}
         theme={{
+          ...baseTheme,
           todayTextColor: 'orange',
           arrowColor: 'orange',
         }}

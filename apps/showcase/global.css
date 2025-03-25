@@ -4,46 +4,320 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --ref-service-card-light: 0 0% 96.5%;
+    --ref-service-card-dark: 0 0% 3.5%;
+
+    /* Secondary Tokens */
+    --ref-secondary-950: 250.34 56.86% 20%;
+    --ref-secondary-900: 247.88 56.57% 34.31%;
+    --ref-secondary-800: 249.64 64.93% 41.37%;
+    --ref-secondary-700: 250.69 69.05% 50.59%;
+    --ref-secondary-600: 249.74 90.52% 58.63%;
+    --ref-secondary-500: 245.03 100% 64.9%;
+    --ref-secondary-400: 240.43 100% 72.94%;
+    --ref-secondary-300: 235.15 100% 80.59%;
+    --ref-secondary-200: 233.11 100% 88.04%;
+    --ref-secondary-100: 232.94 100% 93.33%;
+    --ref-secondary-50: 230.53 100% 96.27%;
+    
+    /* Neutral Tokens */
+    --ref-neutral-950: 0 0% 5.88%;
+    --ref-neutral-900: 0 0% 10.98%;
+    --ref-neutral-800: 0 0% 21.18%;
+    --ref-neutral-700: 0 0% 32.16%;
+    --ref-neutral-600: 0 0% 41.96%;
+    --ref-neutral-500: 0 0% 52.94%;
+    --ref-neutral-400: 0 0% 63.14%;
+    --ref-neutral-300: 0 0% 74.12%;
+    --ref-neutral-200: 0 0% 83.92%;
+    --ref-neutral-100: 0 0% 94.9%;
+    --ref-neutral-50: 0 0% 100%;
+    
+    /* Information Tokens */
+    --ref-information-950: 217.61 62.62% 20.98%;
+    --ref-information-900: 216.1 70.24% 32.94%;
+    --ref-information-800: 217.36 77.56% 40.2%;
+    --ref-information-700: 215.71 83.67% 48.04%;
+    --ref-information-600: 212.75 91.6% 53.33%;
+    --ref-information-500: 208.71 100% 59.02%;
+    --ref-information-400: 204.22 100% 67.45%;
+    --ref-information-300: 202.3 100% 77.84%;
+    --ref-information-200: 203.28 100% 86.86%;
+    --ref-information-100: 205.26 100% 92.55%;
+    --ref-information-50: 204.71 100% 96.67%;
+    
+    /* Success Tokens */
+    --ref-success-950: 158.33 78.26% 9.02%;
+    --ref-success-900: 157.74 73.81% 16.47%;
+    --ref-success-800: 155.84 76.24% 19.8%;
+    --ref-success-700: 155.4 80.65% 24.31%;
+    --ref-success-600: 154.63 79.35% 30.39%;
+    --ref-success-500: 153.15 71.86% 39.02%;
+    --ref-success-400: 151.11 54.66% 51.57%;
+    --ref-success-300: 149.13 60.95% 66.86%;
+    --ref-success-200: 146.25 64% 80.39%;
+    --ref-success-100: 142.29 68.63% 90%;
+    --ref-success-50: 144 71.43% 95.88%;
+    
+    /* Warning Tokens */
+    --ref-warning-950: 15 83.33% 14.12%;
+    --ref-warning-900: 15.79 70.37% 26.47%;
+    --ref-warning-800: 17 75% 31.37%;
+    --ref-warning-700: 20.13 82.01% 37.06%;
+    --ref-warning-600: 26.39 85.65% 43.73%;
+    --ref-warning-500: 31.98 83.46% 50.2%;
+    --ref-warning-400: 37.85 87.44% 56.27%;
+    --ref-warning-300: 40.38 87.85% 64.51%;
+    --ref-warning-200: 42.35 87.63% 80.98%;
+    --ref-warning-100: 41.63 85.96% 88.82%;
+    --ref-warning-50: 40 90% 96.08%;
+    
+    /* Error Tokens */
+    --ref-error-950: 0 67.09% 15.49%;
+    --ref-error-900: 0 56.41% 30.59%;
+    --ref-error-800: 0 62.22% 35.29%;
+    --ref-error-700: 0 66.2% 41.76%;
+    --ref-error-600: 0 64.29% 50.59%;
+    --ref-error-500: 0 75.37% 60.2%;
+    --ref-error-400: 0 81.21% 70.78%;
+    --ref-error-300: 0 83.51% 80.98%;
+    --ref-error-200: 0 85.19% 89.41%;
+    --ref-error-100: 0 80% 94.12%;
+    --ref-error-50: 0 71.43% 97.25%;
+
+    /* Scrim Tokens */
+    --ref-scrim-light: 100 100% 100% / 80%;
+    --ref-scrim-dark: 0 0% 0% / 80%;
+
+    /* System Tokens */
+
+    /* New Tokens */
+    --sys-surface-neutral-0: var(--ref-neutral-50);
+    --sys-surface-neutral-1: var(--ref-neutral-100);
+    --sys-surface-neutral-2: var(--ref-neutral-200);
+    --sys-surface-neutral-3: var(--ref-neutral-800);
+    --sys-surface-neutral-4: var(--ref-neutral-900);
+    --sys-surface-neutral-5: var(--ref-neutral-950);
+    --sys-surface-disabled: var(--ref-neutral-200);
+    --sys-surface-scrim: var(--ref-neutral-100) / 50%;
+    --sys-surface-card: var(--ref-neutral-50);
+    --sys-surface-black: var(--ref-neutral-950);
+    --sys-surface-white: var(--ref-neutral-50);
+    --sys-surface-secondary-1: var(--ref-secondary-50);
+    --sys-surface-secondary-2: var(--ref-secondary-100);
+    --sys-surface-secondary-3: var(--ref-secondary-300);
+    --sys-surface-secondary-4: var(--ref-secondary-500);
+    --sys-surface-secondary-5: var(--ref-secondary-700);
+    --sys-secondary-pressed: var(--ref-secondary-100);
+    --sys-text-white: var(--ref-neutral-50);
+    --sys-text-black: var(--ref-neutral-950);
+    --sys-text-body: var(--ref-neutral-950);
+    --sys-text-body-inverse: var(--ref-neutral-50);
+    --sys-text-secondary: var(--ref-secondary-500);
+    --sys-text-primary: var(--ref-secondary-500);
+    --sys-text-neutral-1: var(--ref-neutral-50);
+    --sys-text-neutral-2: var(--ref-neutral-300);
+    --sys-text-neutral-3: var(--ref-neutral-600);
+    --sys-text-neutral-4: var(--ref-neutral-900);
+    --sys-text-disabled: var(--ref-neutral-400);
+    --sys-scrim: hsl(0deg 0% 100% / 80%);
+    --sys-border-1: var(--ref-neutral-900);
+    --sys-border-2: var(--ref-neutral-800);
+    --sys-border-3: var(--ref-neutral-600);
+    --sys-border-4: var(--ref-neutral-300);
+    --sys-border-5: var(--ref-neutral-200);
+    --sys-border-6: var(--ref-secondary-500);
+    --sys-border-information: var(--ref-information-400);
+    --sys-border-success: var(--ref-success-400);
+    --sys-border-warning: var(--ref-warning-400);
+    --sys-border-error: var(--ref-error-400);
+    --sys-fn-generic: var(--ref-neutral-50);
+    --sys-fn-error: var(--ref-error-200);
+    --sys-fn-error-text: var(--ref-error-800);
+    --sys-fn-success: var(--ref-success-200);
+    --sys-fn-success-text: var(--ref-success-900);
+    --sys-fn-warning: var(--ref-warning-200);
+    --sys-fn-warning-text: var(--ref-warning-900);
+    --sys-fn-information: var(--ref-information-200);
+    --sys-fn-information-text: var(--ref-information-800);
+
+    /* Scrim Tokens */
+    --sys-scrim: var(--ref-scrim-light);
+
+    /* App Tokens */
+    --sys-appbg: var(--ref-neutral-50);
+
+    /* Service Card Tokens */
+    --sys-service-card: var(--ref-service-card-light);
+    --sys-service-card-alt: var(--ref-neutral-50);
+
+    /* Radio Tokens */
+    --sys-radio: var(--ref-secondary-700);
+
+    /* Focus Tokens */
+    --sys-focus: var(--ref-secondary-600);
+
+    /* Divider Tokens */
+    --sys-divider-decorative: var(--ref-neutral-300);
+    --sys-divider-default: var(--ref-neutral-600);
+
+    --sys-border-default: var(--ref-neutral-400);
+
+    /* Form Tokens */
+    --sys-form-default: var(--ref-neutral-400);
+    --sys-form-disabled: var(--ref-neutral-200);
+    --sys-form-error: var(--ref-error-500);
+    --sys-form-success: var(--ref-success-500);
+    --sys-form-active: var(--ref-secondary-500);
+
+    --sys-alt-text: var(--ref-neutral-500);
+    --sys-subhead-text: var(--ref-neutral-500);
+
+    /* Shadcn Colors */
+    --background: 0 0% 100%; /* Light background */
+    --foreground: 222.2 84% 4.9%; /* Light foreground */
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 0 0% 97%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 300 3% 93%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --error: 7 76% 83%;
+    --error-foreground: 7 76% 23%;
+    --success: 154 76% 83%;
+    --success-foreground: 154 76% 3%;
+    --warning: 32 76% 83%;
+    --warning-foreground: 32 76% 23%;
+    --info: 205 76% 83%;
+    --info-foreground: 205 76% 23%;
   }
 
   .dark:root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 98%;
+    /* New Tokens */
+    --sys-surface-neutral-0: var(--ref-neutral-950);
+    --sys-surface-neutral-1: var(--ref-neutral-900);
+    --sys-surface-neutral-2: var(--ref-neutral-800);
+    --sys-surface-neutral-3: var(--ref-neutral-200);
+    --sys-surface-neutral-4: var(--ref-neutral-100);
+    --sys-surface-neutral-5: var(--ref-neutral-50);
+    --sys-surface-disabled: var(--ref-neutral-950);
+    --sys-surface-scrim: var(--ref-neutral-100) / 50%;
+    --sys-surface-card: var(--ref-neutral-900);
+    --sys-surface-black: var(--ref-neutral-950);
+    --sys-surface-white: var(--ref-neutral-50);
+    --sys-surface-secondary-1: var(--ref-secondary-50);
+    --sys-surface-secondary-2: var(--ref-secondary-100);
+    --sys-surface-secondary-3: var(--ref-secondary-300);
+    --sys-surface-secondary-4: var(--ref-secondary-500);
+    --sys-surface-secondary-5: var(--ref-secondary-700);
+    --sys-secondary-pressed: var(--ref-secondary-950);
+    --sys-fn-generic: var(--ref-neutral-950);
+    --sys-fn-error: var(--ref-error-950);
+    --sys-fn-error-text: var(--ref-error-400);
+    --sys-text-white: var(--ref-neutral-50);
+    --sys-text-black: var(--ref-neutral-950);
+    --sys-text-body: var(--ref-neutral-50);
+    --sys-text-body-inverse: var(--ref-neutral-950);
+    --sys-text-secondary: var(--ref-secondary-300);
+    --sys-text-neutral-1: var(--ref-neutral-900);
+    --sys-text-neutral-2: var(--ref-neutral-600);
+    --sys-text-neutral-3: var(--ref-neutral-300);
+    --sys-text-neutral-4: var(--ref-neutral-50);
+    --sys-text-disabled: var(--ref-neutral-800);
+    --xs---8: 8px;
+    --md---16: 16px;
+    --sm---12: 12px;
+    --lg---24: 24px;
+    --border-width-sm: nullpx;
+    --sys-scrim: hsl(0deg 0% 6% / 80%);
+    --sys-border-1: var(--ref-neutral-200);
+    --sys-border-2: var(--ref-neutral-300);
+    --sys-border-3: var(--ref-neutral-600);
+    --sys-border-4: var(--ref-neutral-800);
+    --sys-border-5: var(--ref-neutral-800);
+    --sys-border-6: var(--ref-secondary-300);
+    --sys-border-information: var(--ref-information-800);
+    --sys-border-success: var(--ref-success-800);
+    --sys-border-warning: var(--ref-warning-800);
+    --sys-border-error: var(--ref-error-800);
+    --border-width-0: nullpx;
+    --border-width-sm: nullpx;
+    --border-width-md: nullpx;
+    --border-width-lg: nullpx;
+    --sys-fn-success: var(--ref-success-950);
+    --sys-fn-success-text: var(--ref-success-400);
+    --sys-fn-warning: var(--ref-warning-950);
+    --sys-fn-warning-text: var(--ref-warning-400);
+    --sys-fn-information: var(--ref-information-950);
+    --sys-fn-information-text: var(--ref-information-400);
+
+    /* Focus Tokens */
+    --sys-focus: var(--ref-secondary-600);
+
+    /* Scrim Tokens */
+    --sys-scrim: var(--ref-scrim-dark);
+
+    /* App Tokens */
+    --sys-appbg: var(--ref-neutral-950);
+
+    /* Service Card Tokens */
+    --sys-service-card: var(--ref-neutral-900);
+    --sys-service-card-alt: var(--ref-neutral-800);
+
+    /* Radio Tokens */
+    --sys-radio: var(--ref-secondary-600);
+
+    /* Divider Tokens */
+    --sys-divider-decorative: var(--ref-neutral-800);
+    --sys-divider-default: var(--ref-neutral-300);
+
+    --sys-border-default: var(--ref-neutral-700);
+
+    /* Form Tokens */
+    --sys-form-default: var(--ref-neutral-700);
+    --sys-form-disabled: var(--ref-neutral-800);
+    --sys-form-error: var(--ref-error-400);
+    --sys-form-success: var(--ref-success-400);
+    --sys-form-active: var(--ref-secondary-400);
+
+    --sys-alt-text: var(--ref-neutral-400);
+    --sys-subhead-text: var(--ref-neutral-400);
+
+    /* Shadcn Colors */
+    --background: 0 0% 0%; /* Full black in HSL */
+    --foreground: 210 40% 98%; /* Dark foreground */
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 0 0% 19%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 240 5.9% 10%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 0 0% 19%;
+    --accent-foreground: 210 40% 98%;
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --ring: 212.7 26.8% 83.9%;
+    --error: 6 76% 10%;
+    --error-foreground: 6 76% 70%;
+    --success: 91 76% 10%;
+    --success-foreground: 91 76% 50%;
+    --warning: 31 76% 10%;
+    --warning-foreground: 31 76% 70%;
+    --info: 188 76% 10%;
+    --info-foreground: 188 76% 50%;
   }
 }

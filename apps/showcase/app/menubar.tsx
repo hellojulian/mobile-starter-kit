@@ -58,7 +58,7 @@ export default function MenubarScreen() {
   }
 
   return (
-    <View className='flex-1 items-center p-4'>
+    <View className='items-center flex-1 p-4'>
       {!!value && (
         <Pressable
           onPress={() => {
@@ -70,7 +70,7 @@ export default function MenubarScreen() {
       <Menubar value={value} onValueChange={onValueChange}>
         <MenubarMenu value='file'>
           <MenubarTrigger onPress={closeSubs}>
-            <Text>File</Text>
+            <Text className='text-sys-text-body'>File</Text>
           </MenubarTrigger>
           <MenubarContent insets={contentInsets}>
             <MenubarItem>
@@ -112,7 +112,7 @@ export default function MenubarScreen() {
         </MenubarMenu>
         <MenubarMenu value='edit'>
           <MenubarTrigger onPress={closeSubs}>
-            <Text>Edit</Text>
+            <Text className='text-sys-text-body'>Edit</Text>
           </MenubarTrigger>
           <MenubarContent insets={contentInsets} className='native:w-48'>
             <MenubarItem>
@@ -160,7 +160,7 @@ export default function MenubarScreen() {
         </MenubarMenu>
         <MenubarMenu value='view'>
           <MenubarTrigger onPress={closeSubs}>
-            <Text>View</Text>
+            <Text className='text-sys-text-body'>View</Text>
           </MenubarTrigger>
           <MenubarContent insets={contentInsets}>
             <MenubarCheckboxItem
@@ -168,14 +168,14 @@ export default function MenubarScreen() {
               onCheckedChange={setIsChecked}
               closeOnPress={false}
             >
-              <Text>Always Show Bookmarks Bar</Text>
+              <Text className='text-sys-text-body text-sm'>Always Show Bookmarks Bar</Text>
             </MenubarCheckboxItem>
             <MenubarCheckboxItem
               checked={isChecked2}
               onCheckedChange={setIsChecked2}
               closeOnPress={false}
             >
-              <Text>Always Show Full URLs</Text>
+              <Text className='text-sys-text-body text-sm'>Always Show Full URLs</Text>
             </MenubarCheckboxItem>
             <MenubarSeparator />
             <MenubarItem inset>
@@ -198,18 +198,18 @@ export default function MenubarScreen() {
         </MenubarMenu>
         <MenubarMenu value='profile'>
           <MenubarTrigger onPress={closeSubs}>
-            <Text>Profiles</Text>
+            <Text className='text-sys-text-body'>Profiles</Text>
           </MenubarTrigger>
           <MenubarContent insets={contentInsets}>
             <MenubarRadioGroup value={radio} onValueChange={setRadio}>
               <MenubarRadioItem closeOnPress={false} value='andy'>
-                <Text>Andy</Text>
+                <Text className='text-sys-text-body'>Andy</Text>
               </MenubarRadioItem>
               <MenubarRadioItem closeOnPress={false} value='michael'>
-                <Text>Michael</Text>
+                <Text className='text-sys-text-body'>Michael</Text>
               </MenubarRadioItem>
               <MenubarRadioItem closeOnPress={false} value='creed'>
-                <Text>Creed</Text>
+                <Text className='text-sys-text-body'>Creed</Text>
               </MenubarRadioItem>
             </MenubarRadioGroup>
             <MenubarSeparator />

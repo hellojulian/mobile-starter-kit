@@ -8,13 +8,13 @@ export default function SliderScreen() {
 
   return (
     <>
-      <View className='flex-1 justify-center items-center p-6 gap-12'>
+      <View className='items-center justify-center flex-1 gap-12 p-6'>
         <Pressable
           onPress={() => {
             setValue(Math.floor(Math.random() * 100));
           }}
         >
-          <Text className='text-5xl text-center text-foreground'>{Math.round(value)}</Text>
+          <Text className='text-4xl text-center text-sys-secondary'>{Math.round(value)}</Text>
         </Pressable>
         <Slider.Root
           value={value}
@@ -23,17 +23,17 @@ export default function SliderScreen() {
             if (typeof nextValue !== 'number') return;
             setValue(nextValue);
           }}
-          className='w-full justify-center'
+          className='justify-center w-full'
         >
-          <Slider.Track className='h-4 bg-secondary rounded-full border border-border'>
+          <Slider.Track className='h-2 border rounded-full bg-sys-divider-decorative border-border'>
             <Slider.Range
               style={{ width: `${value}%` }}
-              className='bg-primary h-full rounded-full'
+              className='h-full rounded-full bg-sys-secondary'
             />
             <Slider.Thumb
               style={{ left: `${value}%` }}
               className={cn(
-                'h-10 w-10 bg-primary absolute -translate-y-3 -translate-x-1/2  rounded-full'
+                'h-7 w-7 bg-white absolute -translate-y-2 -translate-x-1/2  rounded-full'
               )}
             />
           </Slider.Track>
@@ -41,10 +41,10 @@ export default function SliderScreen() {
 
         {Platform.OS !== 'web' && (
           <View>
-            <Text className='text-xl text-center text-foreground pb-2'>
+            <Text className='pb-2 text-xl text-center text-foreground'>
               You will have to implement the gesture handling
             </Text>
-            <Text className='text-center text-sm text-foreground'>
+            <Text className='text-sm text-center text-foreground'>
               Press the number to change the slider's value
             </Text>
           </View>

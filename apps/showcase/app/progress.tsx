@@ -12,10 +12,10 @@ export default function ProgressScreen() {
   }
 
   return (
-    <View className='flex-1 justify-center items-center p-6 gap-12'>
-      <View className='w-full gap-8 items-center'>
+    <View className='items-center justify-center flex-1 gap-12 p-6'>
+      <View className='items-center w-full gap-8'>
         <Progress value={progress} className='web:w-[60%]' />
-        <Button variant='ghost' onPress={onPress}>
+        <Button variant='secondary' onPress={onPress}>
           <Text>Randomize</Text>
         </Button>
       </View>

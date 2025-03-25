@@ -1,8 +1,9 @@
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Theme, ThemeProvider, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { PortalHost } from '@rn-primitives/portal';
 import { DeprecatedUi } from '@rnr/reusables';
-import { Stack } from 'expo-router';
+import { SplashScreen, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { Platform } from 'react-native';
@@ -12,6 +13,7 @@ import { Text } from '~/components/ui/text';
 import { setAndroidNavigationBar } from '~/lib/android-navigation-bar';
 import { NAV_THEME } from '~/lib/constants';
 import { useColorScheme } from '~/lib/useColorScheme';
+import { useFonts } from 'expo-font';
 
 const { ToastProvider } = DeprecatedUi;
 
@@ -34,26 +36,48 @@ export const unstable_settings = {
   initialRouteName: '(tabs)',
 };
 
+// Prevent the splash screen from auto-hiding before getting the color scheme.
+SplashScreen.preventAutoHideAsync();
+
 export default function RootLayout() {
-  const hasMounted = React.useRef(false);
-  const { colorScheme, isDarkColorScheme } = useColorScheme();
+  const { colorScheme, setColorScheme, isDarkColorScheme } = useColorScheme();
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
 
-  useIsomorphicLayoutEffect(() => {
-    if (hasMounted.current) {
-      return;
-    }
+  // Loading custom fonts
+  const [fontsLoaded] = useFonts({
+  'Inter-Medium': require('../assets/fonts/Inter-Medium.ttf'),
+  'Inter-Bold': require('../assets/fonts/Inter-Bold.ttf'),
+  'Inter-SemiBold': require('../assets/fonts/Inter-SemiBold.ttf'),
+  });
 
-    if (Platform.OS === 'web') {
-      // Adds the background color to the html element to prevent white background on overscroll.
-      document.documentElement.classList.add('bg-background');
-    }
-    setAndroidNavigationBar(colorScheme);
-    setIsColorSchemeLoaded(true);
-    hasMounted.current = true;
+  React.useEffect(() => {
+    (async () => {
+      const theme = await AsyncStorage.getItem('theme');
+      if (Platform.OS === 'web') {
+        // Adds the background color to the html element to prevent white background on overscroll.
+        document.documentElement.classList.add('bg-background');
+      }
+      if (!theme) {
+        setAndroidNavigationBar(colorScheme);
+        AsyncStorage.setItem('theme', colorScheme);
+        setIsColorSchemeLoaded(true);
+        return;
+      }
+      const colorTheme = theme === 'dark' ? 'dark' : 'light';
+      setAndroidNavigationBar(colorTheme);
+      if (colorTheme !== colorScheme) {
+        setColorScheme(colorTheme);
+
+        setIsColorSchemeLoaded(true);
+        return;
+      }
+      setIsColorSchemeLoaded(true);
+    })().finally(() => {
+      SplashScreen.hideAsync();
+    });
   }, []);
 
-  if (!isColorSchemeLoaded) {
+  if (!isColorSchemeLoaded || !fontsLoaded) {
     return null;
   }
 
@@ -66,8 +90,18 @@ export default function RootLayout() {
             initialRouteName='(tabs)'
             screenOptions={{
               headerBackTitle: 'Back',
+              headerBackTitleStyle: {
+                fontFamily: 'Inter',
+              },
               headerTitle(props) {
-                return <Text className='text-xl font-semibold'>{toOptions(props.children)}</Text>;
+                return (
+                  <Text
+                    style={{ fontFamily: 'Inter' }}
+                    className='text-md font-semibold text-sys-text-body'
+                  >
+                    {toOptions(props.children)}
+                  </Text>
+                );
               },
               headerRight: () => <ThemeToggle />,
             }}
@@ -94,9 +128,6 @@ export default function RootLayout() {
     </ThemeProvider>
   );
 }
-
-const useIsomorphicLayoutEffect =
-  Platform.OS === 'web' && typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
 function toOptions(name: string) {
   const title = name

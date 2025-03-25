@@ -17,7 +17,7 @@ export default function DialogScreen() {
     <ScrollView contentContainerClassName='flex-1 justify-center items-center p-6'>
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant='outline'>
+          <Button variant='secondary'>
             <Text>Edit Profile</Text>
           </Button>
         </DialogTrigger>
@@ -28,11 +28,10 @@ export default function DialogScreen() {
               Make changes to your profile here. Click save when you're done.
             </DialogDescription>
           </DialogHeader>
-
           <DialogFooter>
             <DialogClose asChild>
               <Button>
-                <Text>OK</Text>
+                <Text>I accept</Text>
               </Button>
             </DialogClose>
           </DialogFooter>

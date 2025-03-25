@@ -18,7 +18,7 @@ export default function PopoverScreen() {
   };
 
   return (
-    <View className='flex-1 justify-center items-center p-6'>
+    <View className='items-center justify-center flex-1 p-6'>
       <Pressable
         className='absolute top-0 right-0 w-16 h-16 active:bg-primary/5'
         onPress={() => {
@@ -28,7 +28,7 @@ export default function PopoverScreen() {
       />
       <Popover>
         <PopoverTrigger ref={triggerRef} asChild>
-          <Button variant='outline'>
+          <Button variant='secondary'>
             <Text>Open popover</Text>
           </Button>
         </PopoverTrigger>
@@ -37,14 +37,14 @@ export default function PopoverScreen() {
           insets={contentInsets}
           className='w-80'
         >
-          <View className='web:grid gap-4'>
+          <View className='gap-4 web:grid'>
             <View className='space-y-2'>
               <Text className='font-medium leading-none native:text-xl'>Dimensions</Text>
               <Text className='text-sm text-muted-foreground'>
                 Set the dimensions for the layer.
               </Text>
             </View>
-            <View className='web:grid gap-2'>
+            <View className='gap-2 web:grid'>
               <LabelledInput autoFocus id='width' label='Width' />
               <LabelledInput id='maxWidth' label='Max. Width' />
               <LabelledInput id='height' label='Height' />
@@ -73,7 +73,7 @@ function LabelledInput({
   }
 
   return (
-    <View className='web:grid web:grid-cols-3 flex-row items-center gap-4'>
+    <View className='flex-row items-center gap-4 web:grid web:grid-cols-3'>
       <Label nativeID={id} onPress={onPress} className='w-24'>
         {label}
       </Label>
@@ -82,7 +82,7 @@ function LabelledInput({
         autoFocus={autoFocus}
         aria-labelledby={id}
         defaultValue='25px'
-        className='web:col-span-2 flex-1 h-8'
+        className='flex-1 h-8 web:col-span-2'
       />
     </View>
   );

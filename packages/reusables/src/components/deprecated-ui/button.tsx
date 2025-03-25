@@ -41,9 +41,9 @@ const buttonTextVariants = cva('font-medium', {
       link: 'text-primary underline',
     },
     size: {
-      default: 'text-sm native:text-xl',
-      sm: 'text-xs native:text-lg',
-      lg: 'text-base native:text-2xl',
+      default: 'text-lg native:text-lg',
+      sm: 'text-sm native:text-sm',
+      lg: 'text-lg native:text-lg',
     },
   },
   defaultVariants: {

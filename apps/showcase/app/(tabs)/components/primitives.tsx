@@ -20,7 +20,7 @@ export default function PrimitivesScreen() {
     <View className='flex-1 px-4'>
       <View className='py-4'>
         <Input
-          placeholder='Search Primitives...'
+          placeholder='Nothing to see here'
           clearButtonMode='always'
           value={search}
           onChangeText={setSearch}
@@ -29,7 +29,7 @@ export default function PrimitivesScreen() {
       <FlashList
         ref={ref}
         data={data}
-        className='native:overflow-hidden rounded-t-lg'
+        className='rounded-t-lg native:overflow-hidden'
         estimatedItemSize={49}
         showsVerticalScrollIndicator={false}
         renderItem={({ item, index }) => (
@@ -40,10 +40,10 @@ export default function PrimitivesScreen() {
             className={cn(
               'opacity-100 bg-secondary/40 pl-4 pr-1.5 border-x border-t border-foreground/5 rounded-none flex-row justify-center',
               index === 0 && 'rounded-t-lg',
-              index === data.length - 1 && 'border-b rounded-b-lg'
+              index === data.length - 1 && 'border-b rounded-b-md'
             )}
           >
-            <Text className='text-xl'>{toOptions(item)}</Text>
+            <Text className='text-md'>{toOptions(item)}</Text>
           </Button>
         )}
         ListFooterComponent={<View className='py-4' />}

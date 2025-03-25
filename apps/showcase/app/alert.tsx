@@ -1,23 +1,59 @@
-import { View } from 'react-native';
+import React from 'react';
+import { View, ScrollView, SafeAreaView } from 'react-native';
 import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert';
 import { AlertTriangle } from '~/lib/icons/AlertTriangle';
-import { Terminal } from '~/lib/icons/Terminal';
+import { OctagonAlert } from '~/lib/icons/OctagonAlert';
+import { CircleCheck } from '~/lib/icons/CircleCheck';
+import { Info } from '~/lib/icons/Info';
+import { Sun } from '~/lib/icons/Sun';
+import { useFonts } from 'expo-font';
 
 export default function AlertScreen() {
+  const [fontsLoaded] = useFonts({
+    Inter: require('../assets/fonts/Inter-Medium.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return null; // or a loading indicator
+  }
+
   return (
-    <View className='flex-1 justify-center p-6 items-center gap-6'>
-      <Alert icon={Terminal} className='max-w-xl'>
-        <AlertTitle>Heads up!</AlertTitle>
-        <AlertDescription>
-          You can use a terminal to run commands on your computer.
-        </AlertDescription>
-      </Alert>
-      <Alert icon={AlertTriangle} variant='destructive' className='max-w-xl'>
-        <AlertTitle>Danger!</AlertTitle>
-        <AlertDescription>
-          High voltage. Do not touch. Risk of electric shock. Keep away from children.
-        </AlertDescription>
-      </Alert>
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View className='items-center justify-start flex-1 gap-3 p-4'>
+          <Alert icon={OctagonAlert} variant='error' className='max-w-xl'>
+            <AlertDescription style={{ fontFamily: 'Inter' }}>
+              This is some body copy
+            </AlertDescription>
+          </Alert>
+
+          <Alert icon={AlertTriangle} variant='warning' className='max-w-xl'>
+            <AlertDescription style={{ fontFamily: 'Inter' }}>
+              This is some body copy
+            </AlertDescription>
+          </Alert>
+
+          <Alert icon={CircleCheck} variant='success' className='max-w-xl'>
+            <AlertDescription style={{ fontFamily: 'Inter' }}>
+              This is some body copy
+            </AlertDescription>
+          </Alert>
+
+          <Alert icon={Info} variant='info' className='max-w-xl'>
+            <AlertDescription style={{ fontFamily: 'Inter' }}>
+              This is some body copy
+            </AlertDescription>
+          </Alert>
+    
+          <Alert icon={Sun} variant='default' className='max-w-xl'>
+            <AlertDescription style={{ fontFamily: 'Inter' }}>
+              This is some body copy
+            </AlertDescription>
+          </Alert>      
+
+
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }

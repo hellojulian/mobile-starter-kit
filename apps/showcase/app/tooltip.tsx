@@ -15,7 +15,7 @@ export default function TooltipScreen() {
     right: 12,
   };
   return (
-    <View className='flex-1 justify-center items-center p-6'>
+    <View className='items-center justify-center flex-1 p-6'>
       <Pressable
         className='absolute top-0 right-0 w-16 h-16 active:bg-primary/5'
         onPress={() => {
@@ -25,12 +25,12 @@ export default function TooltipScreen() {
       />
       <Tooltip delayDuration={150}>
         <TooltipTrigger ref={triggerRef} asChild>
-          <Button variant='outline'>
+          <Button variant='secondary'>
             <Text>{Platform.OS === 'web' ? 'Hover me' : 'Press me'}</Text>
           </Button>
         </TooltipTrigger>
         <TooltipContent insets={contentInsets}>
-          <Text className='native:text-lg'>Add to library</Text>
+          <Text className='native:text-sm'>Add to library</Text>
         </TooltipContent>
       </Tooltip>
     </View>

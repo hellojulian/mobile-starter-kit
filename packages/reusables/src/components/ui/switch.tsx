@@ -24,7 +24,7 @@ const SwitchWeb = React.forwardRef<SwitchPrimitives.RootRef, SwitchPrimitives.Ro
     >
       <SwitchPrimitives.Thumb
         className={cn(
-          'pointer-events-none block h-5 w-5 rounded-full bg-background shadow-md shadow-foreground/5 ring-0 transition-transform',
+          'pointer-events-none block h-5 w-5 rounded-full bg-transparent ring-0 transition-transform',
           props.checked ? 'translate-x-5' : 'translate-x-0'
         )}
       />
@@ -48,7 +48,7 @@ const RGB_COLORS = {
 const SwitchNative = React.forwardRef<SwitchPrimitives.RootRef, SwitchPrimitives.RootProps>(
   ({ className, ...props }, ref) => {
     const { colorScheme } = useColorScheme();
-    const translateX = useDerivedValue(() => (props.checked ? 18 : 0));
+    const translateX = useDerivedValue(() => (props.checked ? 27 : 0));
     const animatedRootStyle = useAnimatedStyle(() => {
       return {
         backgroundColor: interpolateColor(
@@ -59,26 +59,24 @@ const SwitchNative = React.forwardRef<SwitchPrimitives.RootRef, SwitchPrimitives
       };
     });
     const animatedThumbStyle = useAnimatedStyle(() => ({
-      transform: [{ translateX: withTiming(translateX.value, { duration: 200 }) }],
+      transform: [{ translateX: withTiming(translateX.value, { duration: 100 }) }],
     }));
     return (
       <Animated.View
         style={animatedRootStyle}
-        className={cn('h-8 w-[46px] rounded-full', props.disabled && 'opacity-50')}
+        className={cn('h-8 w-[60px] rounded-full', props.disabled && 'opacity-50')}
       >
         <SwitchPrimitives.Root
           className={cn(
-            'flex-row h-8 w-[46px] shrink-0 items-center rounded-full border-2 border-transparent',
-            props.checked ? 'bg-primary' : 'bg-input',
+            'flex-row h-8 w-[60px] shrink-0 items-center rounded-full border-4 border-transparent',
+            props.checked ? 'bg-sys-surface-secondary-4' : 'bg-sys-divider-decorative',
             className
           )}
           {...props}
           ref={ref}
         >
           <Animated.View style={animatedThumbStyle}>
-            <SwitchPrimitives.Thumb
-              className={'h-7 w-7 rounded-full bg-background shadow-md shadow-foreground/25 ring-0'}
-            />
+            <SwitchPrimitives.Thumb className={'h-7 w-7 rounded-full bg-white ring-0'} />
           </Animated.View>
         </SwitchPrimitives.Root>
       </Animated.View>

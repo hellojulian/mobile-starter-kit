@@ -21,8 +21,8 @@ export default function NavigationMenuScreen() {
   const contentInsets = {
     top: insets.top,
     bottom: insets.bottom,
-    left: 12,
-    right: 12,
+    left: 16,
+    right: 16,
   };
   const [value, setValue] = React.useState<string>();
   const navigation = useNavigation();
@@ -40,7 +40,7 @@ export default function NavigationMenuScreen() {
   }, []);
 
   return (
-    <View className='flex-1  items-center px-6 py-3 gap-12'>
+    <View className='items-center flex-1 gap-12 px-6 py-3'>
       {Platform.OS !== 'web' && !!value && (
         <Pressable
           onPress={() => {
@@ -53,7 +53,7 @@ export default function NavigationMenuScreen() {
         <NavigationMenuList>
           <NavigationMenuItem value='getting-started'>
             <NavigationMenuTrigger>
-              <Text>Getting started</Text>
+              <Text className='text-sys-text-body'>Getting started</Text>
             </NavigationMenuTrigger>
             <NavigationMenuContent insets={contentInsets}>
               <View
@@ -62,12 +62,12 @@ export default function NavigationMenuScreen() {
               >
                 <View role='listitem' className='web:row-span-3'>
                   <NavigationMenuLink asChild>
-                    <View className='flex web:select-none flex-col justify-end rounded-md web:bg-gradient-to-b web:from-muted/50 web:to-muted native:border native:border-border p-6 web:no-underline web:outline-none web:focus:shadow-md web:focus:shadow-foreground/5'>
-                      <Sparkles size={16} className='text-foreground' />
-                      <Text className='mb-2 mt-4 text-lg native:text-2xl font-medium'>
+                    <View className='flex flex-col justify-end p-6 rounded-md web:select-none web:bg-gradient-to-b web:from-muted/50 web:to-muted native:border native:border-border web:no-underline web:outline-none web:focus:shadow-md web:focus:shadow-foreground/5'>
+                      <Sparkles size={16} className='text-sys-text-body' />
+                      <Text className='mt-4 mb-2 text-lg font-medium text-sys-text-body native:text-2xl'>
                         react-native-reusables
                       </Text>
-                      <Text className='text-sm native:text-base leading-tight text-muted-foreground'>
+                      <Text className='text-sm leading-tight native:text-base text-muted-foreground'>
                         Universal components that you can copy and paste into your apps. Accessible.
                         Customizable. Open Source.
                       </Text>
@@ -90,7 +90,7 @@ export default function NavigationMenuScreen() {
           </NavigationMenuItem>
           <NavigationMenuItem value='components'>
             <NavigationMenuTrigger>
-              <Text className='text-foreground '>Components</Text>
+              <Text className='text-sys-text-body'>Components</Text>
             </NavigationMenuTrigger>
             <NavigationMenuContent insets={contentInsets}>
               <View
@@ -104,11 +104,6 @@ export default function NavigationMenuScreen() {
                 ))}
               </View>
             </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem value='documentation'>
-            <NavigationMenuLink onPress={closeAll} className={navigationMenuTriggerStyle()}>
-              <Text>Documentation</Text>
-            </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
@@ -162,15 +157,15 @@ const ListItem = React.forwardRef<
       <NavigationMenuLink
         ref={ref}
         className={cn(
-          'web:block web:select-none gap-1 rounded-md p-3 leading-none no-underline text-foreground web:outline-none web:transition-colors web:hover:bg-accent active:bg-accent web:hover:text-accent-foreground web:focus:bg-accent web:focus:text-accent-foreground',
+          'web:block web:select-none gap-1 rounded-md p-3 leading-none no-underline text-sys-text-body web:outline-none web:transition-colors web:hover:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0 web:hover:text-accent-foreground web:focus:bg-sys-surface-neutral-0 web:focus:text-accent-foreground',
           className
         )}
         {...props}
       >
-        <Text className='text-sm native:text-base font-medium text-foreground leading-none'>
+        <Text className='text-sm font-medium leading-none native:text-base text-sys-text-body'>
           {title}
         </Text>
-        <Text className='line-clamp-2 text-sm native:text-base leading-snug text-muted-foreground'>
+        <Text className='text-sm leading-snug line-clamp-2 native:text-base text-muted-foreground'>
           {children}
         </Text>
       </NavigationMenuLink>

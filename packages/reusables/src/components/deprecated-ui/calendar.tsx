@@ -1,14 +1,10 @@
 import * as React from 'react';
+import { View } from 'react-native';
 import { LocaleConfig, Calendar as RNCalendar } from 'react-native-calendars';
 import { NAV_THEME } from '../../lib/constants';
 import { useColorScheme } from '../../lib/useColorScheme';
+import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 
-// TODO: create custom native calendar
-// TODO: create web component, use https://ui.shadcn.com/docs/components/calendar
-
-/**
- * @docs https://github.com/wix/react-native-calendars
- */
 function Calendar({ theme, ...props }: React.ComponentProps<typeof RNCalendar>) {
   const { colorScheme, isDarkColorScheme } = useColorScheme();
   const id = React.useId();
@@ -16,14 +12,24 @@ function Calendar({ theme, ...props }: React.ComponentProps<typeof RNCalendar>) 
   return (
     <RNCalendar
       key={`${id}-${colorScheme}`}
+      hideArrows={false}
+      renderArrow={(direction) => (
+        <View style={{ padding: 8 }}>
+          {direction === 'left' ? (
+            <ChevronLeft size={32} color={isDarkColorScheme ? SECONDARY_50 : SECONDARY_20} />
+          ) : (
+            <ChevronRight size={32} color={isDarkColorScheme ? SECONDARY_50 : SECONDARY_20} />
+          )}
+        </View>
+      )}
       theme={getTheme(isDarkColorScheme, theme)}
       {...props}
     />
   );
 }
 
-const SKY_500 = '#0ea5e9';
-const SKY_600 = '#0284c7';
+const SECONDARY_50 = '#5B4CFF';
+const SECONDARY_20 = '#5B4CFF';
 
 function getTheme(
   isThemeDark: boolean,
@@ -34,14 +40,50 @@ function getTheme(
       backgroundColor: NAV_THEME.dark.background,
       calendarBackground: NAV_THEME.dark.card,
       textSectionTitleColor: NAV_THEME.dark.text,
-      selectedDayBackgroundColor: SKY_500,
+      selectedDayBackgroundColor: SECONDARY_50,
       selectedDayTextColor: '#000000',
-      todayTextColor: SKY_500,
+      todayTextColor: SECONDARY_50,
       dayTextColor: NAV_THEME.dark.text,
       textDisabledColor: '#ffffff30',
       monthTextColor: NAV_THEME.dark.text,
       textMonthFontWeight: '500',
-      arrowColor: SKY_500,
+      textMonthFontSize: 20,
+      arrowColor: SECONDARY_50,
+      'stylesheet.calendar.main': {
+        dayContainer: {
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+        selected: {
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: 32,
+          width: 32,
+          borderRadius: 16,
+        },
+      },
+      'stylesheet.day.basic': {
+        base: {
+          width: 32,
+          height: 32,
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+        selected: {
+          backgroundColor: SECONDARY_50,
+          borderRadius: 16,
+          width: 32,
+          height: 32,
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+        selectedText: {
+          color: '#000000',
+          fontWeight: 'bold',
+          textAlign: 'center',
+          includeFontPadding: false,
+        },
+      },
       ...customTheme,
     };
   }
@@ -49,13 +91,49 @@ function getTheme(
     backgroundColor: NAV_THEME.light.background,
     calendarBackground: NAV_THEME.light.card,
     textSectionTitleColor: NAV_THEME.light.text,
-    selectedDayBackgroundColor: SKY_600,
+    selectedDayBackgroundColor: SECONDARY_20,
     selectedDayTextColor: '#ffffff',
-    todayTextColor: SKY_600,
+    todayTextColor: SECONDARY_20,
     dayTextColor: '#2d4150',
     monthTextColor: NAV_THEME.light.text,
     textMonthFontWeight: '500',
-    arrowColor: SKY_600,
+    textMonthFontSize: 20,
+    arrowColor: SECONDARY_20,
+    'stylesheet.calendar.main': {
+      dayContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      selected: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 32,
+        width: 32,
+        borderRadius: 16,
+      },
+    },
+    'stylesheet.day.basic': {
+      base: {
+        width: 32,
+        height: 32,
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      selected: {
+        backgroundColor: SECONDARY_20,
+        borderRadius: 16,
+        width: 32,
+        height: 32,
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      selectedText: {
+        color: '#ffffff',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        includeFontPadding: false,
+      },
+    },
     ...customTheme,
   };
 }
@@ -63,14 +141,14 @@ function getTheme(
 LocaleConfig.locales['en'] = {
   monthNames: [
     'January',
-    'Febuary',
+    'February',
     'March',
     'April',
     'May',
     'June',
     'July',
     'August',
-    'Septemeber',
+    'September',
     'October',
     'November',
     'December',
@@ -84,48 +162,16 @@ LocaleConfig.locales['en'] = {
     'Jun',
     'Jul',
     'Aug',
-    'Sept',
+    'Sep',
     'Oct',
     'Nov',
     'Dec',
   ],
   dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-  dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'],
+  dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
   today: 'Today',
 };
 
-LocaleConfig.locales['fr'] = {
-  monthNames: [
-    'Janvier',
-    'Février',
-    'Mars',
-    'Avril',
-    'Mai',
-    'Juin',
-    'Juillet',
-    'Août',
-    'Septembre',
-    'Octobre',
-    'Novembre',
-    'Décembre',
-  ],
-  monthNamesShort: [
-    'Janv.',
-    'Févr.',
-    'Mars',
-    'Avril',
-    'Mai',
-    'Juin',
-    'Juil.',
-    'Août',
-    'Sept.',
-    'Oct.',
-    'Nov.',
-    'Déc.',
-  ],
-  dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-  dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-  today: "Aujourd'hui",
-};
+LocaleConfig.defaultLocale = 'en';
 
 export { Calendar, LocaleConfig };

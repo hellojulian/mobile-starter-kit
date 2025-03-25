@@ -1,4 +1,4 @@
-import type { VariantProps } from 'class-variance-authority';
+import { VariantProps } from 'class-variance-authority';
 import type { LucideIcon } from 'lucide-react-native';
 import * as React from 'react';
 import { toggleTextVariants, toggleVariants } from '../../components/ui/toggle';

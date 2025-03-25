@@ -99,7 +99,7 @@ const DialogContent = React.forwardRef<
       >
         <Pressable
           className={cn(
-            'bg-background rounded-2xl p-8 border border-border shadow-lg shadow-foreground/5',
+            'bg-background rounded-lg p-8 border border-border shadow-lg shadow-foreground/5',
             className
           )}
           role={'dialog'}
@@ -142,7 +142,7 @@ const DialogDescription = React.forwardRef<
   React.ElementRef<typeof Text>,
   React.ComponentPropsWithoutRef<typeof Text>
 >(({ className, ...props }, ref) => {
-  return <Text className={cn('text-lg text-muted-foreground', className)} ref={ref} {...props} />;
+  return <Text className={cn('text-md', className)} ref={ref} {...props} />;
 });
 
 DialogDescription.displayName = 'DialogDescription';

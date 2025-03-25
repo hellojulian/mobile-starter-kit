@@ -13,7 +13,7 @@ export default function ToastScreen() {
     Toast.show({
       type: 'success',
       text1: 'Success!',
-      text2: 'You have successfully completed the tutorial. You can now go touch some grass.',
+      text2: 'This is a success toast example for the starer kit.',
       topOffset: insets.top === 0 ? 12 : insets.top,
     });
   }
@@ -21,15 +21,31 @@ export default function ToastScreen() {
     Toast.show({
       type: 'error',
       text1: 'Danger!',
-      text2: 'High voltage. Do not touch. Risk of electric shock. Keep away from children.',
+      text2: 'This is a danger toast example for the starer kit.',
       topOffset: insets.top === 0 ? 12 : insets.top,
     });
   }
-  function showBaseToast() {
+  function showWarningToast() {
     Toast.show({
-      type: 'base',
+      type: 'warning',
+      text1: 'Warning!',
+      text2: 'This is a warning toast example for the starer kit.',
+      topOffset: insets.top === 0 ? 12 : insets.top,
+    });
+  }
+  function showInfoToast() {
+    Toast.show({
+      type: 'info',
+      text1: 'Information',
+      text2: 'This is a information toast example for the starer kit.',
+      topOffset: insets.top === 0 ? 12 : insets.top,
+    });
+  }
+  function showGenericToast() {
+    Toast.show({
+      type: 'generic',
       text1: 'Heads up!',
-      text2: 'You can use a terminal to run commands on your computer.',
+      text2: 'This is a generic toast example for the starer kit.',
       props: {
         icon: Terminal,
       },
@@ -38,14 +54,20 @@ export default function ToastScreen() {
   }
   return (
     <>
-      <View className='flex-1 justify-center items-center gap-5'>
-        <Button onPress={showSuccessToast}>
+      <View className='flex-1 justify-center items-center gap-4'>
+        <Button variant='secondary' onPress={showSuccessToast}>
           <Text>Show success toast</Text>
         </Button>
-        <Button variant='destructive' onPress={showErrorToast}>
+        <Button variant='secondary' onPress={showErrorToast}>
           <Text>Show error toast</Text>
         </Button>
-        <Button variant='secondary' onPress={showBaseToast}>
+        <Button variant='secondary' onPress={showInfoToast}>
+          <Text>Show info toast</Text>
+        </Button>
+        <Button variant='secondary' onPress={showWarningToast}>
+          <Text>Show warning toast</Text>
+        </Button>
+        <Button variant='secondary' onPress={showGenericToast}>
           <Text>Show base toast</Text>
         </Button>
       </View>

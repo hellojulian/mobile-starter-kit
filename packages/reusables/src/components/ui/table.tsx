@@ -64,7 +64,7 @@ TableRow.displayName = 'TableRow';
 
 const TableHead = React.forwardRef<TablePrimitive.HeadRef, TablePrimitive.HeadProps>(
   ({ className, ...props }, ref) => (
-    <TextClassContext.Provider value='text-muted-foreground'>
+    <TextClassContext.Provider value='text-sys-text-body'>
       <TablePrimitive.Head
         ref={ref}
         className={cn(

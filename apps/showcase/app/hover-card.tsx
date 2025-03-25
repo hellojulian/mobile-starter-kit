@@ -18,9 +18,9 @@ export default function HoverCardScreen() {
   };
   return (
     <>
-      <View className='flex-1 justify-center items-center p-6 gap-12'>
+      <View className='items-center justify-center flex-1 gap-12 p-6'>
         <Pressable
-          className='absolute top-0 right-0 w-16 h-16 active:bg-primary/5'
+          className='absolute top-0 right-0 w-16 h-16 active:bg-sys-surface-neutral-0'
           onPress={() => {
             // open programmatically
             triggerRef.current?.open();
@@ -29,26 +29,28 @@ export default function HoverCardScreen() {
         <HoverCard>
           <HoverCardTrigger ref={triggerRef} asChild>
             <Button variant='link' size='lg'>
-              <Text>@nextjs</Text>
+              <Text>Tap this text</Text>
             </Button>
           </HoverCardTrigger>
           <HoverCardContent insets={contentInsets} className='w-80 native:w-96'>
             <View className='flex flex-row justify-between gap-4'>
               <Avatar alt='Vercel avatar'>
-                <AvatarImage source={{ uri: 'https://github.com/vercel.png' }} />
+                <AvatarImage
+                  source={require('../assets/avatar-placeholder.png')}
+                />
                 <AvatarFallback>
                   <Text>VA</Text>
                 </AvatarFallback>
               </Avatar>
-              <View className='gap-1 flex-1'>
-                <Text className='text-sm native:text-base font-semibold'>@nextjs</Text>
+              <View className='flex-1 gap-1'>
+                <Text className='text-sm font-semibold native:text-base'>@coolglasses</Text>
                 <Text className='text-sm native:text-base'>
-                  The React Framework – created and maintained by @vercel.
+                  This mobile starter kit really rocks.
                 </Text>
-                <View className='flex flex-row items-center pt-2 gap-2'>
+                <View className='flex flex-row items-center gap-2 pt-2'>
                   <CalendarDays size={14} className='text-foreground opacity-70' />
                   <Text className='text-xs native:text-sm text-muted-foreground'>
-                    Joined December 2021
+                    Joined December 2025
                   </Text>
                 </View>
               </View>

@@ -34,7 +34,7 @@ export default function TabsScreen() {
         <TabsContent value='account'>
           <Card>
             <CardHeader>
-              <CardTitle>Account</CardTitle>
+              <CardTitle className='text-lg font-semibold'>Account</CardTitle>
               <CardDescription>
                 Make changes to your account here. Click save when you're done.
               </CardDescription>
@@ -59,7 +59,7 @@ export default function TabsScreen() {
         <TabsContent value='password'>
           <Card>
             <CardHeader>
-              <CardTitle>Password</CardTitle>
+              <CardTitle className='text-lg font-semibold'>Password</CardTitle>
               <CardDescription>
                 Change your password here. After saving, you'll be logged out.
               </CardDescription>

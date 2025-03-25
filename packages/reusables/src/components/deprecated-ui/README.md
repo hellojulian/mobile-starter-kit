@@ -49,9 +49,6 @@ https://github.com/mrzachnugent/rn-ui-inspired-by-shadcn/assets/63797719/f43be94
   <img src="https://github.com/mrzachnugent/rn-ui-inspired-by-shadcn/assets/63797719/1580db11-d56d-4dab-ab2b-74abe7846144" width="250px" />
   <img src="https://github.com/mrzachnugent/rn-ui-inspired-by-shadcn/assets/63797719/82806abe-c27d-4b09-a119-bd1f3e0cc720" width="250px" />
 
-#### Combobox
-
-https://github.com/mrzachnugent/rn-ui-inspired-by-shadcn/assets/63797719/a5bf0660-dcb4-480c-96c0-3df9d98bf082
 
 #### Collapsible
 

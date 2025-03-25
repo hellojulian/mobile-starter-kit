@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Platform, Pressable, View } from 'react-native';
+import { Platform, Pressable, View, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
@@ -12,8 +12,20 @@ import {
   SelectValue,
 } from '~/components/ui/select';
 import { Text } from '~/components/ui/text';
+import { useFonts } from 'expo-font';
+
+const styles = StyleSheet.create({
+  Inter: {
+    fontFamily: 'Inter',
+  },
+});
 
 export default function SelectScreen() {
+  const [selectedFruit, setSelectedFruit] = React.useState({ value: 'apple', label: 'Apple' });
+  const [selectedScrollFruit, setSelectedScrollFruit] = React.useState({
+    value: 'apple',
+    label: 'Apple',
+  });
   const triggerRef = React.useRef<React.ElementRef<typeof SelectTrigger>>(null);
   const insets = useSafeAreaInsets();
   const contentInsets = {
@@ -23,110 +35,130 @@ export default function SelectScreen() {
     right: 12,
   };
 
+  const [fontsLoaded] = useFonts({
+    'Inter': require('../assets/fonts/Inter-Medium.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View
-      className='flex-1 justify-between items-center p-6'
-      style={{ paddingBottom: insets.bottom + 24 }}
+      className='items-center justify-between flex-1 p-6'
+      style={[{ paddingBottom: insets.bottom + 24 }, styles.Inter]}
     >
       <Pressable
         className='absolute top-0 right-0 w-16 h-16 active:bg-primary/5'
         onPress={() => {
-          // open programmatically
           triggerRef.current?.open();
         }}
       />
-      <View className='flex-1 justify-center items-center'>
-        <Select defaultValue={{ value: 'apple', label: 'Apple' }}>
-          <SelectTrigger ref={triggerRef} className='w-[250px]'>
+      <View className='items-center justify-center flex-1'>
+        <Select value={selectedFruit} onValueChange={setSelectedFruit}>
+          <SelectTrigger ref={triggerRef} className='w-[300px]' style={styles.Inter}>
             <SelectValue
-              className='text-foreground text-sm native:text-lg'
+              className='text-sm text-foreground native:text-md'
               placeholder='Select a fruit'
+              style={styles.Inter}
             />
           </SelectTrigger>
-          <SelectContent insets={contentInsets} className='w-[250px]'>
+          <SelectContent
+            insets={contentInsets}
+            className='w-[300px] mt-1'
+            style={styles.Inter}
+          >
             <SelectGroup>
-              <SelectLabel>Fruits</SelectLabel>
-              <SelectItem label='Apple' value='apple'>
+              <SelectItem label='Apple' value='apple' style={styles.Inter}>
                 Apple
               </SelectItem>
-              <SelectItem label='Banana' value='banana'>
+              <SelectItem label='Banana' value='banana' style={styles.Inter}>
                 Banana
               </SelectItem>
-              <SelectItem label='Blueberry' value='blueberry'>
+              <SelectItem label='Blueberry' value='blueberry' style={styles.Inter}>
                 Blueberry
               </SelectItem>
-              <SelectItem label='Grapes' value='grapes'>
+              <SelectItem label='Grapes' value='grapes' style={styles.Inter}>
                 Grapes
               </SelectItem>
-              <SelectItem label='Pineapple' value='pineapple'>
+              <SelectItem label='Pineapple' value='pineapple' style={styles.Inter}>
                 Pineapple
               </SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
+        <Text style={[styles.Inter, { marginTop: 8 }]}>
+          Selected: {selectedFruit.label}
+        </Text>
       </View>
       <View>
-        <Text className='text-center text-muted-foreground pb-2'>With scroll view</Text>
-        <Select defaultValue={{ value: 'apple', label: 'Apple' }}>
-          <SelectTrigger className='w-[250px]'>
+        <Text className='pb-2 text-center text-muted-foreground' style={styles.Inter}>
+          With scroll view
+        </Text>
+        <Select value={selectedScrollFruit} onValueChange={setSelectedScrollFruit}>
+          <SelectTrigger className='w-[300px]' style={styles.Inter}>
             <SelectValue
-              className='text-foreground text-sm native:text-lg'
+              className='text-sm text-foreground native:text-md'
               placeholder='Select a fruit'
+              style={styles.Inter}
             />
           </SelectTrigger>
-          <SelectContent insets={contentInsets} className='w-[250px]'>
+          <SelectContent insets={contentInsets} className='w-[300px]' style={styles.Inter}>
             <ScrollView className='max-h-32'>
               <SelectGroup>
-                <SelectLabel>Fruits</SelectLabel>
-                <SelectItem label='Apple' value='apple'>
+                <SelectLabel style={styles.Inter}>Fruits</SelectLabel>
+                <SelectItem label='Apple' value='apple' style={styles.Inter}>
                   Apple
                 </SelectItem>
-                <SelectItem label='Banana' value='banana'>
+                <SelectItem label='Banana' value='banana' style={styles.Inter}>
                   Banana
                 </SelectItem>
-                <SelectItem label='Blueberry' value='blueberry'>
+                <SelectItem label='Blueberry' value='blueberry' style={styles.Inter}>
                   Blueberry
                 </SelectItem>
-                <SelectItem label='Grapes' value='grapes'>
+                <SelectItem label='Grapes' value='grapes' style={styles.Inter}>
                   Grapes
                 </SelectItem>
-                <SelectItem label='Pineapple' value='pineapple'>
+                <SelectItem label='Pineapple' value='pineapple' style={styles.Inter}>
                   Pineapple
                 </SelectItem>
-                <SelectItem label='Apple 2' value='apple2'>
+                <SelectItem label='Apple 2' value='apple2' style={styles.Inter}>
                   Apple 2
                 </SelectItem>
-                <SelectItem label='Banana 2' value='banana2'>
+                <SelectItem label='Banana 2' value='banana2' style={styles.Inter}>
                   Banana 2
                 </SelectItem>
-                <SelectItem label='Blueberry 2' value='blueberry2'>
+                <SelectItem label='Blueberry 2' value='blueberry2' style={styles.Inter}>
                   Blueberry 2
                 </SelectItem>
-                <SelectItem label='Grapes 2' value='grapes2'>
+                <SelectItem label='Grapes 2' value='grapes2' style={styles.Inter}>
                   Grapes 2
                 </SelectItem>
-                <SelectItem label='Pineapple 2' value='pineapple2'>
+                <SelectItem label='Pineapple 2' value='pineapple2' style={styles.Inter}>
                   Pineapple 2
                 </SelectItem>
-                <SelectItem label='Apple 3' value='apple3'>
+                <SelectItem label='Apple 3' value='apple3' style={styles.Inter}>
                   Apple 3
                 </SelectItem>
-                <SelectItem label='Banana 3' value='banana3'>
+                <SelectItem label='Banana 3' value='banana3' style={styles.Inter}>
                   Banana 3
                 </SelectItem>
-                <SelectItem label='Blueberry 3' value='blueberry3'>
+                <SelectItem label='Blueberry 3' value='blueberry3' style={styles.Inter}>
                   Blueberry 3
                 </SelectItem>
-                <SelectItem label='Grapes 3' value='grapes3'>
+                <SelectItem label='Grapes 3' value='grapes3' style={styles.Inter}>
                   Grapes 3
                 </SelectItem>
-                <SelectItem label='Pineapple 3' value='pineapple3'>
+                <SelectItem label='Pineapple 3' value='pineapple3' style={styles.Inter}>
                   Pineapple 3
                 </SelectItem>
               </SelectGroup>
             </ScrollView>
           </SelectContent>
         </Select>
+        <Text style={[styles.Inter, { marginTop: 8 }]}>
+          Selected (scroll): {selectedScrollFruit.label}
+        </Text>
       </View>
     </View>
   );

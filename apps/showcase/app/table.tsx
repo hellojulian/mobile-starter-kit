@@ -45,16 +45,16 @@ export default function TableScreen() {
                 <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                   <PopoverTrigger asChild>
                     <Button variant='ghost' size='sm' className='flex-row justify-start gap-3'>
-                      <Text className={cn('text-base text-muted-foreground font-medium')}>
+                      <Text className={cn('text-base text-sys-text-body font-medium')}>
                         Invoice
                       </Text>
-                      <ChevronDown className={cn('text-muted-foreground')} size={18} />
+                      <ChevronDown className={cn('text-sys-text-body')} size={18} />
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className='p-5' insets={{ left: 6 }}>
                     <View className='gap-1.5'>
                       <Text className='text-2xl font-bold text-foreground'>Table Head</Text>
-                      <Text className='text-lg text-muted-foreground'>
+                      <Text className='text-lg text-sys-text-body'>
                         This is the Invoice column. Just an example of a popover.
                       </Text>
                     </View>
@@ -62,13 +62,15 @@ export default function TableScreen() {
                 </Popover>
               </TableHead>
               <TableHead style={{ width: columnWidths[1] }}>
-                <Text>Status</Text>
+                <Text className='text-sys-text-body'>Status</Text>
               </TableHead>
               <TableHead style={{ width: columnWidths[2] }}>
-                <Text>Method</Text>
+                <Text className='text-sys-text-body'>Method</Text>
               </TableHead>
               <TableHead style={{ width: columnWidths[3] }}>
-                <Text className='text-center md:text-right md:pr-5'>Amount</Text>
+                <Text className='text-center md:text-right md:pr-5 text-sys-text-body'>
+                  Amount
+                </Text>
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -99,19 +101,19 @@ export default function TableScreen() {
                     }}
                   >
                     <TableCell style={{ width: columnWidths[0] }}>
-                      <Text>{invoice.invoice}</Text>
+                      <Text className='text-sys-text-body'>{invoice.invoice}</Text>
                     </TableCell>
                     <TableCell style={{ width: columnWidths[1] }}>
-                      <Text>{invoice.paymentStatus}</Text>
+                      <Text className='text-sys-text-body'>{invoice.paymentStatus}</Text>
                     </TableCell>
                     <TableCell style={{ width: columnWidths[2] }}>
-                      <Text>{invoice.paymentMethod}</Text>
+                      <Text className='text-sys-text-body'>{invoice.paymentMethod}</Text>
                     </TableCell>
                     <TableCell style={{ width: columnWidths[3] }} className='items-end '>
                       <Button
                         variant='secondary'
                         size='sm'
-                        className='shadow-sm shadow-foreground/10 mr-3'
+                        className='mr-3 shadow-sm shadow-foreground/10'
                         onPress={() => {
                           Alert.alert(
                             invoice.totalAmount,
@@ -119,7 +121,7 @@ export default function TableScreen() {
                           );
                         }}
                       >
-                        <Text>{invoice.totalAmount}</Text>
+                        <Text className='text-sys-text-body'>{invoice.totalAmount}</Text>
                       </Button>
                     </TableCell>
                   </TableRow>
@@ -130,7 +132,7 @@ export default function TableScreen() {
                   <>
                     <TableFooter>
                       <TableRow>
-                        <TableCell className='flex-1 justify-center'>
+                        <TableCell className='justify-center flex-1'>
                           <Text className='text-foreground'>Total</Text>
                         </TableCell>
                         <TableCell className='items-end pr-8'>
@@ -144,7 +146,7 @@ export default function TableScreen() {
                               );
                             }}
                           >
-                            <Text>$2,500.00</Text>
+                            <Text className='text-sys-text-body'>$2,500.00</Text>
                           </Button>
                         </TableCell>
                       </TableRow>
@@ -152,7 +154,7 @@ export default function TableScreen() {
                     <View className='items-center py-3 ios:pb-0'>
                       <Text
                         nativeID='invoice-table'
-                        className='items-center text-sm text-muted-foreground'
+                        className='items-center text-sm text-sys-text-body'
                       >
                         A list of your recent invoices.
                       </Text>

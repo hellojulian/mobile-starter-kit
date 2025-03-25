@@ -310,7 +310,7 @@ const FormCheckbox = React.forwardRef<
 
   return (
     <FormItem className='px-1'>
-      <View className='flex-row gap-3 items-center'>
+      <View className='flex-row items-center gap-3'>
         <Checkbox
           ref={ref}
           aria-labelledby={formItemNativeID}
@@ -351,7 +351,7 @@ const FormDatePicker = React.forwardRef<
         <BottomSheetOpenTrigger asChild>
           <Button
             variant='outline'
-            className='flex-row gap-3 justify-start px-3 relative'
+            className='relative flex-row justify-start gap-3 px-3'
             ref={ref}
             aria-labelledby={formItemNativeID}
             aria-describedby={
@@ -386,7 +386,7 @@ const FormDatePicker = React.forwardRef<
                       onChange?.('');
                     }}
                   >
-                    <X size={18} className='text-muted-foreground text-xs' />
+                    <X size={18} className='text-xs text-muted-foreground' />
                   </Button>
                 )}
               </>
@@ -495,7 +495,7 @@ FormCombobox.displayName = 'FormCombobox';
  * @example
  *  <SelectTrigger className='w-[250px]'>
       <SelectValue
-        className='text-foreground text-sm native:text-lg'
+        className='text-sm text-foreground native:text-lg'
         placeholder='Select a fruit'
       />
     </SelectTrigger>
@@ -562,7 +562,7 @@ const FormSwitch = React.forwardRef<
 
   return (
     <FormItem className='px-1'>
-      <View className='flex-row gap-3 items-center'>
+      <View className='flex-row items-center gap-3'>
         <Switch
           ref={switchRef}
           aria-labelledby={formItemNativeID}
