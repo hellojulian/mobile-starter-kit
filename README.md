@@ -6,6 +6,8 @@
 
 Crafted with [NativeWind v4](https://www.nativewind.dev/) and accessibility in mind, `react-native-reusables` is open source, offering a foundation for developing your own high-quality component library.
 
+If you'd like access to the Figma UI Kit, please send me a message and I'll give you a private link.
+
 [📖 Docs](https://rnr-docs.vercel.app/)
 <br>
 [✏️ Figma UI Kit](https://www.figma.com/design/bvo3Wk0Vxi5PeiVGgfibJk/Mobile-App-Starter-Kit?node-id=2062-11367&t=aiitMPY486u9rCB1-1
