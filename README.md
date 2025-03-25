@@ -1,4 +1,4 @@
-# Mobile Starter Kit
+# Mobile App Starter Kit
 
 ![banner](https://github.com/hellojulian/mobile-starter-kit/blob/main/banner.jpg)
 
