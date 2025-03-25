@@ -1,6 +1,6 @@
 # Mobile Starter Kit
 
-![banner]([https://github.com/hellojulian/mobile-starter-kit/assets/63797719/0eef0a6d-d8eb-4b52-a97d-fa3b1e534215](https://github.com/hellojulian/mobile-starter-kit/blob/main/banner.jpg)
+![banner]([https://github.com/hellojulian/mobile-starter-kit/assets/63797719/0eef0a6d-d8eb-4b52-a97d-fa3b1e534215])
 
 ## A Mobile app starter kit based on [shadcn/ui](https://ui.shadcn.com) for React Native featuring a focused collection of components
 
