@@ -25,6 +25,12 @@ Install project/dependencies
 pnpm i
 ```
 
+Run app
+
+```bash
+pnpm dev:showcase
+```
+
 
 Clean cache/node_modules
 
@@ -32,12 +38,4 @@ Clean cache/node_modules
 pnpm clean
 ```
 
-## Run app
-
-- Showcase
-  - iOS: `pnpm dev:showcase`
-  - Android: `pnpm dev:showcase:android`
-- Starter-base
-  - iOS: `pnpm dev:starter-base`
-  - Android: `pnpm dev:starter-base:android`
 
