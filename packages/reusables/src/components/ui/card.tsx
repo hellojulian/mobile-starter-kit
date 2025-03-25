@@ -13,10 +13,15 @@ import { cn } from '../../lib/utils';
 import { TextClassContext } from './text';
 import { Button } from './button';
 import { InfoIcon } from 'lucide-react-native';
+import { Badge } from './badge';
 
 const styles = StyleSheet.create({
   Inter: {
     fontFamily: 'Inter',
+  },
+  InterSemiBold: {
+    fontFamily: 'Inter-SemiBold',
+    fontWeight: '500',
   },
 });
 
@@ -137,4 +142,106 @@ const CardFooter = React.forwardRef<
 ));
 CardFooter.displayName = 'CardFooter';
 
-export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, CardOverline };
+const CardMarketing = React.forwardRef<
+  ViewRef,
+  ViewProps & {
+    imageSource: ImageProps['source'];
+    badgeText?: string;
+    headingText?: string;
+    children?: React.ReactNode;
+    badgeVariant?: string;
+  }
+>(
+  ({ 
+    className, 
+    imageSource,
+    badgeText = 'Cyberdyne systems',
+    headingText = 'Will Skynet rule the world?',
+    children,
+    badgeVariant = 'information',
+    accessible = true,
+    accessibilityRole = 'region',
+    accessibilityLabel,
+    ...props 
+  }, ref) => {
+    // Generate a default accessibility label if none provided
+    const defaultAccessibilityLabel = `${badgeText} marketing card about ${headingText}`;
+    const finalAccessibilityLabel = accessibilityLabel || defaultAccessibilityLabel;
+    
+    return (
+      <Card
+        ref={ref}
+        className={cn(
+          'bg-black h-[300px]',
+          className
+        )}
+        accessible={accessible}
+        accessibilityRole={accessibilityRole}
+        accessibilityLabel={finalAccessibilityLabel}
+        {...props}
+      >
+        {/* Background image */}
+        <Image
+          className='absolute w-full h-full rounded-xl'
+          source={imageSource}
+          accessible={true}
+          accessibilityRole='image'
+          accessibilityLabel={`${badgeText} promotional image`}
+          accessibilityIgnoresInvertColors={true}
+        />
+        
+        {/* Badge at the top */}
+        <View 
+          className='absolute top-4 left-4' 
+          accessible={true}
+          accessibilityRole='none'
+          importantForAccessibility='no'
+        >
+          <Badge 
+            variant={badgeVariant}
+            accessible={true}
+            accessibilityRole='text'
+            accessibilityLabel={`${badgeText} badge`}
+          >
+            <Text>{badgeText}</Text>
+          </Badge>
+        </View>
+
+        {/* Main heading in the middle */}
+        <View
+          className='absolute w-full px-6'
+          style={{ top: '40%' }}
+          accessible={true}
+          accessibilityRole='none'
+          importantForAccessibility='no'
+        >
+          <Text
+            style={{ fontFamily: 'Inter' }}
+            className='text-white text-6xl font-semibold leading-tight'
+            accessible={true}
+            accessibilityRole='heading'
+            accessibilityLevel={1}
+            accessibilityLabel={headingText}
+          >
+            {headingText}
+          </Text>
+        </View>
+
+        {/* Children (typically CardFooter with Button) */}
+        {children}
+      </Card>
+    );
+  }
+);
+CardMarketing.displayName = 'CardMarketing';
+
+export { 
+  Card, 
+  CardContent, 
+  CardDescription, 
+  CardFooter, 
+  CardHeader, 
+  CardTitle, 
+  CardOverline,
+  CardMarketing 
+};

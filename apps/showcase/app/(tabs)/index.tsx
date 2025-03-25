@@ -5,7 +5,6 @@ import {
   View,
   StyleSheet,
   ScrollView,
-  Image,
   SafeAreaView,
   Platform,
   TouchableOpacity,
@@ -20,6 +19,7 @@ import {
   CardHeader,
   CardTitle,
   CardOverline,
+  CardMarketing,
 } from '~/components/ui/card';
 import {
   Select,
@@ -36,82 +36,6 @@ import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
 import { useFonts } from 'expo-font';
 import { Eye, EyeOff, Heart, Tv, InfoIcon } from 'lucide-react-native';
-
-const CardMarketing = React.forwardRef<View>((props, ref) => {
-  const [fontsLoaded] = useFonts({
-    Inter: require('../../assets/fonts/Inter-Medium.ttf'),
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
-  return (
-    <View
-      ref={ref}
-      className='flex flex-col justify-start items-start w-full h-[300px] bg-black border border-sys-divider-decorative rounded-xl'
-      accessible={true}
-      accessibilityRole='region'
-      accessibilityLabel='Cyberdyne systems marketing card'
-    >
-      <View
-        className='relative flex flex-col items-start justify-start w-full h-full rounded-xl border-sys-divider-decorative'
-        accessible={true}
-        accessibilityRole='none'
-      >
-        <Image
-          className='absolute w-full h-full rounded-xl'
-          source={require('../../assets/ai.png')} // Replace with your local image path
-          accessible={true}
-          accessibilityRole='image'
-          accessibilityLabel='Cyberdyne systems AI'
-          accessibilityIgnoresInvertColors={true}
-        />
-
-        {/* Badge at the top - using proper Badge component */}
-        <View className='absolute top-4 left-4' accessible={true} accessibilityRole='none'>
-          <Badge variant='information'>
-            <Text>Cyberdyne systems</Text>
-          </Badge>
-        </View>
-
-        {/* Main heading in the middle */}
-        <View
-          className='absolute w-full px-6'
-          style={{ top: '40%' }}
-          accessible={true}
-          accessibilityRole='none'
-        >
-          <Text
-            style={{ fontFamily: 'Inter' }}
-            className='text-white text-6xl font-semibold leading-tight'
-            accessible={true}
-            accessibilityRole='header'
-          >
-            Will Skynet rule the world?
-          </Text>
-        </View>
-
-        {/* Buttons at the bottom - using CardFooter pattern */}
-        <CardFooter className='absolute bottom-0 w-full flex-row justify-between mt-0'>
-          <View style={{ flex: 1, marginRight: 8 }}>
-            <Button
-              variant='default'
-              textSize='lg'
-              className='w-full bg-[#5c5cff] rounded-full'
-              accessibilityRole='button'
-              accessibilityLabel='Learn more about Skynet'
-            >
-              Learn more
-            </Button>
-          </View>
-        </CardFooter>
-      </View>
-    </View>
-  );
-});
-
-CardMarketing.displayName = 'CardMarketing';
 
 const styles = StyleSheet.create({
   Inter: {
@@ -181,14 +105,14 @@ export default function CardScreen() {
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       >
         <View className='items-center justify-center gap-5'>
-          {/* Card with Input Fields */}
-          <Card accessible={true} accessibilityRole='region' accessibilityLabel='Login form'>
+          {/* Log in Card with Input Fields */}
+          <Card accessible={true} accessibilityRole='form' accessibilityLabel='Login form'>
             <CardHeader
               imageSource={require('../../assets/eric.png')}
-              accessibilityLabel=''
+              accessibilityLabel='Eric Andre TV Show'
               accessibilityRole='image'
             >
-              <CardTitle style={styles.InterSemiBold} accessibilityRole='header'>
+              <CardTitle style={styles.InterSemiBold} accessibilityRole='heading'>
                 Log in to your account
               </CardTitle>
               <CardDescription style={styles.Inter} accessibilityRole='text'>
@@ -196,8 +120,8 @@ export default function CardScreen() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <View style={{ marginBottom: 16 }}>
-                <Label style={styles.label} nativeID='emailLabel' accessibilityRole='text'>
+              <View style={{ marginBottom: 8 }}>
+                <Label style={styles.label} nativeID='emailLabel'>
                   Email
                 </Label>
                 <Input
@@ -209,7 +133,7 @@ export default function CardScreen() {
                 />
               </View>
               <View>
-                <Label style={styles.label} nativeID='passwordLabel' accessibilityRole='text'>
+                <Label style={styles.label} nativeID='passwordLabel'>
                   Password
                 </Label>
                 <View className='relative'>
@@ -229,9 +153,9 @@ export default function CardScreen() {
                     accessibilityHint='Double tap to toggle password visibility'
                   >
                     {showPassword ? (
-                      <EyeOff size={20} color='#9CA3AF' />
-                    ) : (
                       <Eye size={20} color='#9CA3AF' />
+                    ) : (
+                      <EyeOff size={20} color='#9CA3AF' />
                     )}
                   </TouchableOpacity>
                 </View>
@@ -266,13 +190,13 @@ export default function CardScreen() {
           </Card>
 
           {/* Card with Select */}
-          <Card
-            accessible={true}
-            accessibilityRole='region'
-            accessibilityLabel='Select your details'
-          >
-            <CardHeader imageSource={require('../../assets/bjork.png')}>
-              <CardTitle style={styles.InterSemiBold} accessibilityRole='header'>
+          <Card accessible={true} accessibilityRole='form' accessibilityLabel='Select your details'>
+            <CardHeader
+              imageSource={require('../../assets/bjork.png')}
+              accessibilityLabel='Bjork image'
+              accessibilityRole='image'
+            >
+              <CardTitle style={styles.InterSemiBold} accessibilityRole='heading'>
                 Select music genre
               </CardTitle>
               <CardDescription style={styles.Inter} accessibilityRole='text'>
@@ -326,6 +250,7 @@ export default function CardScreen() {
                   className='w-full'
                   accessibilityRole='button'
                   accessibilityLabel='Cancel selection'
+                  accessibilityHint='Cancels the genre selection process'
                 >
                   Cancel
                 </Button>
@@ -337,6 +262,7 @@ export default function CardScreen() {
                   className='w-full'
                   accessibilityRole='button'
                   accessibilityLabel='Continue with selection'
+                  accessibilityHint='Confirms your genre selection and continues'
                 >
                   Continue
                 </Button>
@@ -346,17 +272,20 @@ export default function CardScreen() {
 
           {/* Simple Card */}
           <Card accessible={true} accessibilityRole='article' accessibilityLabel='Information card'>
-            <CardHeader imageSource={require('../../assets/eric.png')} accessibilityRole='header'>
+            <CardHeader
+              imageSource={require('../../assets/eric.png')}
+              accessibilityLabel='Eric Andre Show image'
+            >
               <CardOverline text='TV SHOWS' icon={<Tv />} />
               <View className='flex-row items-center justify-between'>
                 <CardTitle
                   style={styles.InterSemiBold}
-                  accessibilityRole='header'
+                  accessibilityRole='heading'
                   accessibilityLevel={2}
                 >
                   Eric Andre Show
                 </CardTitle>
-                <Badge variant='brand'>
+                <Badge variant='brand' accessibilityLabel='Comedy genre'>
                   <Text>Comedy</Text>
                 </Badge>
               </View>
@@ -369,13 +298,13 @@ export default function CardScreen() {
               <View style={{ flex: 1, marginRight: 8 }}>
                 <Button
                   variant='secondary'
-                  icon={<Heart />} 
-                  iconPosition="right"
+                  icon={<Heart />}
+                  iconPosition='right'
                   textSize='lg'
                   className='w-full'
                   accessibilityRole='button'
-                  accessibilityLabel='Cancel login'
-                  accessibilityHint='Cancels the login process'
+                  accessibilityLabel='Add to favourites'
+                  accessibilityHint='Adds this show to your favourites list'
                 >
                   Add to favourites
                 </Button>
@@ -383,131 +312,173 @@ export default function CardScreen() {
             </CardFooter>
           </Card>
 
-          {/* Simple Card */}
-          <Card accessible={true} accessibilityRole='article' accessibilityLabel='Information card'>
-            <CardHeader imageSource={require('../../assets/grub.png')} accessibilityRole='header'>
-              <View className='flex-row items-center justify-between'>
-                <CardTitle
-                  style={styles.InterSemiBold}
-                  accessibilityRole='header'
-                  accessibilityLevel={2}
-                >
-                  Jupiter Glasses
-                </CardTitle>
-                <Badge variant='warning'>
-                  <Text>Last pair</Text>
-                </Badge>
-              </View>
-              <CardDescription style={styles.Inter} accessibilityRole='text'>
-                $100.00
-              </CardDescription>
-            </CardHeader>
-            <CardFooter className='flex-row justify-between mt-0'>
-              <View style={{ flex: 1, marginRight: 8 }}>
-                <Button
-                  variant='secondary'
-                  textSize='lg'
-                  className='w-full'
-                  accessibilityRole='button'
-                  accessibilityLabel='Add selection to cart'
-                >
-                  Add to cart
-                </Button>
-              </View>
-              <View style={{ flex: 1 }}>
-                <Button
-                  variant='default'
-                  textSize='lg'
-                  className='w-full'
-                  accessibilityRole='button'
-                  accessibilityLabel='Purchase selection'
-                >
-                  Purchase
-                </Button>
-              </View>
-            </CardFooter>
-          </Card>
-
-          {/* Simple Card */}
-          <Card accessible={true} accessibilityRole='article' accessibilityLabel='Information card'>
-            <CardHeader imageSource={require('../../assets/air.png')} accessibilityRole='header'>
-            <CardOverline text='LIMITED EDITION' icon={<InfoIcon />} />
-            <View className='flex-row items-center justify-between'>
-                <CardTitle
-                  style={styles.InterSemiBold}
-                  accessibilityRole='header'
-                  accessibilityLevel={2}
-                >
-                  Nike Air Max 97
-                </CardTitle>
-                <Badge variant='success'>
-                  <Text>On sale</Text>
-                </Badge>
-              </View>
-              <CardDescription style={styles.Inter} accessibilityRole='text'>
-                $100.00
-              </CardDescription>
-            </CardHeader>
-            <CardFooter className='flex-row justify-between mt-0'>
-              <View style={{ flex: 1, marginRight: 8 }}>
-                <Button
-                  variant='secondary'
-                  textSize='lg'
-                  className='w-full'
-                  accessibilityRole='button'
-                  accessibilityLabel='Add selection to cart'
-                >
-                  Add to cart
-                </Button>
-              </View>
-              <View style={{ flex: 1 }}>
-                <Button
-                  variant='default'
-                  textSize='lg'
-                  className='w-full'
-                  accessibilityRole='button'
-                  accessibilityLabel='Purchase selection'
-                >
-                  Purchase
-                </Button>
-              </View>
-            </CardFooter>
-          </Card>
-
-          {/* Simple Card */}
-          <Card accessible={true} accessibilityRole='article' accessibilityLabel='Information card'>
+          {/* Commerce Simple Card */}
+          <Card
+            accessible={true}
+            accessibilityRole='article'
+            accessibilityLabel='Product card for Jupiter Glasses'
+          >
             <CardHeader
-              imageSource={require('../../assets/halloween.png')}
-              accessibilityRole='header'
+              imageSource={require('../../assets/grub.png')}
+              accessibilityLabel='Jupiter Glasses product image'
             >
               <View className='flex-row items-center justify-between'>
                 <CardTitle
                   style={styles.InterSemiBold}
-                  accessibilityRole='header'
+                  accessibilityRole='heading'
+                  accessibilityLevel={2}
+                >
+                  Jupiter Glasses
+                </CardTitle>
+                <Badge variant='warning' accessibilityLabel='Inventory status'>
+                  <Text>Last pair</Text>
+                </Badge>
+              </View>
+              <CardDescription
+                style={styles.Inter}
+                accessibilityRole='text'
+                accessibilityLabel='Price: 100 dollars'
+              >
+                $100.00
+              </CardDescription>
+            </CardHeader>
+            <CardFooter className='flex-row justify-between mt-0'>
+              <View style={{ flex: 1, marginRight: 8 }}>
+                <Button
+                  variant='secondary'
+                  textSize='lg'
+                  className='w-full'
+                  accessibilityRole='button'
+                  accessibilityLabel='Add to cart'
+                  accessibilityHint='Adds Jupiter Glasses to your shopping cart'
+                >
+                  Add to cart
+                </Button>
+              </View>
+              <View style={{ flex: 1 }}>
+                <Button
+                  variant='default'
+                  textSize='lg'
+                  className='w-full'
+                  accessibilityRole='button'
+                  accessibilityLabel='Purchase now'
+                  accessibilityHint='Proceeds directly to checkout with Jupiter Glasses'
+                >
+                  Purchase
+                </Button>
+              </View>
+            </CardFooter>
+          </Card>
+
+          {/* Nike Simple Card */}
+          <Card
+            accessible={true}
+            accessibilityRole='article'
+            accessibilityLabel='Product card for Nike Air Max 97'
+          >
+            <CardHeader
+              imageSource={require('../../assets/air.png')}
+              accessibilityLabel='Nike Air Max 97 sneakers image'
+            >
+              <CardOverline
+                text='LIMITED EDITION'
+                icon={<InfoIcon />}
+                accessibilityLabel='Limited edition product'
+              />
+              <View className='flex-row items-center justify-between'>
+                <CardTitle
+                  style={styles.InterSemiBold}
+                  accessibilityRole='heading'
+                  accessibilityLevel={2}
+                >
+                  Nike Air Max 97
+                </CardTitle>
+                <Badge variant='success' accessibilityLabel='Sale status'>
+                  <Text>On sale</Text>
+                </Badge>
+              </View>
+              <CardDescription
+                style={styles.Inter}
+                accessibilityRole='text'
+                accessibilityLabel='Price: 100 dollars'
+              >
+                $100.00
+              </CardDescription>
+            </CardHeader>
+            <CardFooter className='flex-row justify-between mt-0'>
+              <View style={{ flex: 1, marginRight: 8 }}>
+                <Button
+                  variant='secondary'
+                  textSize='lg'
+                  className='w-full'
+                  accessibilityRole='button'
+                  accessibilityLabel='Add to cart'
+                  accessibilityHint='Adds Nike Air Max 97 to your shopping cart'
+                >
+                  Add to cart
+                </Button>
+              </View>
+              <View style={{ flex: 1 }}>
+                <Button
+                  variant='default'
+                  textSize='lg'
+                  className='w-full'
+                  accessibilityRole='button'
+                  accessibilityLabel='Purchase now'
+                  accessibilityHint='Proceeds directly to checkout with Nike Air Max 97'
+                >
+                  Purchase
+                </Button>
+              </View>
+            </CardFooter>
+          </Card>
+
+          {/* Movie Simple Card */}
+          <Card
+            accessible={true}
+            accessibilityRole='article'
+            accessibilityLabel='Movie screening card for Halloween III'
+          >
+            <CardHeader
+              imageSource={require('../../assets/halloween.png')}
+              accessibilityLabel='Halloween III movie poster'
+            >
+              <View className='flex-row items-center justify-between'>
+                <CardTitle
+                  style={styles.InterSemiBold}
+                  accessibilityRole='heading'
                   accessibilityLevel={2}
                 >
                   Halloween III
                 </CardTitle>
-                <Badge variant='warning'>
+                <Badge variant='warning' accessibilityLabel='Screening status'>
                   <Text>Last screening</Text>
                 </Badge>
               </View>
-              <CardDescription style={styles.Inter} accessibilityRole='text'>
+              <CardDescription
+                style={styles.Inter}
+                accessibilityRole='text'
+                accessibilityLabel='Ticket price: 12 dollars'
+              >
                 $12.00
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <View className='flex-row gap-1'>
-                <Badge variant='default'>
+              <View
+                className='flex-row gap-1'
+                accessibilityLabel='Available screening times'
+                accessibilityRole='group'
+              >
+                <Badge variant='default' accessibilityLabel='5:30 PM screening'>
                   <Text className='text-xs text-sys-text-secondary'>5:30PM</Text>
                 </Badge>
-                <Badge variant='default'>
+                <Badge variant='default' accessibilityLabel='6:30 PM screening'>
                   <Text className='text-xs text-sys-text-secondary'>6:30PM</Text>
                 </Badge>
-                <Badge variant='default'>
+                <Badge variant='default' accessibilityLabel='7:30 PM screening'>
                   <Text className='text-xs text-sys-text-secondary'>7:30PM</Text>
                 </Badge>
-                <Badge variant='default'>
+                <Badge variant='default' accessibilityLabel='8:30 PM screening'>
                   <Text className='text-xs text-sys-text-secondary'>8:30PM</Text>
                 </Badge>
               </View>
@@ -519,7 +490,8 @@ export default function CardScreen() {
                   textSize='lg'
                   className='w-full'
                   accessibilityRole='button'
-                  accessibilityLabel='Purchase selection'
+                  accessibilityLabel='Continue to ticket selection'
+                  accessibilityHint='Proceeds to select seats and purchase tickets for Halloween III'
                 >
                   Continue
                 </Button>
@@ -527,8 +499,35 @@ export default function CardScreen() {
             </CardFooter>
           </Card>
 
-          {/* Marketing Card */}
-          <CardMarketing />
+          {/* Marketing Card - Now using the imported component */}
+          <CardMarketing
+            imageSource={require('../../assets/ai.png')}
+            badgeText='Cyberdyne Systems'
+            headingText='Will Skynet Rule The World?'
+            accessible={true}
+            accessibilityRole='region'
+            accessibilityLabel='Cyberdyne Systems marketing card about Skynet'
+          >
+            <CardFooter
+              className='absolute bottom-0 w-full flex-row justify-between mt-0'
+              accessible={true}
+              accessibilityRole='none'
+            >
+              <View style={{ flex: 1, marginRight: 8 }} accessible={true} accessibilityRole='none'>
+                <Button
+                  variant='default'
+                  textSize='lg'
+                  className='w-full rounded-full'
+                  accessibilityRole='button'
+                  accessibilityLabel='Learn more about Skynet'
+                  accessibilityHint='Opens more information about Skynet technology'
+                  importantForAccessibility='yes'
+                >
+                  Learn More
+                </Button>
+              </View>
+            </CardFooter>
+          </CardMarketing>
         </View>
       </ScrollView>
     </SafeAreaView>
