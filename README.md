@@ -4,9 +4,9 @@
 
 ## A Mobile app starter kit based on [shadcn/ui](https://ui.shadcn.com) for React Native featuring a focused collection of components
 
-Crafted with [NativeWind v4](https://www.nativewind.dev/) and accessibility in mind, `react-native-reusables` is open source, offering a foundation for developing your own high-quality component library.
+Crafted with [NativeWind v4](https://www.nativewind.dev/) and accessibility in mind, `react-native-reusables` is open source, offering a foundation for developing your own high-quality component library. If you'd like access to the Figma UI Kit, please send me a message and I'll give you a private link.
 
-If you'd like access to the Figma UI Kit, please send me a message and I'll give you a private link.
+
 
 [📖 Docs](https://rnr-docs.vercel.app/)
 <br>
