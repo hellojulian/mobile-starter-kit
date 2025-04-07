@@ -14,11 +14,11 @@ const CardMarketing = React.forwardRef<View, {}>((props, ref) => {
   return (
     <View
       ref={ref}
-      className='flex flex-col justify-start items-start w-full h-[275px] bg-black border border-sys-divider-decorative rounded-3xl'
+      className='flex flex-col justify-start items-start w-full h-[275px] bg-black border border-sys-border-4 rounded-3xl'
       accessibilityRole='region'
       accessibilityLabel='Marketing card'
     >
-      <View className='relative flex flex-col items-start justify-start w-full h-full myt rounded-3xl border-sys-divider-decorative'>
+      <View className='relative flex flex-col items-start justify-start w-full h-full myt rounded-3xl border-sys-border-4'>
         <Image
           className='absolute w-full h-full rounded-3xl'
           source={{

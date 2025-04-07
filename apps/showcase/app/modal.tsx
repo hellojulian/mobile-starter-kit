@@ -59,8 +59,8 @@ export default function ModalScreen() {
             />
           </View>
           <View className='gap-1'>
-          <H1 className='text-5xl text-center font-semibold tracking-tighter text-foreground'>Create an account</H1>
-            <Muted className='text-base text-center'>
+          <H1 className='text-5xl text-center font-semibold tracking-tighter text-sys-text-body'>Create an account</H1>
+            <Muted className='text-base text-sys-text-body text-center'>
               Enter your email below to create your account
             </Muted>
           </View>
@@ -75,7 +75,7 @@ export default function ModalScreen() {
             <Text>Continue</Text>
           </Button>
           <View>
-            <Muted className='text-center'>
+            <Muted className='text-center text-sys-text-body'>
               By creating an account, you agree to our{' '}
               <Muted className='underline'>Terms of Service</Muted> and{' '}
               <Muted className='underline'>Privacy Policy</Muted>

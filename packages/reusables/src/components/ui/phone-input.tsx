@@ -56,7 +56,7 @@ const selectTriggerVariants = cva(
     variants: {
       state: {
         default: 'border-sys-border-4 bg-sys-surface-neutral-0 placeholder:text-sys-text-neutral-3',
-        active: 'border-2 border-sys-border-6 bg-sys-secondary-pressed text-sys-text-body placeholder:text-sys-text-secondary',
+        active: 'border-2 border-sys-border-6 bg-sys-surface-secondary-pressed text-sys-text-body placeholder:text-sys-text-secondary',
         error: 'border-sys-border-error border-2 bg-sys-error-container text-sys-text-body placeholder:text-sys-error',
       },
     },

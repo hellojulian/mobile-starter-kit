@@ -8,7 +8,7 @@ import { cn } from '../../lib/utils';
 const alertVariants = cva('relative w-full rounded-md border border-border py-4 px-4', {
   variants: {
     variant: {
-      default: 'border-sys-border-default bg-sys-surface-neutral-0',
+      default: 'border-sys-border-4 bg-sys-surface-neutral-0',
       error: 'border-sys-border-error bg-sys-fn-error',
       success: 'border-sys-border-success  bg-sys-fn-success',
       warning: 'border-sys-border-warning  bg-sys-fn-warning',

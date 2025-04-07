@@ -50,8 +50,6 @@ export default function AlertScreen() {
               This is some body copy
             </AlertDescription>
           </Alert>      
-
-
         </View>
       </ScrollView>
     </SafeAreaView>

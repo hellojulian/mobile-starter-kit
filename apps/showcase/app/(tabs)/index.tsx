@@ -105,10 +105,10 @@ export default function CardScreen() {
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       >
         <View className='items-center justify-center gap-5'>
-          {/* Log in Card with Input Fields */}
+          {/* Log In Card */}
           <Card accessible={true} accessibilityRole='form' accessibilityLabel='Login form'>
             <CardHeader
-              imageSource={require('../../assets/eric.png')}
+              imageSource={require('../../assets/guy.png')}
               accessibilityLabel='Eric Andre TV Show'
               accessibilityRole='image'
             >
@@ -165,8 +165,8 @@ export default function CardScreen() {
               <View style={{ flex: 1, marginRight: 8 }}>
                 <Button
                   variant='secondary'
-                  textSize='lg'
-                  className='w-full'
+                  textSize='md'
+                  className='w-full tracking-tighter'
                   accessibilityRole='button'
                   accessibilityLabel='Cancel login'
                   accessibilityHint='Cancels the login process'
@@ -177,8 +177,8 @@ export default function CardScreen() {
               <View style={{ flex: 1 }}>
                 <Button
                   variant='default'
-                  textSize='lg'
-                  className='w-full'
+                  textSize='md'
+                  className='w-full tracking-tighter'
                   accessibilityRole='button'
                   accessibilityLabel='Continue login'
                   accessibilityHint='Submits the login form'
@@ -189,7 +189,7 @@ export default function CardScreen() {
             </CardFooter>
           </Card>
 
-          {/* Card with Select */}
+          {/* Select Card*/}
           <Card accessible={true} accessibilityRole='form' accessibilityLabel='Select your details'>
             <CardHeader
               imageSource={require('../../assets/bjork.png')}
@@ -209,7 +209,7 @@ export default function CardScreen() {
                 accessibilityLabel='Select music genre'
                 accessibilityHint='Opens a list of genre options'
               >
-                <SelectTrigger ref={triggerRef} className='w-full'>
+                <SelectTrigger ref={triggerRef} className='w-full tracking-tighter'>
                   <SelectValue
                     className='text-md text-foreground native:text-md'
                     placeholder='Select music genre'
@@ -246,8 +246,8 @@ export default function CardScreen() {
               <View style={{ flex: 1, marginRight: 8 }}>
                 <Button
                   variant='secondary'
-                  textSize='lg'
-                  className='w-full'
+                  textSize='md'
+                  className='w-full tracking-tighter'
                   accessibilityRole='button'
                   accessibilityLabel='Cancel selection'
                   accessibilityHint='Cancels the genre selection process'
@@ -258,8 +258,8 @@ export default function CardScreen() {
               <View style={{ flex: 1 }}>
                 <Button
                   variant='default'
-                  textSize='lg'
-                  className='w-full'
+                  textSize='md'
+                  className='w-full tracking-tighter'
                   accessibilityRole='button'
                   accessibilityLabel='Continue with selection'
                   accessibilityHint='Confirms your genre selection and continues'
@@ -270,7 +270,7 @@ export default function CardScreen() {
             </CardFooter>
           </Card>
 
-          {/* Simple Card */}
+          {/* Entertainment Card */}
           <Card accessible={true} accessibilityRole='article' accessibilityLabel='Information card'>
             <CardHeader
               imageSource={require('../../assets/eric.png')}
@@ -300,8 +300,8 @@ export default function CardScreen() {
                   variant='secondary'
                   icon={<Heart />}
                   iconPosition='right'
-                  textSize='lg'
-                  className='w-full'
+                  textSize='md'
+                  className='w-full tracking-tighter'
                   accessibilityRole='button'
                   accessibilityLabel='Add to favourites'
                   accessibilityHint='Adds this show to your favourites list'
@@ -312,7 +312,7 @@ export default function CardScreen() {
             </CardFooter>
           </Card>
 
-          {/* Commerce Simple Card */}
+          {/* Commerce Card */}
           <Card
             accessible={true}
             accessibilityRole='article'
@@ -346,8 +346,8 @@ export default function CardScreen() {
               <View style={{ flex: 1, marginRight: 8 }}>
                 <Button
                   variant='secondary'
-                  textSize='lg'
-                  className='w-full'
+                  textSize='md'
+                  className='w-full tracking-tighter'
                   accessibilityRole='button'
                   accessibilityLabel='Add to cart'
                   accessibilityHint='Adds Jupiter Glasses to your shopping cart'
@@ -358,8 +358,8 @@ export default function CardScreen() {
               <View style={{ flex: 1 }}>
                 <Button
                   variant='default'
-                  textSize='lg'
-                  className='w-full'
+                  textSize='md'
+                  className='w-full tracking-tighter'
                   accessibilityRole='button'
                   accessibilityLabel='Purchase now'
                   accessibilityHint='Proceeds directly to checkout with Jupiter Glasses'
@@ -370,7 +370,7 @@ export default function CardScreen() {
             </CardFooter>
           </Card>
 
-          {/* Nike Simple Card */}
+          {/* Rating Card */}
           <Card
             accessible={true}
             accessibilityRole='article'
@@ -409,8 +409,8 @@ export default function CardScreen() {
               <View style={{ flex: 1, marginRight: 8 }}>
                 <Button
                   variant='secondary'
-                  textSize='lg'
-                  className='w-full'
+                  textSize='md'
+                  className='w-full tracking-tighter'
                   accessibilityRole='button'
                   accessibilityLabel='Add to cart'
                   accessibilityHint='Adds Nike Air Max 97 to your shopping cart'
@@ -421,8 +421,8 @@ export default function CardScreen() {
               <View style={{ flex: 1 }}>
                 <Button
                   variant='default'
-                  textSize='lg'
-                  className='w-full'
+                  textSize='md'
+                  className='w-full tracking-tighter'
                   accessibilityRole='button'
                   accessibilityLabel='Purchase now'
                   accessibilityHint='Proceeds directly to checkout with Nike Air Max 97'
@@ -433,7 +433,7 @@ export default function CardScreen() {
             </CardFooter>
           </Card>
 
-          {/* Movie Simple Card */}
+          {/* Badge Array Card */}
           <Card
             accessible={true}
             accessibilityRole='article'
@@ -487,8 +487,8 @@ export default function CardScreen() {
               <View style={{ flex: 1, marginRight: 8 }}>
                 <Button
                   variant='default'
-                  textSize='lg'
-                  className='w-full'
+                  textSize='md'
+                  className='w-full tracking-tighter'
                   accessibilityRole='button'
                   accessibilityLabel='Continue to ticket selection'
                   accessibilityHint='Proceeds to select seats and purchase tickets for Halloween III'
@@ -499,7 +499,7 @@ export default function CardScreen() {
             </CardFooter>
           </Card>
 
-          {/* Marketing Card - Now using the imported component */}
+          {/* Marketing Card */}
           <CardMarketing
             imageSource={require('../../assets/ai.png')}
             badgeText='Cyberdyne Systems'
@@ -507,16 +507,17 @@ export default function CardScreen() {
             accessible={true}
             accessibilityRole='region'
             accessibilityLabel='Cyberdyne Systems marketing card about Skynet'
+            className='w-full' // Ensure full width
           >
             <CardFooter
-              className='absolute bottom-0 w-full flex-row justify-between mt-0'
+              className='absolute bottom-0 w-full px-6 pb-6' // Added proper padding
               accessible={true}
               accessibilityRole='none'
             >
-              <View style={{ flex: 1, marginRight: 8 }} accessible={true} accessibilityRole='none'>
+              <View style={{ flex: 1 }} accessible={true} accessibilityRole='none'>
                 <Button
                   variant='default'
-                  textSize='lg'
+                  textSize='md'
                   className='w-full rounded-full'
                   accessibilityRole='button'
                   accessibilityLabel='Learn more about Skynet'

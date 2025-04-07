@@ -24,7 +24,7 @@ const Card = React.forwardRef<ViewRef, ViewProps>(({ className, ...props }, ref)
   <View
     ref={ref}
     className={cn(
-      'rounded-xl border border-sys-divider-decorative bg-sys-surface-neutral-0 shadow-[0px_4px_6px_0px_rgba(0,_0,_0,_0.1)] w-full',
+      'rounded-xl border border-sys-border-4 bg-sys-surface-neutral-0 shadow-[0px_4px_6px_0px_rgba(0,_0,_0,_0.1)] w-full',
       className
     )}
     {...props}

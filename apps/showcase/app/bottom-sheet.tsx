@@ -116,7 +116,7 @@ export default function BottomSheetScreen() {
                   }}
                   style={{ width: 120, height: 120 }}
                   resizeMode='contain'
-                  className='mb-4 border rounded-full border-sys-divider-decorative'
+                  className='mb-4 border rounded-full border-sys-border-4'
                 />
               </View>
               <Text

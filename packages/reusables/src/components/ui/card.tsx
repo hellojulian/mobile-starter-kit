@@ -25,16 +25,60 @@ const styles = StyleSheet.create({
   },
 });
 
-const Card = React.forwardRef<ViewRef, ViewProps>(({ className, ...props }, ref) => (
-  <View
-    ref={ref}
-    className={cn(
-      'rounded-xl border border-sys-divider-decorative bg-sys-surface-neutral-0 shadow-[0px_4px_6px_0px_rgba(0,_0,_0,_0.1)] w-full',
-      className
-    )}
-    {...props}
-  />
-));
+// Define shadow styles for different variants
+const shadowStyles = {
+  none: {},
+  sm: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 1,
+  },
+  md: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  lg: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 6,
+    elevation: 5,
+  },
+  xl: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+};
+
+const Card = React.forwardRef<
+  ViewRef, 
+  ViewProps & { 
+    shadowVariant?: 'none' | 'sm' | 'md' | 'lg' | 'xl' 
+  }
+>(({ className, style, shadowVariant = 'xl', ...props }, ref) => {
+  return (
+    <View
+      ref={ref}
+      className={cn(
+        'rounded-xl border border-sys-border-4 bg-sys-surface-neutral-0 w-full',
+        className
+      )}
+      style={[
+        shadowStyles[shadowVariant],
+        style, // Preserve any other styles passed to the component
+      ]}
+      {...props}
+    />
+  );
+});
 Card.displayName = 'Card';
 
 const CardHeader = React.forwardRef<ViewRef, ViewProps & { imageSource?: ImageProps['source'] }>(
@@ -150,6 +194,7 @@ const CardMarketing = React.forwardRef<
     headingText?: string;
     children?: React.ReactNode;
     badgeVariant?: string;
+    shadowVariant?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
   }
 >(
   ({ 
@@ -159,9 +204,11 @@ const CardMarketing = React.forwardRef<
     headingText = 'Will Skynet rule the world?',
     children,
     badgeVariant = 'information',
+    shadowVariant = 'md',
     accessible = true,
     accessibilityRole = 'region',
     accessibilityLabel,
+    style,
     ...props 
   }, ref) => {
     // Generate a default accessibility label if none provided
@@ -169,12 +216,16 @@ const CardMarketing = React.forwardRef<
     const finalAccessibilityLabel = accessibilityLabel || defaultAccessibilityLabel;
     
     return (
-      <Card
+      <View
         ref={ref}
         className={cn(
-          'bg-black h-[300px]',
+          'bg-black h-[300px] rounded-xl',
           className
         )}
+        style={[
+          shadowStyles[shadowVariant],
+          style,
+        ]}
         accessible={accessible}
         accessibilityRole={accessibilityRole}
         accessibilityLabel={finalAccessibilityLabel}
@@ -229,7 +280,7 @@ const CardMarketing = React.forwardRef<
 
         {/* Children (typically CardFooter with Button) */}
         {children}
-      </Card>
+      </View>
     );
   }
 );
@@ -243,5 +294,6 @@ export {
   CardHeader, 
   CardTitle, 
   CardOverline,
-  CardMarketing 
+  CardMarketing,
+  shadowStyles // Export shadow styles for reuse in other components if needed
 };

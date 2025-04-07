@@ -69,7 +69,7 @@ const SwitchNative = React.forwardRef<SwitchPrimitives.RootRef, SwitchPrimitives
         <SwitchPrimitives.Root
           className={cn(
             'flex-row h-8 w-[60px] shrink-0 items-center rounded-full border-4 border-transparent',
-            props.checked ? 'bg-sys-surface-secondary-4' : 'bg-sys-divider-decorative',
+            props.checked ? 'bg-sys-surface-secondary-4' : 'bg-sys-border-4',
             className
           )}
           {...props}

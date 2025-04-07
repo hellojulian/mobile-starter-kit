@@ -10,11 +10,10 @@ const buttonVariants = cva(
       variant: {
         default: 'bg-sys-surface-secondary-4 web:hover:opacity-90 active:bg-sys-surface-secondary-5',
         secondary:
-          'bg-transparent border-2 border-sys-border-6 web:hover:opacity-90 active:bg-sys-secondary-pressed',
-        outline:
-          'border border-input bg-background web:hover:bg-accent web:hover:text-accent-foreground active:bg-accent',
-        ghost: 'web:hover:bg-accent web:hover:text-accent-foreground active:bg-accent',
-        link: 'web:underline-offset-4 web:hover:underline web:focus:underline',
+          'bg-transparent border-2 border-sys-border-6 web:hover:opacity-90 active:bg-sys-surface-secondary-pressed',
+        black:
+          'border border-input bg-sys-surface-black web:hover:bg-accent web:hover:text-accent-foreground active:bg-ref-neutral-800',
+        link: 'web:underline-offset-4 web:hover:underline web:focus:underline active:bg-sys-surface-secondary-pressed',
       },
       size: {
         default: 'h-11 rounded-full px-6 native:h-14',
@@ -30,25 +29,24 @@ const buttonVariants = cva(
   }
 );
 
+// Define text size variants explicitly
 const buttonTextVariants = cva('web:whitespace-nowrap text-sys-text-body web:transition-colors', {
   variants: {
     variant: {
       default: 'text-white font-medium',
       secondary: 'text-sys-text-body font-medium',
-      outline: 'group-active:text-accent-foreground font-medium',
-      ghost: 'group-active:text-accent-foreground font-medium',
-      link: 'text-sys-text-secondary underline font-medium',
+      black: 'text-sys-text-white font-medium',
+      link: 'text-sys-text-secondary font-medium',
     },
-    size: {
-      default: 'text-md',
+    textSize: {
       sm: 'text-sm',
-      lg: 'text-md',
-      icon: '',
+      md: 'text-md',
+      lg: 'text-lg',
     },
   },
   defaultVariants: {
     variant: 'default',
-    size: 'default',
+    textSize: 'sm',
   },
 });
 
@@ -58,14 +56,12 @@ const variantColorMap = {
     default: '#FFFFFF', // white
     secondary: '#1F2937', // sys-text-body in light mode
     outline: '#1F2937', // sys-text-body in light mode
-    ghost: '#1F2937', // sys-text-body in light mode
     link: '#6366F1', // sys-secondary-text in light mode
   },
   dark: {
     default: '#FFFFFF', // white
     secondary: '#E5E7EB', // sys-text-body in dark mode
     outline: '#E5E7EB', // sys-text-body in dark mode
-    ghost: '#E5E7EB', // sys-text-body in dark mode
     link: '#818CF8', // sys-secondary-text in dark mode
   }
 };
@@ -124,20 +120,12 @@ const Button = React.forwardRef<React.ElementRef<typeof Pressable>, ButtonProps>
     // State to store the text color
     const [textColor, setTextColor] = React.useState<string | null>(null);
     
-    // Map textSize to size for text styling
-    const textSizeToButtonSize = {
-      'sm': 'sm',
-      'md': 'default',
-      'lg': 'lg'
-    };
-    
-    // Use the mapped size or the provided size
-    const textSizeForStyling = textSize ? textSizeToButtonSize[textSize] : size;
-    
     const styles = StyleSheet.create({
       text: {
-        fontFamily: 'Inter-Medium',
-        // Remove fontSize from here to let NativeWind handle it
+        fontFamily: 'Inter',
+        // Fixed font size mapping
+        fontSize: textSize === 'sm' ? 14 : textSize === 'lg' ? 18 : 16,
+        lineHeight: textSize === 'sm' ? 20 : textSize === 'lg' ? 28 : 23,
       },
       container: {
         flexDirection: iconPosition === 'left' ? 'row' : 'row-reverse',
@@ -184,11 +172,11 @@ const Button = React.forwardRef<React.ElementRef<typeof Pressable>, ButtonProps>
             <Text
               style={styles.text}
               className={cn(
-                buttonTextVariants({ variant, size: textSizeForStyling })
+                buttonTextVariants({ variant, textSize })
               )}
               numberOfLines={1}
-              adjustsFontSizeToFit
-              minimumFontScale={0.75}
+              adjustsFontSizeToFit={false} // Disable auto-adjusting
+              minimumFontScale={0.9} // Increase minimum scale if needed
             >
               {children}
             </Text>

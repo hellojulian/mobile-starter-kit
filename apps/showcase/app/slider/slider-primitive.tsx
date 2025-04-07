@@ -25,7 +25,7 @@ export default function SliderScreen() {
           }}
           className='justify-center w-full'
         >
-          <Slider.Track className='h-2 border rounded-full bg-sys-divider-decorative border-border'>
+          <Slider.Track className='h-2 border rounded-full bg-sys-border-4 border-border'>
             <Slider.Range
               style={{ width: `${value}%` }}
               className='h-full rounded-full bg-sys-secondary'

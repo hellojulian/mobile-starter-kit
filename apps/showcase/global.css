@@ -19,7 +19,7 @@
     --ref-secondary-200: 233.11 100% 88.04%;
     --ref-secondary-100: 232.94 100% 93.33%;
     --ref-secondary-50: 230.53 100% 96.27%;
-    
+
     /* Neutral Tokens */
     --ref-neutral-950: 0 0% 5.88%;
     --ref-neutral-900: 0 0% 10.98%;
@@ -32,7 +32,7 @@
     --ref-neutral-200: 0 0% 83.92%;
     --ref-neutral-100: 0 0% 94.9%;
     --ref-neutral-50: 0 0% 100%;
-    
+
     /* Information Tokens */
     --ref-information-950: 217.61 62.62% 20.98%;
     --ref-information-900: 216.1 70.24% 32.94%;
@@ -45,7 +45,7 @@
     --ref-information-200: 203.28 100% 86.86%;
     --ref-information-100: 205.26 100% 92.55%;
     --ref-information-50: 204.71 100% 96.67%;
-    
+
     /* Success Tokens */
     --ref-success-950: 158.33 78.26% 9.02%;
     --ref-success-900: 157.74 73.81% 16.47%;
@@ -58,7 +58,7 @@
     --ref-success-200: 146.25 64% 80.39%;
     --ref-success-100: 142.29 68.63% 90%;
     --ref-success-50: 144 71.43% 95.88%;
-    
+
     /* Warning Tokens */
     --ref-warning-950: 15 83.33% 14.12%;
     --ref-warning-900: 15.79 70.37% 26.47%;
@@ -71,7 +71,7 @@
     --ref-warning-200: 42.35 87.63% 80.98%;
     --ref-warning-100: 41.63 85.96% 88.82%;
     --ref-warning-50: 40 90% 96.08%;
-    
+
     /* Error Tokens */
     --ref-error-950: 0 67.09% 15.49%;
     --ref-error-900: 0 56.41% 30.59%;
@@ -85,13 +85,8 @@
     --ref-error-100: 0 80% 94.12%;
     --ref-error-50: 0 71.43% 97.25%;
 
-    /* Scrim Tokens */
-    --ref-scrim-light: 100 100% 100% / 80%;
-    --ref-scrim-dark: 0 0% 0% / 80%;
-
     /* System Tokens */
-
-    /* New Tokens */
+    /* Surace Tokens */
     --sys-surface-neutral-0: var(--ref-neutral-50);
     --sys-surface-neutral-1: var(--ref-neutral-100);
     --sys-surface-neutral-2: var(--ref-neutral-200);
@@ -108,7 +103,8 @@
     --sys-surface-secondary-3: var(--ref-secondary-300);
     --sys-surface-secondary-4: var(--ref-secondary-500);
     --sys-surface-secondary-5: var(--ref-secondary-700);
-    --sys-secondary-pressed: var(--ref-secondary-100);
+    --sys-surface-secondary-pressed: var(--ref-secondary-100);
+    /* Text Tokens */
     --sys-text-white: var(--ref-neutral-50);
     --sys-text-black: var(--ref-neutral-950);
     --sys-text-body: var(--ref-neutral-950);
@@ -120,7 +116,7 @@
     --sys-text-neutral-3: var(--ref-neutral-600);
     --sys-text-neutral-4: var(--ref-neutral-900);
     --sys-text-disabled: var(--ref-neutral-400);
-    --sys-scrim: hsl(0deg 0% 100% / 80%);
+    /* Border Tokens */
     --sys-border-1: var(--ref-neutral-900);
     --sys-border-2: var(--ref-neutral-800);
     --sys-border-3: var(--ref-neutral-600);
@@ -131,6 +127,7 @@
     --sys-border-success: var(--ref-success-400);
     --sys-border-warning: var(--ref-warning-400);
     --sys-border-error: var(--ref-error-400);
+    /* Functional Tokens */
     --sys-fn-generic: var(--ref-neutral-50);
     --sys-fn-error: var(--ref-error-200);
     --sys-fn-error-text: var(--ref-error-800);
@@ -140,38 +137,6 @@
     --sys-fn-warning-text: var(--ref-warning-900);
     --sys-fn-information: var(--ref-information-200);
     --sys-fn-information-text: var(--ref-information-800);
-
-    /* Scrim Tokens */
-    --sys-scrim: var(--ref-scrim-light);
-
-    /* App Tokens */
-    --sys-appbg: var(--ref-neutral-50);
-
-    /* Service Card Tokens */
-    --sys-service-card: var(--ref-service-card-light);
-    --sys-service-card-alt: var(--ref-neutral-50);
-
-    /* Radio Tokens */
-    --sys-radio: var(--ref-secondary-700);
-
-    /* Focus Tokens */
-    --sys-focus: var(--ref-secondary-600);
-
-    /* Divider Tokens */
-    --sys-divider-decorative: var(--ref-neutral-300);
-    --sys-divider-default: var(--ref-neutral-600);
-
-    --sys-border-default: var(--ref-neutral-400);
-
-    /* Form Tokens */
-    --sys-form-default: var(--ref-neutral-400);
-    --sys-form-disabled: var(--ref-neutral-200);
-    --sys-form-error: var(--ref-error-500);
-    --sys-form-success: var(--ref-success-500);
-    --sys-form-active: var(--ref-secondary-500);
-
-    --sys-alt-text: var(--ref-neutral-500);
-    --sys-subhead-text: var(--ref-neutral-500);
 
     /* Shadcn Colors */
     --background: 0 0% 100%; /* Light background */
@@ -204,6 +169,7 @@
 
   .dark:root {
     /* New Tokens */
+    /* Surace Tokens */
     --sys-surface-neutral-0: var(--ref-neutral-950);
     --sys-surface-neutral-1: var(--ref-neutral-900);
     --sys-surface-neutral-2: var(--ref-neutral-800);
@@ -220,10 +186,11 @@
     --sys-surface-secondary-3: var(--ref-secondary-300);
     --sys-surface-secondary-4: var(--ref-secondary-500);
     --sys-surface-secondary-5: var(--ref-secondary-700);
-    --sys-secondary-pressed: var(--ref-secondary-950);
+    --sys-surface-secondary-pressed: var(--ref-secondary-950);
     --sys-fn-generic: var(--ref-neutral-950);
     --sys-fn-error: var(--ref-error-950);
     --sys-fn-error-text: var(--ref-error-400);
+    /* Text Tokens */
     --sys-text-white: var(--ref-neutral-50);
     --sys-text-black: var(--ref-neutral-950);
     --sys-text-body: var(--ref-neutral-50);
@@ -234,12 +201,7 @@
     --sys-text-neutral-3: var(--ref-neutral-300);
     --sys-text-neutral-4: var(--ref-neutral-50);
     --sys-text-disabled: var(--ref-neutral-800);
-    --xs---8: 8px;
-    --md---16: 16px;
-    --sm---12: 12px;
-    --lg---24: 24px;
-    --border-width-sm: nullpx;
-    --sys-scrim: hsl(0deg 0% 6% / 80%);
+    /* Border Tokens */
     --sys-border-1: var(--ref-neutral-200);
     --sys-border-2: var(--ref-neutral-300);
     --sys-border-3: var(--ref-neutral-600);
@@ -250,10 +212,7 @@
     --sys-border-success: var(--ref-success-800);
     --sys-border-warning: var(--ref-warning-800);
     --sys-border-error: var(--ref-error-800);
-    --border-width-0: nullpx;
-    --border-width-sm: nullpx;
-    --border-width-md: nullpx;
-    --border-width-lg: nullpx;
+    /* Functional Tokens */
     --sys-fn-success: var(--ref-success-950);
     --sys-fn-success-text: var(--ref-success-400);
     --sys-fn-warning: var(--ref-warning-950);
@@ -263,35 +222,6 @@
 
     /* Focus Tokens */
     --sys-focus: var(--ref-secondary-600);
-
-    /* Scrim Tokens */
-    --sys-scrim: var(--ref-scrim-dark);
-
-    /* App Tokens */
-    --sys-appbg: var(--ref-neutral-950);
-
-    /* Service Card Tokens */
-    --sys-service-card: var(--ref-neutral-900);
-    --sys-service-card-alt: var(--ref-neutral-800);
-
-    /* Radio Tokens */
-    --sys-radio: var(--ref-secondary-600);
-
-    /* Divider Tokens */
-    --sys-divider-decorative: var(--ref-neutral-800);
-    --sys-divider-default: var(--ref-neutral-300);
-
-    --sys-border-default: var(--ref-neutral-700);
-
-    /* Form Tokens */
-    --sys-form-default: var(--ref-neutral-700);
-    --sys-form-disabled: var(--ref-neutral-800);
-    --sys-form-error: var(--ref-error-400);
-    --sys-form-success: var(--ref-success-400);
-    --sys-form-active: var(--ref-secondary-400);
-
-    --sys-alt-text: var(--ref-neutral-400);
-    --sys-subhead-text: var(--ref-neutral-400);
 
     /* Shadcn Colors */
     --background: 0 0% 0%; /* Full black in HSL */

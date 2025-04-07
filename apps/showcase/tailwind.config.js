@@ -1,14 +1,11 @@
 const { hairlineWidth } = require('nativewind/theme');
+const plugin = require('tailwindcss/plugin');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   fontFamily: { fontName: 'Inter' },
   darkMode: 'class',
-  content: [
-    './app/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './node_modules/@rnr/**/*.{ts,tsx}',
-  ],
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./node_modules/@rnr/**/*.{ts,tsx}", "*.{js,ts,jsx,tsx,mdx}"],
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
@@ -18,50 +15,6 @@ module.exports = {
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
-        },
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
-        },
-        error: {
-          DEFAULT: 'hsl(var(--error))',
-          foreground: 'hsl(var(--error-foreground))',
-        },
-        success: {
-          DEFAULT: 'hsl(var(--success))',
-          foreground: 'hsl(var(--success-foreground))',
-        },
-        warning: {
-          DEFAULT: 'hsl(var(--warning))',
-          foreground: 'hsl(var(--warning-foreground))',
-        },
-        info: {
-          DEFAULT: 'hsl(var(--info))',
-          foreground: 'hsl(var(--info-foreground))',
-        },
         ref: {
           secondary: {
             950: 'hsl(var(--ref-secondary-950) / <alpha-value>)',
@@ -141,16 +94,11 @@ module.exports = {
             100: 'hsl(var(--ref-error-100) / <alpha-value>)',
             50: 'hsl(var(--ref-error-50) / <alpha-value>)',
           },
-          'service-card': {
-            light: 'hsl(var(--ref-service-card-light) / <alpha-value>)',
-            dark: 'hsl(var(--ref-service-card-dark) / <alpha-value>)',
-          },
           scrim: {
             light: 'hsl(var(--ref-scrim-light) / <alpha-value>)',
             dark: 'hsl(var(--ref-scrim-dark) / <alpha-value>)',
           },
         },
-
         
         sys: {
           'surface-neutral': {
@@ -162,11 +110,10 @@ module.exports = {
             5: 'hsl(var(--sys-surface-neutral-5) / <alpha-value>)',
           },
           'surface-disabled': 'hsl(var(--sys-surface-disabled) / <alpha-value>)',
-          'surface-scrim': 'hsl(var(--sys-surface-scrim) / <alpha-value>)',
           'surface-card': 'hsl(var(--sys-surface-card) / <alpha-value>)',
           'surface-black': 'hsl(var(--sys-surface-black) / <alpha-value>)',
           'surface-white': 'hsl(var(--sys-surface-white) / <alpha-value>)',
-          'secondary-pressed': 'hsl(var(--sys-secondary-pressed) / <alpha-value>)',
+          'surface-secondary-pressed': 'hsl(var(--sys-surface-secondary-pressed) / <alpha-value>)',
           'surface-secondary': {
             1: 'hsl(var(--sys-surface-secondary-1) / <alpha-value>)',
             2: 'hsl(var(--sys-surface-secondary-2) / <alpha-value>)',
@@ -224,12 +171,10 @@ module.exports = {
             active: 'hsl(var(--sys-form-active) / <alpha-value>)',
           },
           divider: {
-            decorative: 'hsl(var(--sys-divider-decorative) / <alpha-value>)',
+            decorative: 'hsl(var(--sys-border-4) / <alpha-value>)',
             default: 'hsl(var(--sys-divider-default) / <alpha-value>)',
           },
-          scrim: 'hsl(var(--sys-scrim) / <alpha-value>)',
           focus: 'hsl(var(--sys-focus) / <alpha-value>)',
-
         },
       },
       fontSize: {
@@ -248,20 +193,28 @@ module.exports = {
         '8xl': ['40px', { lineHeight: '45px' }],
       },
       spacing: {
-        1: '4px',
-        2: '8px',
-        3: '12px',
-        4: '16px',
-        5: '20px',
-        6: '24px',
-        8: '32px',
-        10: '40px',
-        12: '48px',
-        16: '64px',
-        'xs-8': 'var(--xs---8)',
-        'sm-12': 'var(--sm---12)',
-        'md-16': 'var(--md---16)',
-        'lg-24': 'var(--lg---24)',
+        0: '0px',      // NONE - 0
+        0.5: '2px',    // XXXS - 2
+        1: '4px',      // XXS - 4
+        2: '8px',      // XS - 8
+        3: '12px',     // SM - 12
+        4: '16px',     // MD - 16
+        6: '24px',     // LG - 24
+        8: '32px',     // XL - 32
+        10: '40px',    // XXL - 40
+        12: '48px',    // XXXL - 48
+        16: '64px',    // XXXXL - 64
+        'none': 'var(--space-none)',
+        'xxxs': 'var(--space-xxxs)',
+        'xxs': 'var(--space-xxs)',
+        'xs': 'var(--space-xs)',
+        'sm': 'var(--space-sm)',
+        'md': 'var(--space-md)',
+        'lg': 'var(--space-lg)',
+        'xl': 'var(--space-xl)',
+        'xxl': 'var(--space-xxl)',
+        'xxxl': 'var(--space-xxxl)',
+        'xxxxl': 'var(--space-xxxxl)',
       },
       borderRadius: {
         none: '0',
@@ -272,16 +225,15 @@ module.exports = {
         lg: '24px',
         xl: '32px',
         '2xl': '40px',
-        '3xl': '50px',
-        '4xl': '60px',
+        '3xl': '64px',
         full: '999px',
       },
       borderWidth: {
         hairline: hairlineWidth(),
-        0: 'var(--border-width-0)',
-        sm: 'var(--border-width-sm)',
-        md: 'var(--border-width-md)',
-        lg: 'var(--border-width-lg)',
+        0: 'var(--border-width-0)', // NONE - 0
+        sm: 'var(--border-width-sm)', // SM - 1
+        md: 'var(--border-width-md)', // MD - 2
+        lg: 'var(--border-width-lg)', // LG - 3
       },
       keyframes: {
         'accordion-down': {
@@ -297,7 +249,16 @@ module.exports = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      blur: {
+        'xs': 'calc(var(--DropShadow-Blur-XS---4, 4px) / 2)',
+        'sm': 'calc(var(--DropShadow-Blur-SM---8, 8px) / 2)',
+        'md': 'calc(var(--DropShadow-Blur-MD---16, 16px) / 2)',
+        'xl': 'calc(var(--DropShadow-Blur-XL---48, 48px) / 2)',
+      },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    require('tailwindcss-animate'),
+      
+  ],
 };

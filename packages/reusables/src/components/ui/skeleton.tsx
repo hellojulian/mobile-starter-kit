@@ -30,7 +30,7 @@ function Skeleton({
   return (
     <Animated.View
       style={style}
-      className={cn('rounded-md bg-sys-divider-decorative', className)}
+      className={cn('rounded-md bg-sys-border-4', className)}
       {...props}
     />
   );

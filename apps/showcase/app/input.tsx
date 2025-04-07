@@ -91,7 +91,7 @@ export default function InputScreen() {
               inputState === 'error' &&
                 'border-sys-border-error border-2 bg-sys-fn-error text-sys-text-body placeholder:text-sys-error',
               inputState === 'active' &&
-                'border-sys-border-6 border-2 bg-sys-secondary-pressed text-sys-text-body placeholder:text-sys-text-secondary'
+                'border-sys-border-6 border-2 bg-sys-surface-secondary-pressed text-sys-text-body placeholder:text-sys-text-secondary'
             )}
           />
           {err && <ErrorMessage msg={err} />}

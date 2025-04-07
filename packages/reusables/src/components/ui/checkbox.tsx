@@ -18,7 +18,7 @@ const Checkbox = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxPrimitive.R
           ref={ref}
           className={cn(
             "h-5 w-5 native:h-6 native:w-6 shrink-0 rounded-xs native:rounded-xs border-2 border-sys-surface-secondary-5 web:ring-offset-background web:focus-visible:outline-none web:focus-visible:ring-2 web:focus-visible:ring-ring web:focus-visible:ring-offset-2 disabled:cursor-not-allowed",
-            props.checked && "bg-sys-secondary-pressed",
+            props.checked && "bg-sys-surface-secondary-pressed",
             className,
           )}
           {...props}
@@ -56,7 +56,7 @@ const CheckboxTile = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxTilePro
         className={cn(
           "w-full p-4 rounded-md border",
           props.checked
-            ? "bg-sys-secondary-pressed border-sys-border-6"
+            ? "bg-sys-surface-secondary-pressed border-sys-border-6"
             : "bg-sys-surface-neutral-1 border-sys-border-4",
           props.disabled && "opacity-50",
         )}
