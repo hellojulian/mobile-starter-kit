@@ -8,7 +8,7 @@ export default function SeparatorScreen() {
       <View className='w-full max-w-xs '>
         <View className='gap-1'>
           <H4 className='text-sm native:text-base font-medium leading-none'>Radix Primitives</H4>
-          <P className='text-sm native:text-base text-muted-foreground'>
+          <P className='text-sm native:text-base text-sys-text-body'>
             An open-source UI component library.
           </P>
         </View>

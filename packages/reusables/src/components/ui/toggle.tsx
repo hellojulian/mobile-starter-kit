@@ -27,7 +27,7 @@ const toggleVariants = cva(
   }
 );
 
-const toggleTextVariants = cva('text-sm native:text-base text-foreground font-medium', {
+const toggleTextVariants = cva('text-sm native:text-sys-text-secondary text-foreground font-medium', {
   variants: {
     variant: {
       default: '',

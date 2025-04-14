@@ -54,6 +54,12 @@ export default function ToastScreen() {
   }
   return (
     <>
+          <View className='p-6 w-full'>
+        <Alert icon={Code} className='max-w-xl mx-auto'>
+          <AlertTitle>FYI</AlertTitle>
+          <AlertDescription>This reusable does not use "rn-primitives"</AlertDescription>
+        </Alert>
+      </View>
       <View className='flex-1 justify-center items-center gap-4'>
         <Button variant='secondary' onPress={showSuccessToast}>
           <Text>Show success toast</Text>
@@ -70,12 +76,6 @@ export default function ToastScreen() {
         <Button variant='secondary' onPress={showGenericToast}>
           <Text>Show base toast</Text>
         </Button>
-      </View>
-      <View className='p-6 w-full'>
-        <Alert icon={Code} className='max-w-xl mx-auto'>
-          <AlertTitle>FYI</AlertTitle>
-          <AlertDescription>This reusable does not use "rn-primitives"</AlertDescription>
-        </Alert>
       </View>
     </>
   );

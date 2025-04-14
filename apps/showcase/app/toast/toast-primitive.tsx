@@ -48,27 +48,51 @@ export default function ToastScreen() {
       {open && (
         <Portal name='toast-example'>
           <View style={{ top: insets.top + 4 }} className='px-4 absolute w-full'>
-            <Toast.Root
-              type='foreground'
-              open={open}
-              onOpenChange={setOpen}
-              className='opacity-95 bg-secondary border-border flex-row justify-between items-center p-4 rounded-xl'
-            >
-              <View className='gap-1.5'>
-                <Toast.Title className='text-foreground text-3xl'>Here is a toast</Toast.Title>
-                <Toast.Description className='text-foreground text-lg'>
-                  It will disappear in {seconds} seconds
-                </Toast.Description>
-              </View>
-              <View className='gap-2'>
-                <Toast.Action className='border border-primary px-4 py-2'>
-                  <Text className='text-foreground'>Action</Text>
-                </Toast.Action>
-                <Toast.Close className='border border-primary px-4 py-2'>
-                  <Text className='text-foreground'>Close</Text>
-                </Toast.Close>
-              </View>
-            </Toast.Root>
+          <Toast.Root
+  type='foreground'
+  open={open}
+  onOpenChange={setOpen}
+  className='opacity-95 bg-secondary border-border flex-row justify-between items-center p-4 rounded-xl'
+  accessibilityRole="status"
+  accessibilityLiveRegion="polite"
+  accessibilityLabel="Notification"
+  importantForAccessibility="yes"
+>
+  <View className='gap-1.5'>
+    <Toast.Title 
+      className='text-foreground text-3xl'
+      accessibilityRole="header"
+      nativeID="toast-title"
+    >
+      Here is a toast
+    </Toast.Title>
+    <Toast.Description 
+      className='text-foreground text-lg'
+      accessibilityRole="text"
+      nativeID="toast-description"
+    >
+      It will disappear in {seconds} seconds
+    </Toast.Description>
+  </View>
+  <View className='gap-2'>
+    <Toast.Action 
+      className='border border-primary px-4 py-2'
+      accessibilityRole="button"
+      accessibilityLabel="Action"
+      accessibilityHint="Performs the toast action"
+    >
+      <Text className='text-foreground'>Action</Text>
+    </Toast.Action>
+    <Toast.Close 
+      className='border border-primary px-4 py-2'
+      accessibilityRole="button"
+      accessibilityLabel="Close"
+      accessibilityHint="Dismisses the notification"
+    >
+      <Text className='text-foreground'>Close</Text>
+    </Toast.Close>
+  </View>
+</Toast.Root>
           </View>
         </Portal>
       )}

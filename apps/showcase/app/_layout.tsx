@@ -6,7 +6,7 @@ import { DeprecatedUi } from '@rnr/reusables';
 import { SplashScreen, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { Platform } from 'react-native';
+import { Platform, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ThemeToggle } from '~/components/ThemeToggle';
 import { Text } from '~/components/ui/text';
@@ -45,37 +45,44 @@ export default function RootLayout() {
 
   // Loading custom fonts
   const [fontsLoaded] = useFonts({
-  'Inter-Medium': require('../assets/fonts/Inter-Medium.ttf'),
-  'Inter-Bold': require('../assets/fonts/Inter-Bold.ttf'),
-  'Inter-SemiBold': require('../assets/fonts/Inter-SemiBold.ttf'),
+    'Inter-Medium': require('../assets/fonts/Inter-Medium.ttf'),
+    'Inter-Bold': require('../assets/fonts/Inter-Bold.ttf'),
+    'Inter-SemiBold': require('../assets/fonts/Inter-SemiBold.ttf'),
   });
 
   React.useEffect(() => {
-    (async () => {
-      const theme = await AsyncStorage.getItem('theme');
-      if (Platform.OS === 'web') {
-        // Adds the background color to the html element to prevent white background on overscroll.
-        document.documentElement.classList.add('bg-background');
-      }
-      if (!theme) {
-        setAndroidNavigationBar(colorScheme);
-        AsyncStorage.setItem('theme', colorScheme);
+    async function prepare() {
+      try {
+        const theme = await AsyncStorage.getItem('theme');
+        if (Platform.OS === 'web') {
+          document.documentElement.classList.add('bg-background');
+        }
+        if (!theme) {
+          setAndroidNavigationBar(colorScheme);
+          await AsyncStorage.setItem('theme', colorScheme);
+        } else {
+          const colorTheme = theme === 'dark' ? 'dark' : 'light';
+          setAndroidNavigationBar(colorTheme);
+          if (colorTheme !== colorScheme) {
+            setColorScheme(colorTheme);
+          }
+        }
+      } catch (e) {
+        console.warn(e);
+      } finally {
         setIsColorSchemeLoaded(true);
-        return;
       }
-      const colorTheme = theme === 'dark' ? 'dark' : 'light';
-      setAndroidNavigationBar(colorTheme);
-      if (colorTheme !== colorScheme) {
-        setColorScheme(colorTheme);
+    }
 
-        setIsColorSchemeLoaded(true);
-        return;
-      }
-      setIsColorSchemeLoaded(true);
-    })().finally(() => {
-      SplashScreen.hideAsync();
-    });
+    prepare();
   }, []);
+
+  React.useEffect(() => {
+    if (isColorSchemeLoaded && fontsLoaded) {
+      // Only hide the splash screen once everything is ready
+      SplashScreen.hideAsync();
+    }
+  }, [isColorSchemeLoaded, fontsLoaded]);
 
   if (!isColorSchemeLoaded || !fontsLoaded) {
     return null;

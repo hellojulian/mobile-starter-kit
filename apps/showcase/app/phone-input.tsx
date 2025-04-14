@@ -65,27 +65,50 @@ export default function InputScreen() {
           padding: 24,
         }}
       >
-        <View style={{ width: '100%', maxWidth: 320 }}>
+        <View style={{ width: '100%', maxWidth: 343 }}>
           {/* Phone Input Section */}
           <Label
-            style={{
-              fontFamily: 'Inter-SemiBold',
-              paddingBottom: 8,
-              paddingLeft: 2,
-            }}
-            nativeID='phoneLabel'
-          >
-            Phone number
-          </Label>
-          <PhoneInput
-            placeholder="Enter phone number"
-            error={phoneErr || undefined}
-            value={phoneNumber}
-            onChangeText={handlePhoneChange}
-            countryCode={countryCode}
-            onChangeCountryCode={handleCountryCodeChange}
-            onSubmitEditing={validatePhone}
-          />
+  style={{
+    fontFamily: 'Inter-SemiBold',
+    paddingBottom: 8,
+    paddingLeft: 2,
+  }}
+  nativeID='phoneLabel'
+  accessibilityRole='text'
+>
+  Phone number
+</Label>
+<PhoneInput
+  placeholder="Enter phone number"
+  error={phoneErr || undefined}
+  value={phoneNumber}
+  onChangeText={handlePhoneChange}
+  countryCode={countryCode}
+  onChangeCountryCode={handleCountryCodeChange}
+  onSubmitEditing={validatePhone}
+  accessibilityLabel="Phone number input"
+  accessibilityHint="Enter your phone number with country code"
+  accessibilityRole="textbox"
+  accessibilityLabelledBy="phoneLabel"
+  accessibilityState={{
+    disabled: false,
+    required: true, // Assuming this field is required
+    invalid: !!phoneErr
+  }}
+  accessibilityElementsHidden={false}
+  importantForAccessibility="yes"
+  aria-errormessage="phoneErrorMessage"
+/>
+{phoneErr && (
+  <View 
+    nativeID="phoneErrorMessage"
+    accessibilityRole="alert"
+    accessibilityLiveRegion="assertive"
+    style={{ marginTop: 4 }}
+  >
+    <Text style={{ color: 'red', fontFamily: 'Inter' }}>{phoneErr}</Text>
+  </View>
+)}
         </View>
       </ScrollView>
     </SafeAreaView>

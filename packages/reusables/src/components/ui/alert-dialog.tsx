@@ -1,6 +1,6 @@
 import * as AlertDialogPrimitive from '@rn-primitives/alert-dialog';
 import * as React from 'react';
-import { Platform, StyleSheet, View, type ViewProps } from 'react-native';
+import { Platform, StyleSheet, View, type ViewProps, findNodeHandle } from 'react-native';
 import Animated, {
   FadeIn,
   FadeOut,
@@ -17,9 +17,6 @@ const styles = StyleSheet.create({
   Inter: {
     fontFamily: 'Inter',
   },
-  Inter: {
-    fontFamily: 'Inter',
-  },
   blurView: {
     position: 'absolute',
     top: 0,
@@ -33,9 +30,55 @@ const styles = StyleSheet.create({
   },
 });
 
-const AlertDialog = AlertDialogPrimitive.Root;
+// Create a context to manage focus
+const AlertDialogFocusContext = React.createContext({
+  triggerRef: { current: null },
+  setTriggerRef: (_ref) => {},
+  cancelRef: { current: null },
+  setCancelRef: (_ref) => {},
+});
 
-const AlertDialogTrigger = AlertDialogPrimitive.Trigger;
+const AlertDialog = ({ children, ...props }) => {
+  const triggerRefState = React.useState({ current: null });
+  const cancelRefState = React.useState({ current: null });
+  
+  return (
+    <AlertDialogFocusContext.Provider value={{ 
+      triggerRef: triggerRefState[0], 
+      setTriggerRef: (ref) => { triggerRefState[0].current = ref; },
+      cancelRef: cancelRefState[0],
+      setCancelRef: (ref) => { cancelRefState[0].current = ref; }
+    }}>
+      <AlertDialogPrimitive.Root {...props}>
+        {children}
+      </AlertDialogPrimitive.Root>
+    </AlertDialogFocusContext.Provider>
+  );
+};
+
+const AlertDialogTrigger = React.forwardRef(({ asChild, ...props }, forwardedRef) => {
+  const { setTriggerRef } = React.useContext(AlertDialogFocusContext);
+  const ref = React.useRef(null);
+  
+  // Combine refs
+  React.useImperativeHandle(forwardedRef, () => ref.current);
+  
+  // Store the trigger ref for focus management
+  React.useEffect(() => {
+    if (ref.current) {
+      setTriggerRef(ref.current);
+    }
+  }, [ref.current]);
+  
+  return (
+    <AlertDialogPrimitive.Trigger 
+      ref={ref}
+      asChild={asChild}
+      accessibilityRole="button"
+      {...props}
+    />
+  );
+});
 
 const AlertDialogPortal = AlertDialogPrimitive.Portal;
 
@@ -113,23 +156,81 @@ const AlertDialogOverlay = Platform.select({
 const AlertDialogContent = React.forwardRef<
   AlertDialogPrimitive.ContentRef,
   AlertDialogPrimitive.ContentProps & { portalHost?: string }
->(({ className, portalHost, ...props }, ref) => {
+>(({ className, portalHost, children, ...props }, ref) => {
   const { open } = AlertDialogPrimitive.useRootContext();
+  const { triggerRef, cancelRef } = React.useContext(AlertDialogFocusContext);
+  const contentRef = React.useRef(null);
+  
+  // Combine refs
+  React.useImperativeHandle(ref, () => contentRef.current);
+  
+  // Handle focus management
+  React.useEffect(() => {
+    if (open) {
+      // Focus the cancel button when opened (for destructive dialogs, cancel should get focus)
+      if (cancelRef.current && Platform.OS === 'web') {
+        // For web
+        setTimeout(() => {
+          if (cancelRef.current) {
+            cancelRef.current.focus();
+          }
+        }, 100);
+      } else if (cancelRef.current && Platform.OS !== 'web') {
+        // For native
+        const reactTag = findNodeHandle(cancelRef.current);
+        if (reactTag) {
+          // Use AccessibilityInfo.setAccessibilityFocus if available in your RN version
+        }
+      }
+    } else {
+      // Return focus to trigger when closed
+      if (triggerRef.current && Platform.OS === 'web') {
+        setTimeout(() => {
+          if (triggerRef.current) {
+            triggerRef.current.focus();
+          }
+        }, 100);
+      } else if (triggerRef.current && Platform.OS !== 'web') {
+        const reactTag = findNodeHandle(triggerRef.current);
+        if (reactTag) {
+          // Use AccessibilityInfo.setAccessibilityFocus if available
+        }
+      }
+    }
+  }, [open]);
+  
+  // Handle Escape key on web
+  const handleKeyDown = React.useCallback((event) => {
+    if (Platform.OS === 'web' && event.key === 'Escape') {
+      // Close the dialog
+      const { onClose } = AlertDialogPrimitive.useRootContext();
+      if (onClose) {
+        onClose();
+      }
+    }
+  }, []);
 
   return (
     <AlertDialogPortal hostName={portalHost}>
       <AlertDialogOverlay>
         <AlertDialogPrimitive.Content
-          ref={ref}
+          ref={contentRef}
           className={cn(
-            'z-50 max-w-lg gap-4 border border-border bg-sys-surface-neutral-0 p-6  web:duration-200 rounded-lg',
+            'z-50 max-w-lg gap-4 border border-border bg-sys-surface-neutral-0 p-6 web:duration-200 rounded-lg',
             open
               ? 'web:animate-in web:fade-in-0 web:zoom-in-95'
               : 'web:animate-out web:fade-out-0 web:zoom-out-95',
             className
           )}
+          accessibilityViewIsModal={true}
+          accessibilityRole="alertdialog"
+          accessibilityLiveRegion="assertive"
+          tabIndex={Platform.OS === 'web' ? 0 : undefined}
+          onKeyDown={Platform.OS === 'web' ? handleKeyDown : undefined}
           {...props}
-        />
+        >
+          {children}
+        </AlertDialogPrimitive.Content>
       </AlertDialogOverlay>
     </AlertDialogPortal>
   );
@@ -154,6 +255,8 @@ const AlertDialogTitle = React.forwardRef<
     ref={ref}
     className={cn('text-4xl native:text-4xl text-sys-text-body tracking-tighter font-medium', className)}
     style={[styles.Inter, style]}
+    accessibilityRole="header"
+    nativeID="alert-dialog-title"
     {...props}
   />
 ));
@@ -167,6 +270,8 @@ const AlertDialogDescription = React.forwardRef<
     ref={ref}
     className={cn('text-base native:text-base text-sys-text-neutral-3', className)}
     style={[styles.Inter, style]}
+    accessibilityRole="text"
+    nativeID="alert-dialog-description"
     {...props}
   />
 ));
@@ -177,7 +282,14 @@ const AlertDialogAction = React.forwardRef<
   AlertDialogPrimitive.ActionProps
 >(({ className, ...props }, ref) => (
   <AlertDialogPrimitive.Action asChild>
-    <Button ref={ref} className={cn('flex-1', className)} {...props} />
+    <Button 
+      ref={ref} 
+      className={cn('flex-1', className)} 
+      accessibilityRole="button"
+      accessibilityLabel="Confirm action"
+      accessibilityHint="Confirms the action and closes the dialog"
+      {...props} 
+    />
   </AlertDialogPrimitive.Action>
 ));
 AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName;
@@ -185,11 +297,34 @@ AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName;
 const AlertDialogCancel = React.forwardRef<
   AlertDialogPrimitive.CancelRef,
   AlertDialogPrimitive.CancelProps
->(({ className, ...props }, ref) => (
-  <AlertDialogPrimitive.Cancel asChild>
-    <Button ref={ref} variant='secondary' className={cn('flex-1', className)} {...props} />
-  </AlertDialogPrimitive.Cancel>
-));
+>(({ className, ...props }, forwardedRef) => {
+  const { setCancelRef } = React.useContext(AlertDialogFocusContext);
+  const ref = React.useRef(null);
+  
+  // Combine refs
+  React.useImperativeHandle(forwardedRef, () => ref.current);
+  
+  // Store the cancel ref for focus management
+  React.useEffect(() => {
+    if (ref.current) {
+      setCancelRef(ref.current);
+    }
+  }, [ref.current]);
+  
+  return (
+    <AlertDialogPrimitive.Cancel asChild>
+      <Button 
+        ref={ref} 
+        variant='secondary' 
+        className={cn('flex-1', className)} 
+        accessibilityRole="button"
+        accessibilityLabel="Cancel"
+        accessibilityHint="Cancels the action and closes the dialog"
+        {...props} 
+      />
+    </AlertDialogPrimitive.Cancel>
+  );
+});
 AlertDialogCancel.displayName = AlertDialogPrimitive.Cancel.displayName;
 
 export {

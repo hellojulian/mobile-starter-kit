@@ -207,7 +207,7 @@ const CustomToast = ({ title, description, type, props, onPress }: CustomToastPr
     <Pressable onPress={onPress} className="w-full max-w-xl px-4" style={{ zIndex: 9999 }}>
       <View
         className={cn(
-          "w-full p-4 rounded-md flex-row items-start border",
+          "w-full p-4 rounded-lg flex-row items-start border",
           variantStyles.background,
           variantStyles.border,
           customStyles?.background,

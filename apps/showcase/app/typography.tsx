@@ -1,69 +1,79 @@
-import { ScrollView, View } from 'react-native';
-import { BlockQuote, H1, H2, H3, Large, Lead, P } from '~/components/ui/typography';
+import { ScrollView, View } from "react-native"
+import {
+  BlockQuote,
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  H6,
+  H7,
+  BodyXL,
+  BodyLG,
+  BodyMD,
+  BodyBase,
+  BodySM,
+  BodyXS,
+} from "~/components/ui/typography"
 
 export default function TypographyScreen() {
   return (
-    <ScrollView contentContainerClassName='p-6 items-center' showsVerticalScrollIndicator={false}>
-      <View className='max-w-lg'>
-        <H1>The Rainbow Forest Adventure</H1>
-        <View className='p-1.5' />
-        <P>
-          Once upon a time, in a magical forest, there lived a curious rabbit named Whiskers.
-          Whiskers loved exploring and discovering new things every day.
-        </P>
-        <View className='p-3' />
-        <H2>Whiskers' Discovery</H2>
-        <P>
-          One day, while hopping through the forest, Whiskers stumbled upon{' '}
-          <P className='font-medium'>a mysterious rainbow-colored flower</P>. The flower had the
-          power to make the forest come alive with vibrant colors and happy creatures.
-        </P>
-        <BlockQuote>
-          "Oh, what a wonderful discovery!" exclaimed Whiskers. "I must share this magic with all my
-          forest friends!"
-        </BlockQuote>
-        <View className='p-4' />
-        <H3>The Colorful Transformation</H3>
-        <View className='p-0.5' />
-        <P>
-          Whiskers excitedly gathered all the animals in the forest and showed them the magical
-          rainbow flower. The animals were amazed and decided to plant more of these flowers to make
-          their home even more magical.
-        </P>
-        <View className='p-1.5' />
-        <P>
-          As the rainbow flowers bloomed, the entire forest transformed into a kaleidoscope of
-          colors. Birds chirped in harmony, butterflies danced in the air, and even the trees swayed
-          to the rhythm of the wind.
-        </P>
-        <View className='p-4' />
-        <H3>The Enchanted Celebration</H3>
-        <View className='p-0.5' />
-        <P>
-          The animals decided to celebrate their enchanted forest with a grand feast. They gathered
-          nuts, berries, and fruits from the colorful trees and shared stories of their adventures.
-          The joyous laughter echoed through the Rainbow Forest.
-        </P>
-        <View className='p-1.5' />
-        <Lead>
-          And so, the Rainbow Forest became a place of wonder and happiness, where Whiskers and all
-          the animals lived together in harmony.
-        </Lead>
-        <View className='p-3' />
-        <H3>The Never-ending Magic</H3>
-        <View className='p-0.5' />
-        <P>
-          The magic of the rainbow flowers continued to spread, reaching other parts of the world.
-          Soon, forests everywhere became vibrant and alive, thanks to the discovery of Whiskers and
-          the enchanted Rainbow Forest.
-        </P>
-        <View className='p-1.5' />
-        <Large>
-          The moral of the story is: embrace the magic of discovery, share joy with others, and
-          watch as the world transforms into a colorful and beautiful place.
-        </Large>
-        <View className='p-3' />
+    <ScrollView contentContainerClassName="p-6" showsVerticalScrollIndicator={false}>
+      <View className="max-w-lg">
+        {/* Headings */}
+        <H1>Heading 8XL</H1>
+        <BodyXS className="text-sys-text-secondary">Size 40PX / Line Height 45px / Letter Spacing -1.5PX</BodyXS>
+        <View className="p-3" />
+
+        <H2>Heading 7XL</H2>
+        <BodyXS className="text-sys-text-secondary">Size 36PX / Line Height 45px / Letter Spacing -1PX</BodyXS>
+        <View className="p-3" />
+
+        <H3>Heading 6XL</H3>
+        <BodyXS className="text-sys-text-secondary">Size 32PX / Line Height 45px / Letter Spacing -1PX</BodyXS>
+        <View className="p-3" />
+
+        <H4>Heading 5XL</H4>
+        <BodyXS className="text-sys-text-secondary">Size 24PX / Line Height 45px / Letter Spacing -1PX</BodyXS>
+        <View className="p-3" />
+
+        <H5>Heading 4XL</H5>
+        <BodyXS className="text-sys-text-secondary">Size 20PX / Line Height 45px / Letter Spacing -1PX</BodyXS>
+        <View className="p-3" />
+
+        <H6>Heading 3XL</H6>
+        <BodyXS className="text-sys-text-secondary">Size 17PX / Line Height 36px / Letter Spacing -1PX</BodyXS>
+        <View className="p-3" />
+
+        <H7>Heading 2XL</H7>
+        <BodyXS className="text-sys-text-secondary">Size 15PX / Line Height 15px / Letter Spacing -1PX</BodyXS>
+        <View className="p-4" />
+
+        {/* Body Text */}
+        <BodyXL className="font-semibold">Body XL</BodyXL>
+        <BodyXS className="text-sys-text-secondary">Size 26PX / Line Height 28px / Letter Spacing -1PX</BodyXS>
+        <View className="p-3" />
+
+        <BodyLG className="font-semibold">Body LG</BodyLG>
+        <BodyXS className="text-sys-text-secondary">Size 22PX / Line Height 28px / Letter Spacing -1PX</BodyXS>
+        <View className="p-3" />
+
+        <BodyMD className="font-semibold">Body MD</BodyMD>
+        <BodyXS className="text-sys-text-secondary">Size 16PX / Line Height 23px / Letter Spacing -0.5PX</BodyXS>
+        <View className="p-3" />
+
+        <BodyBase className="font-semibold">Body Base</BodyBase>
+        <BodyXS className="text-sys-text-secondary">Size 15PX / Line Height 20px / Letter Spacing -0.5PX</BodyXS>
+        <View className="p-3" />
+
+        <BodySM className="font-semibold">Body SM</BodySM>
+        <BodyXS className="text-sys-text-secondary">Size 14PX / Line Height 20px / Letter Spacing -0.5PX</BodyXS>
+        <View className="p-3" />
+
+        <BodyXS className="font-semibold">Body XS</BodyXS>
+        <BodyXS className="text-sys-text-secondary">Size 12PX / Line Height 16px / Letter Spacing -0.5PX</BodyXS>
+        <View className="p-3" />
       </View>
     </ScrollView>
-  );
+  )
 }

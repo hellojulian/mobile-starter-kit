@@ -42,25 +42,25 @@ export default function MaterialTopTabsLayout() {
       <MaterialTopTabs.Screen
         name='index'
         options={{
-          title: 'Blue',
+          title: 'Select',
         }}
       />
       <MaterialTopTabs.Screen
         name='red'
         options={{
-          title: 'Red',
+          title: 'Commerce',
         }}
       />
       <MaterialTopTabs.Screen
         name='green'
         options={{
-          title: 'Green',
+          title: 'Entertainment',
         }}
       />
       <MaterialTopTabs.Screen
         name='purple'
         options={{
-          title: 'Purple',
+          title: 'Marketing',
         }}
       />
     </MaterialTopTabs>

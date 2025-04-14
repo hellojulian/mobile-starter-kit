@@ -35,7 +35,6 @@ const Checkbox = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxPrimitive.R
 
 Checkbox.displayName = CheckboxPrimitive.Root.displayName
 
-// Correctly structured CheckboxTile component with two distinct sections
 type CheckboxTileProps = CheckboxPrimitive.RootProps & {
   title: string
   description?: string
@@ -57,7 +56,7 @@ const CheckboxTile = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxTilePro
           "w-full p-4 rounded-md border",
           props.checked
             ? "bg-sys-surface-secondary-pressed border-sys-border-6"
-            : "bg-sys-surface-neutral-1 border-sys-border-4",
+            : "bg-sys-surface-neutral-0 border-sys-border-4",
           props.disabled && "opacity-50",
         )}
       >
@@ -81,13 +80,13 @@ const CheckboxTile = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxTilePro
             ref={ref}
             className={cn(
               "h-6 w-6 shrink-0 rounded-xs border-2 border-indigo-500 web:ring-offset-background web:focus-visible:outline-none web:focus-visible:ring-2 web:focus-visible:ring-ring web:focus-visible:ring-offset-2 disabled:cursor-not-allowed",
-              props.checked && "bg-indigo-500",
+              props.checked && "bg-sys-surface-secondary-pressed",
               className,
             )}
             {...props}
           >
             <CheckboxPrimitive.Indicator className={cn("items-center justify-center h-full w-full")}>
-              <Check size={16} strokeWidth={Platform.OS === "web" ? 2.5 : 3.5} className="text-white" />
+              <Check size={16} strokeWidth={Platform.OS === "web" ? 2.5 : 3.5} className="text-sys-text-secondary" />
             </CheckboxPrimitive.Indicator>
           </CheckboxPrimitive.Root>
         </View>

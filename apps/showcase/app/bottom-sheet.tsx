@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
   Inter: {
     fontFamily: 'Inter',
   },
-
 });
 
 export default function BottomSheetScreen() {
@@ -105,26 +104,42 @@ export default function BottomSheetScreen() {
           backdropComponent={renderBackdrop}
           backgroundStyle={{ backgroundColor: 'transparent' }}
           handleComponent={null}
+          accessibilityViewIsModal={true}
+          accessibilityLabel="Edit profile modal"
         >
-          <BottomSheetView className='flex-1 rounded-t-2xl bg-sys-surface-neutral-0'>
-            <View className='w-[40px] h-1 bg-sys-on-surface mx-auto my-3 rounded-full opacity-20' />
+          <BottomSheetView 
+            className='flex-1 rounded-t-2xl bg-sys-surface-neutral-0'
+            accessibilityRole="dialog"
+          >
+            {/* Add a clearly visible drag indicator */}
+            <View 
+              className='w-full items-center pt-3'
+              accessibilityRole="button"
+              accessibilityLabel="Drag to resize or close"
+              accessibilityHint="Swipe up to expand or down to close"
+            >
+              <View className='w-[40px] h-[4px] bg-sys-surface-neutral-2 rounded-full' />
+            </View>
+            
             <View className='px-6 pb-6'>
               <View className='items-center w-full mt-2'>
                 <Image
-                  source={{
-                    uri: 'https://github.com/hellojulian/belong/blob/main/out.png?raw=true',
-                  }}
+                  source={require('../assets/bjork.png')} 
                   style={{ width: 120, height: 120 }}
                   resizeMode='contain'
                   className='mb-4 border rounded-full border-sys-border-4'
+                  accessibilityLabel="Profile picture"
+                  accessibilityRole="image"
                 />
               </View>
               <Text
                 style={styles.Inter}
                 className={cn(
-                  'text-xl tracking-tight font-bold text-center',
+                  'text-lg tracking-tight font-semibold text-center',
                   isDarkMode ? 'text-sys-text-body' : 'text-sys-text-body'
                 )}
+                accessibilityRole="header"
+                accessibilityTraits="header"
               >
                 Edit your profile
               </Text>
@@ -139,16 +154,32 @@ export default function BottomSheetScreen() {
                         isDarkMode ? 'text-sys-text-body' : 'text-sys-text-body'
                       )}
                       onPress={handleOnLabelPress(nameInputRef)}
+                      accessibilityRole="text"
                     >
                       Name
                     </Label>
                     <Input
                       ref={nameInputRef}
-                      defaultValue='Pedro Duarte'
+                      defaultValue='Bjork'
                       aria-labelledby='name'
                       error={nameError}
                       onChangeText={() => setNameError(undefined)}
+                      accessibilityLabel="Name"
+                      accessibilityHint="Enter your full name"
+                      accessibilityState={{ 
+                        invalid: nameError ? true : false 
+                      }}
+                      accessibilityLiveRegion="polite"
                     />
+                    {nameError && (
+                      <Text 
+                        accessibilityRole="alert"
+                        accessibilityLiveRegion="assertive"
+                        className="text-sys-fn-error-text text-sm mt-1"
+                      >
+                        {nameError}
+                      </Text>
+                    )}
                   </View>
                   <View>
                     <Label
@@ -159,20 +190,41 @@ export default function BottomSheetScreen() {
                         isDarkMode ? 'text-sys-text-body' : 'text-sys-text-body'
                       )}
                       onPress={handleOnLabelPress(usernameInputRef)}
+                      accessibilityRole="text"
                     >
                       Username
                     </Label>
                     <Input
                       ref={usernameInputRef}
-                      defaultValue='@peduarte'
+                      defaultValue='@bjork'
                       aria-labelledby='username'
                       error={usernameError}
                       onChangeText={() => setUsernameError(undefined)}
+                      accessibilityLabel="Username"
+                      accessibilityHint="Enter your username starting with @"
+                      accessibilityState={{ 
+                        invalid: usernameError ? true : false 
+                      }}
+                      accessibilityLiveRegion="polite"
                     />
+                    {usernameError && (
+                      <Text 
+                        accessibilityRole="alert"
+                        accessibilityLiveRegion="assertive"
+                        className="text-sys-fn-error-text text-sm mt-1"
+                      >
+                        {usernameError}
+                      </Text>
+                    )}
                   </View>
                 </View>
                 <View>
-                  <Button onPress={handleClosePress}>
+                  <Button 
+                    onPress={handleClosePress}
+                    accessibilityRole="button"
+                    accessibilityLabel="Save Changes"
+                    accessibilityHint="Save profile changes and close the form"
+                  >
                     <Text style={styles.Inter}>Save Changes</Text>
                   </Button>
                 </View>

@@ -1,12 +1,16 @@
 import './global.css';
-
-import { registerRootComponent } from 'expo';
+import { AppRegistry } from 'react-native';
 import { ExpoRoot } from 'expo-router';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // Must be exported or Fast Refresh won't update the context
-export function App() {
+function App() {
   const ctx = require.context('./app');
-  return <ExpoRoot context={ctx} />;
+  return (
+    <SafeAreaProvider>
+      <ExpoRoot context={ctx} />
+    </SafeAreaProvider>
+  );
 }
 
-registerRootComponent(App);
+AppRegistry.registerComponent('main', () => App);

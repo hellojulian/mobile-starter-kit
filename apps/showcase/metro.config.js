@@ -17,10 +17,13 @@ config.resolver.nodeModulesPaths = [
   path.resolve(monorepoRoot, 'node_modules'),
 ];
 
+// Add additional resolver options
 const { resolver } = config;
 config.resolver = {
   ...resolver,
   sourceExts: [...resolver.sourceExts, 'mjs', 'cjs'],
+  resolverMainFields: ['react-native', 'browser', 'main'],
+  disableHierarchicalLookup: true
 };
 
 module.exports = withNativeWind(config, { input: './global.css' });

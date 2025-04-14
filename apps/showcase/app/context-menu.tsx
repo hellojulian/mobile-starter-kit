@@ -47,7 +47,7 @@ export default function ContextScreen() {
             ref={triggerRef}
             className='flex h-[150px] w-full max-w-[300px] mx-auto web:cursor-default items-center justify-center rounded-md border border-foreground border-dashed'
           >
-            <Text className='text-foreground text-sm native:text-lg'>
+            <Text className='text-sys-text-body text-sm native:text-lg'>
               {Platform.OS === 'web' ? 'Right click here' : 'Long press here'}
             </Text>
           </ContextMenuTrigger>
@@ -94,7 +94,7 @@ export default function ContextScreen() {
               onCheckedChange={setCheckboxValue}
               closeOnPress={false}
             >
-              <Text>Show Bookmarks Bar</Text>
+              <Text className='text-sys-text-body'>Show Bookmarks Bar</Text>
               <ContextMenuShortcut>⌘⇧B</ContextMenuShortcut>
             </ContextMenuCheckboxItem>
             <ContextMenuCheckboxItem
@@ -102,17 +102,17 @@ export default function ContextScreen() {
               onCheckedChange={setSubCheckboxValue}
               closeOnPress={false}
             >
-              <Text>Show Full URLs</Text>
+             <Text className='text-sys-text-body'>Show Full URLs</Text>
             </ContextMenuCheckboxItem>
             <ContextMenuSeparator />
             <ContextMenuRadioGroup value={radioValue} onValueChange={setRadioValue}>
               <ContextMenuLabel inset>People</ContextMenuLabel>
               <ContextMenuSeparator />
               <ContextMenuRadioItem value='pedro' closeOnPress={false}>
-                <Text>Elmer Fudd</Text>
+              <Text className='text-sys-text-body'>Elmer Fudd</Text>
               </ContextMenuRadioItem>
               <ContextMenuRadioItem value='colm' closeOnPress={false}>
-                <Text>Foghorn Leghorn</Text>
+              <Text className='text-sys-text-body'>Foghorn Leghorn</Text>
               </ContextMenuRadioItem>
             </ContextMenuRadioGroup>
           </ContextMenuContent>

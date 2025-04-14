@@ -59,40 +59,136 @@ export default function ButtonScreen() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <View className='items-center justify-center flex-1 gap-5 p-6'>
-          <Button variant='default' textSize='md'>
-            Default
-          </Button>
-          <Button variant='secondary' textSize='md'>
-            Secondary
-          </Button>
-          <Button variant='black' textSize='md'>
-            Black
-          </Button>
-          <Button variant='link' textSize='md'>
-            Text Link
-          </Button>
+      <View className='items-center justify-center flex-1 gap-5 p-6'>
+  <Button 
+    variant='default' 
+    textSize='md'
+    accessibilityRole='button'
+    accessibilityLabel='Default button'
+    accessibilityHint='Activates the default action'
+    accessibilityState={{ 
+      disabled: false,
+      busy: false
+    }}
+  >
+    Default
+  </Button>
+  
+  <Button 
+    variant='secondary' 
+    textSize='md'
+    accessibilityRole='button'
+    accessibilityLabel='Secondary button'
+    accessibilityHint='Activates the secondary action'
+    accessibilityState={{ 
+      disabled: false,
+      busy: false
+    }}
+  >
+    Secondary
+  </Button>
+  
+  <Button 
+    variant='black' 
+    textSize='md'
+    accessibilityRole='button'
+    accessibilityLabel='Black button'
+    accessibilityHint='Activates the primary action'
+    accessibilityState={{ 
+      disabled: false,
+      busy: false
+    }}
+  >
+    Black
+  </Button>
+  
+  <Button 
+    variant='link' 
+    textSize='md'
+    accessibilityRole='link'
+    accessibilityLabel='Text link'
+    accessibilityHint='Navigates to related content'
+    accessibilityState={{ 
+      disabled: false,
+      busy: false
+    }}
+  >
+    Text Link
+  </Button>
 
-          {/* Social Login Buttons */}
-          <View className='w-full'>
-            <Button variant='secondary' textSize='md' className='w-full mb-4' icon={<GoogleIcon />}>
-              Sign in with Google
-            </Button>
+  {/* Social Login Buttons */}
+  <View 
+    className='w-full'
+    accessibilityRole='group'
+    accessibilityLabel='Social login options'
+  >
+    <Button 
+      variant='secondary' 
+      textSize='md' 
+      className='w-full mb-4' 
+      icon={
+        <GoogleIcon 
+          accessibilityRole='image'
+          accessibilityLabel='Google logo'
+          importantForAccessibility='no'
+        />
+      }
+      accessibilityRole='button'
+      accessibilityLabel='Sign in with Google'
+      accessibilityHint='Authenticates using your Google account'
+      accessibilityState={{ 
+        disabled: false,
+        busy: false
+      }}
+    >
+      Sign in with Google
+    </Button>
 
-            <Button
-              variant='secondary'
-              textSize='md'
-              className='w-full mb-4'
-              icon={<FacebookIcon />}
-            >
-              Sign in with Facebook
-            </Button>
+    <Button
+      variant='secondary'
+      textSize='md'
+      className='w-full mb-4'
+      icon={
+        <FacebookIcon 
+          accessibilityRole='image'
+          accessibilityLabel='Facebook logo'
+          importantForAccessibility='no'
+        />
+      }
+      accessibilityRole='button'
+      accessibilityLabel='Sign in with Facebook'
+      accessibilityHint='Authenticates using your Facebook account'
+      accessibilityState={{ 
+        disabled: false,
+        busy: false
+      }}
+    >
+      Sign in with Facebook
+    </Button>
 
-            <Button variant='secondary' textSize='md' className='w-full' icon={<MicrosoftIcon />}>
-              Sign in with Microsoft
-            </Button>
-          </View>
-        </View>
+    <Button 
+      variant='secondary' 
+      textSize='md' 
+      className='w-full' 
+      icon={
+        <MicrosoftIcon 
+          accessibilityRole='image'
+          accessibilityLabel='Microsoft logo'
+          importantForAccessibility='no'
+        />
+      }
+      accessibilityRole='button'
+      accessibilityLabel='Sign in with Microsoft'
+      accessibilityHint='Authenticates using your Microsoft account'
+      accessibilityState={{ 
+        disabled: false,
+        busy: false
+      }}
+    >
+      Sign in with Microsoft
+    </Button>
+  </View>
+</View>
       </ScrollView>
     </SafeAreaView>
   );

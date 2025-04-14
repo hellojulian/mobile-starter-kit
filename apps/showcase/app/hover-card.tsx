@@ -43,13 +43,13 @@ export default function HoverCardScreen() {
                 </AvatarFallback>
               </Avatar>
               <View className='flex-1 gap-1'>
-                <Text className='text-sm font-semibold native:text-base'>@coolglasses</Text>
-                <Text className='text-sm native:text-base'>
+                <Text className='text-sm font-semibold text-sys-text-secondary native:text-base'>@coolglasses</Text>
+                <Text className='text-sm text-sys-text-body native:text-base'>
                   This mobile starter kit really rocks.
                 </Text>
                 <View className='flex flex-row items-center gap-2 pt-2'>
-                  <CalendarDays size={14} className='text-foreground opacity-70' />
-                  <Text className='text-xs native:text-sm text-muted-foreground'>
+                  <CalendarDays size={14} className='text-sys-text-body opacity-70' />
+                  <Text className='text-xs native:text-sm text-sys-text-neutral-3'>
                     Joined December 2025
                   </Text>
                 </View>

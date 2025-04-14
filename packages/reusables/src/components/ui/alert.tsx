@@ -47,9 +47,19 @@ const Alert = React.forwardRef<
   const { colors } = useTheme();
 
   return (
-    <View ref={ref} role='alert' className={alertVariants({ variant, className })} {...props}>
+    <View 
+      ref={ref} 
+      role='alert' 
+      accessibilityLabel={`${variant || 'default'} alert`}
+      className={alertVariants({ variant, className })} 
+      {...props}
+    >
       <View className="flex flex-row">
-        <View className="flex items-center justify-center">
+        <View 
+          className="flex items-center justify-center"
+          accessibilityElementsHidden={true}
+          importantForAccessibility="no-hide-descendants"
+        >
           <Icon size={iconSize} className={cn(getVariantColor(variant), iconClassName)} />
         </View>
         <View className="flex-1">

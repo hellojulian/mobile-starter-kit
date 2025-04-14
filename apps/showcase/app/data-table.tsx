@@ -2,7 +2,6 @@ import { Column, ColumnDef } from '@tanstack/react-table';
 import { Stack } from 'expo-router';
 import * as React from 'react';
 import { Dimensions } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Toast from 'react-native-toast-message';
 import { Button } from '~/components/ui/button';
 import { DataTable } from '~/components/ui/data-table';
@@ -86,7 +85,6 @@ export const columns: ColumnDef<User>[] = [
 ];
 
 export default function DataTableScreen() {
-  const insets = useSafeAreaInsets();
   const [fetchedData, setFetchedData] = React.useState<User[]>([]);
   const [isRefreshing, setIsRefreshing] = React.useState(false);
 
@@ -131,7 +129,7 @@ export default function DataTableScreen() {
               icon: Info,
             },
             visibilityTime: 1000,
-            topOffset: insets.top === 0 ? 12 : insets.top,
+            topOffset: 50,
           });
         }}
         ListEmptyComponent={() => {

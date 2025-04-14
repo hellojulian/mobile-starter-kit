@@ -47,7 +47,7 @@ NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
 const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
 const navigationMenuTriggerStyle = cva(
-  'web:group web:inline-flex flex-row h-10 native:h-12 native:px-3 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-md font-medium web:transition-colors web:hover:bg-accent active:bg-accent web:hover:text-accent-foreground web:focus:bg-accent web:focus:text-accent-foreground web:focus:outline-none web:disabled:pointer-events-none disabled:opacity-50 web:data-[active]:bg-accent/50 web:data-[state=open]:bg-accent/50'
+  'web:group web:inline-flex flex-row h-10 native:h-12 native:px-3 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-md font-medium web:transition-colors web:hover:bg-accent active:bg-accent web:hover:text-sys-text-body web:focus:bg-accent web:focus:text-sys-text-body web:focus:outline-none web:disabled:pointer-events-none disabled:opacity-50 web:data-[active]:bg-accent/50 web:data-[state=open]:bg-accent/50'
 );
 
 const NavigationMenuTrigger = React.forwardRef<
@@ -102,7 +102,7 @@ const NavigationMenuContent = React.forwardRef<
       <NavigationMenuPrimitive.Content
         ref={ref}
         className={cn(
-          'w-full native:border native:border-border native:rounded-md native:shadow-lg native:bg-sys-surface-neutral-0 native:text-popover-foreground native:overflow-hidden',
+          'w-full native:border native:border-border native:rounded-md native:shadow-lg native:bg-sys-surface-neutral-0 native:text-sys-text-body native:overflow-hidden',
           value === itemValue
             ? 'web:animate-in web:fade-in web:slide-in-from-right-20'
             : 'web:animate-out web:fade-out web:slide-out-to-left-20',
@@ -132,7 +132,7 @@ const NavigationMenuViewport = React.forwardRef<
     <View className={cn('absolute left-0 top-full flex justify-center')}>
       <View
         className={cn(
-          'web:origin-top-center relative mt-1.5 web:h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border border-border bg-sys-surface-neutral-0 text-popover-foreground shadow-lg web:animate-in web:zoom-in-90',
+          'web:origin-top-center relative mt-1.5 web:h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border border-border bg-sys-surface-neutral-0 text-sys-text-body shadow-lg web:animate-in web:zoom-in-90',
           className
         )}
         ref={ref}

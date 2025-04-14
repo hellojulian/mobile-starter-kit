@@ -178,19 +178,19 @@ module.exports = {
         },
       },
       fontSize: {
-        xs: ['12px', { lineHeight: '16px' }],
-        sm: ['14px', { lineHeight: '20px' }],
-        base: ['15px', { lineHeight: '20px' }],
-        md: ['16px', { lineHeight: '23px' }],
-        lg: ['22px', { lineHeight: '28px' }],
-        xl: ['26px', { lineHeight: '28px' }],
-        '2xl': ['15px', { lineHeight: '15px' }],
-        '3xl': ['17px', { lineHeight: '36px' }],
-        '4xl': ['20px', { lineHeight: '45px' }],
-        '5xl': ['24px', { lineHeight: '45px' }],
-        '6xl': ['32px', { lineHeight: '45px' }],
-        '7xl': ['36px', { lineHeight: '45px' }],
-        '8xl': ['40px', { lineHeight: '45px' }],
+        xs: ['12px', { lineHeight: '16px' }], // BODYXS
+        sm: ['14px', { lineHeight: '20px' }], // BODYSM
+        base: ['15px', { lineHeight: '20px' }], // BODYBASE
+        md: ['16px', { lineHeight: '23px' }], // BODYMD
+        lg: ['22px', { lineHeight: '28px' }], // BODYLG
+        xl: ['26px', { lineHeight: '28px' }], // BODYXL
+        '2xl': ['15px', { lineHeight: '15px' }], // HEADING2XL
+        '3xl': ['17px', { lineHeight: '36px' }], // HEADING3XL
+        '4xl': ['20px', { lineHeight: '45px' }], // HEADING4XL
+        '5xl': ['24px', { lineHeight: '45px' }], // HEADING5XL
+        '6xl': ['32px', { lineHeight: '45px' }], // HEADING6XL
+        '7xl': ['36px', { lineHeight: '45px' }], // HEADING7XL
+        '8xl': ['40px', { lineHeight: '45px' }], // HEADING8XL
       },
       spacing: {
         0: '0px',      // NONE - 0

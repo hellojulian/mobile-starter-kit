@@ -1,6 +1,6 @@
 import * as DialogPrimitive from '@rn-primitives/dialog';
 import * as React from 'react';
-import { Platform, StyleSheet, View, type ViewProps } from 'react-native';
+import { Platform, StyleSheet, View, type ViewProps, Pressable, findNodeHandle } from 'react-native';
 import Animated, {
   FadeIn,
   FadeOut,
@@ -33,9 +33,50 @@ const styles = StyleSheet.create({
   },
 });
 
-const Dialog = DialogPrimitive.Root;
+// Create a context to manage focus
+const DialogFocusContext = React.createContext({
+  triggerRef: { current: null },
+  setTriggerRef: (_ref) => {},
+});
 
-const DialogTrigger = DialogPrimitive.Trigger;
+const Dialog = ({ children, ...props }) => {
+  const triggerRefState = React.useState({ current: null });
+  
+  return (
+    <DialogFocusContext.Provider value={{ 
+      triggerRef: triggerRefState[0], 
+      setTriggerRef: (ref) => { triggerRefState[0].current = ref; }
+    }}>
+      <DialogPrimitive.Root {...props}>
+        {children}
+      </DialogPrimitive.Root>
+    </DialogFocusContext.Provider>
+  );
+};
+
+const DialogTrigger = React.forwardRef(({ asChild, ...props }, forwardedRef) => {
+  const { setTriggerRef } = React.useContext(DialogFocusContext);
+  const ref = React.useRef(null);
+  
+  // Combine refs
+  React.useImperativeHandle(forwardedRef, () => ref.current);
+  
+  // Store the trigger ref for focus management
+  React.useEffect(() => {
+    if (ref.current) {
+      setTriggerRef(ref.current);
+    }
+  }, [ref.current]);
+  
+  return (
+    <DialogPrimitive.Trigger 
+      ref={ref}
+      asChild={asChild}
+      accessibilityRole="button"
+      {...props}
+    />
+  );
+});
 
 const DialogPortal = DialogPrimitive.Portal;
 
@@ -116,11 +157,65 @@ const DialogContent = React.forwardRef<
   DialogPrimitive.ContentProps & { portalHost?: string }
 >(({ className, children, portalHost, ...props }, ref) => {
   const { open } = DialogPrimitive.useRootContext();
+  const { triggerRef } = React.useContext(DialogFocusContext);
+  const contentRef = React.useRef(null);
+  const closeButtonRef = React.useRef(null);
+  
+  // Combine refs
+  React.useImperativeHandle(ref, () => contentRef.current);
+  
+  // Handle focus management
+  React.useEffect(() => {
+    if (open) {
+      // Focus the dialog content when opened
+      if (contentRef.current && Platform.OS === 'web') {
+        // For web
+        setTimeout(() => {
+          if (contentRef.current) {
+            contentRef.current.focus();
+          }
+        }, 100);
+      } else if (contentRef.current && Platform.OS !== 'web') {
+        // For native
+        const reactTag = findNodeHandle(contentRef.current);
+        if (reactTag) {
+          // Use AccessibilityInfo.setAccessibilityFocus if available in your RN version
+          // Otherwise, you may need a native module to handle this
+        }
+      }
+    } else {
+      // Return focus to trigger when closed
+      if (triggerRef.current && Platform.OS === 'web') {
+        setTimeout(() => {
+          if (triggerRef.current) {
+            triggerRef.current.focus();
+          }
+        }, 100);
+      } else if (triggerRef.current && Platform.OS !== 'web') {
+        const reactTag = findNodeHandle(triggerRef.current);
+        if (reactTag) {
+          // Use AccessibilityInfo.setAccessibilityFocus if available
+        }
+      }
+    }
+  }, [open]);
+  
+  // Handle Escape key on web
+  const handleKeyDown = React.useCallback((event) => {
+    if (Platform.OS === 'web' && event.key === 'Escape') {
+      // Close the dialog
+      const { onClose } = DialogPrimitive.useRootContext();
+      if (onClose) {
+        onClose();
+      }
+    }
+  }, []);
+  
   return (
     <DialogPortal hostName={portalHost}>
       <DialogOverlay>
         <DialogPrimitive.Content
-          ref={ref}
+          ref={contentRef}
           className={cn(
             'z-50 max-w-lg gap-4 border border-border bg-sys-surface-neutral-0 p-6 web:duration-200 rounded-lg',
             open
@@ -128,17 +223,26 @@ const DialogContent = React.forwardRef<
               : 'web:animate-out web:fade-out-0 web:zoom-out-95',
             className
           )}
+          accessibilityViewIsModal={true}
+          accessibilityRole="dialog"
+          accessibilityLiveRegion="assertive"
+          tabIndex={Platform.OS === 'web' ? 0 : undefined}
+          onKeyDown={Platform.OS === 'web' ? handleKeyDown : undefined}
           {...props}
         >
           {children}
           <DialogPrimitive.Close
+            ref={closeButtonRef}
             className={
-              'absolute right-4 top-4 p-1 web:group bg-sys-surface-neutral-2 rounded-lg opacity-70 web:ring-offset-background web:transition-opacity web:hover:opacity-100 web:focus:outline-none web:focus:ring-2 web:focus:ring-ring web:focus:ring-offset-2 web:disabled:pointer-events-none'
+              'absolute right-4 top-4 p-1 web:group bg-sys-surface-neutral-2 text-sys-text-body rounded-lg opacity-70 web:ring-offset-background web:transition-opacity web:hover:opacity-100 web:focus:outline-none web:focus:ring-2 web:focus:ring-ring web:focus:ring-offset-2 web:disabled:pointer-events-none'
             }
+            accessibilityRole="button"
+            accessibilityLabel="Close dialog"
+            accessibilityHint="Closes the current dialog"
           >
             <X
               size={Platform.OS === 'web' ? 16 : 18}
-              className={cn('text-sys-text-body', open && 'text-accent-foreground')}
+              className={cn('text-sys-text-body', open && 'text-sys-text-body')}
             />
           </DialogPrimitive.Close>
         </DialogPrimitive.Content>
@@ -164,6 +268,8 @@ const DialogTitle = React.forwardRef<DialogPrimitive.TitleRef, DialogPrimitive.T
       ref={ref}
       className={cn('text-4xl native:text-4xl text-sys-text-body tracking-tighter font-medium', className)}
       style={[styles.Inter, style]}
+      accessibilityRole="header"
+      nativeID="dialog-title"
       {...props}
     />
   )
@@ -178,6 +284,8 @@ const DialogDescription = React.forwardRef<
     ref={ref}
     className={cn('text-md native:text-md text-sys-text-neutral-3', className)}
     style={[styles.Inter, style]}
+    accessibilityRole="text"
+    nativeID="dialog-description"
     {...props}
   />
 ));

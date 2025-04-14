@@ -64,39 +64,56 @@ export default function InputScreen() {
           padding: 24,
         }}
       >
-        <View style={{ width: '100%', maxWidth: 320 }}>
-          <Label
-            style={{
-              fontFamily: 'Inter-SemiBold',
-              paddingBottom: 8,
-              paddingLeft: 2,
-            }}
-            nativeID='inputLabel'
-            onPress={handleOnLabelPress}
-          >
-            Enter email
-          </Label>
-          <Input
-            ref={inputRef}
-            placeholder='Enter your email'
-            value={value}
-            onChangeText={onChangeText}
-            onSubmitEditing={onSubmitEditing}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            aria-labelledby='inputLabel'
-            aria-errormessage='inputError'
-            style={{ fontFamily: 'Inter' }}
-            className={cn(
-              inputState === 'error' &&
-                'border-sys-border-error border-2 bg-sys-fn-error text-sys-text-body placeholder:text-sys-error',
-              inputState === 'active' &&
-                'border-sys-border-6 border-2 bg-sys-surface-secondary-pressed text-sys-text-body placeholder:text-sys-text-secondary'
-            )}
-          />
-          {err && <ErrorMessage msg={err} />}
-          <View style={{ height: 80 }} />
-        </View>
+       <View style={{ width: '100%', maxWidth: 393 }}>
+  <Label
+    style={{
+      fontFamily: 'Inter-SemiBold',
+      paddingBottom: 8,
+      paddingLeft: 2,
+    }}
+    nativeID='inputLabel'
+    onPress={handleOnLabelPress}
+    accessibilityRole="text"
+  >
+    Enter email
+  </Label>
+  <Input
+    ref={inputRef}
+    placeholder='Enter your email'
+    value={value}
+    onChangeText={onChangeText}
+    onSubmitEditing={onSubmitEditing}
+    onFocus={() => setIsFocused(true)}
+    onBlur={() => setIsFocused(false)}
+    aria-labelledby='inputLabel'
+    aria-errormessage='inputError'
+    accessibilityRole="textbox"
+    accessibilityLabel="Email input field"
+    accessibilityHint="Enter your email address here"
+    accessibilityState={{
+      disabled: false,
+      required: true, // Assuming this field is required
+      invalid: inputState === 'error'
+    }}
+    style={{ fontFamily: 'Inter' }}
+    className={cn(
+      inputState === 'error' &&
+        'border-sys-border-error border-2 bg-sys-fn-error text-sys-text-body placeholder:text-sys-error',
+      inputState === 'active' &&
+        'border-sys-border-6 border-2 bg-sys-surface-secondary-pressed text-sys-text-body placeholder:text-sys-text-secondary'
+    )}
+  />
+  {err && (
+    <View 
+      nativeID='inputError'
+      accessibilityRole="alert"
+      accessibilityLiveRegion="assertive"
+    >
+      <ErrorMessage msg={err} />
+    </View>
+  )}
+  <View style={{ height: 80 }} />
+</View>
       </ScrollView>
     </SafeAreaView>
   );
