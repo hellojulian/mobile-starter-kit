@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 import { Button } from "~/components/ui/button"
 import { useFonts } from "expo-font"
 import { Badge } from "~/components/ui/badge"
+import { H6 } from "~/components/ui/typography"
 
 const styles = StyleSheet.create({
   Inter: {
@@ -139,7 +140,7 @@ export default function BlueScreen() {
                          </View>
                        </CardFooter>
                      </Card>
-            <Muted className="py-4">Swipe to see other tabs</Muted>
+            <H6 className="py-4 font-medium text-sys-text-neutral-3">Swipe to see other tabs</H6>
           </View>
         </View>
       </ScrollView>

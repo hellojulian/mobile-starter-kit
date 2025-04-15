@@ -6,14 +6,29 @@ import { DeprecatedUi } from '@rnr/reusables';
 import { SplashScreen, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { Platform, View } from 'react-native';
+import { Platform, View, Text, TextInput } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ThemeToggle } from '~/components/ThemeToggle';
-import { Text } from '~/components/ui/text';
 import { setAndroidNavigationBar } from '~/lib/android-navigation-bar';
 import { NAV_THEME } from '~/lib/constants';
 import { useColorScheme } from '~/lib/useColorScheme';
 import { useFonts } from 'expo-font';
+
+// NOTE: This disables dynamic font scaling globally across the app.
+// While this helps maintain consistent layouts, it impacts accessibility
+// for users who rely on system text size adjustments.
+// Consider using maxFontSizeMultiplier or designing responsive layouts
+// if accessibility is a priority for your app.
+(Text as any).defaultProps = {
+  ...(Text as any).defaultProps,
+  allowFontScaling: false,
+};
+
+// Also disable font scaling for TextInput
+(TextInput as any).defaultProps = {
+  ...(TextInput as any).defaultProps,
+  allowFontScaling: false,
+};
 
 const { ToastProvider } = DeprecatedUi;
 

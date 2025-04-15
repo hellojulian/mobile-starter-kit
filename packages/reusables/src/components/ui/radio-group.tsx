@@ -1,6 +1,6 @@
 import * as RadioGroupPrimitive from "@rn-primitives/radio-group"
 import * as React from "react"
-import { View, Text, useColorScheme, Pressable } from "react-native"
+import { View, Text, useColorScheme } from "react-native"
 import { cn } from "../../lib/utils"
 import { Globe } from "lucide-react-native"
 
@@ -17,14 +17,14 @@ const RadioGroupItem = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioGroupP
       <RadioGroupPrimitive.Item
         ref={ref}
         className={cn(
-          "aspect-square h-4 w-4 native:h-5 native:w-5 rounded-full justify-center items-center border-2 border-sys-surface-secondary-4 text-sys-body-text web:ring-offset-background web:focus:outline-none web:focus-visible:ring-2 web:focus-visible:ring-ring web:focus-visible:ring-offset-2",
+          "aspect-square h-5 w-5 native:h-6 native:w-6 rounded-full justify-center items-center border-2 border-indigo-500 text-sys-body-text web:ring-offset-background web:focus:outline-none web:focus-visible:ring-2 web:focus-visible:ring-ring web:focus-visible:ring-offset-2",
           props.disabled && "web:cursor-not-allowed opacity-50",
           className,
         )}
         {...props}
       >
         <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-          <View className="aspect-square h-[9px] w-[9px] native:h-[10] native:w-[10] bg-sys-surface-secondary-4 rounded-full" />
+          <View className="aspect-square h-[10px] w-[10px] native:h-[12px] native:w-[12px] bg-indigo-500 rounded-full" />
         </RadioGroupPrimitive.Indicator>
       </RadioGroupPrimitive.Item>
     )
@@ -32,33 +32,25 @@ const RadioGroupItem = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioGroupP
 )
 RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName
 
-type RadioTileProps = Omit<RadioGroupPrimitive.ItemProps, "onPress"> & {
+type RadioTileProps = RadioGroupPrimitive.ItemProps & {
   title: string
   description?: string
   icon?: React.ReactNode
-  onValueChange?: (value: string) => void
 }
 
 const RadioTile = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioTileProps>(
-  ({ className, title, description, icon, onValueChange, ...props }, ref) => {
+  ({ className, title, description, icon, ...props }, ref) => {
     const colorScheme = useColorScheme()
     const isDark = colorScheme === "dark"
 
     // Theme-aware icon color
     const iconColor = isDark ? "#E5E7EB" : "#1F2937" // text-sys-text-body in dark/light mode
 
-    // Handle press on the entire tile
-    const handlePress = () => {
-      if (props.value && onValueChange) {
-        onValueChange(props.value)
-      }
-    }
-
-    const isSelected = props.value === props.aria?.checked
+    // Check if this tile is selected - use the checked prop directly
+    const isSelected = props.checked === true
 
     return (
-      <Pressable
-        onPress={handlePress}
+      <View
         className={cn(
           "w-full p-4 rounded-md border",
           isSelected
@@ -93,7 +85,7 @@ const RadioTile = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioTileProps>(
             {...props}
           >
             <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-              <View className="aspect-square h-[10px] w-[10px] native:h-[12px] native:w-[12px] bg-sys-surface-secondary-4 rounded-full" />
+              <View className="aspect-square h-[10px] w-[10px] native:h-[12px] native:w-[12px] bg-indigo-500 rounded-full" />
             </RadioGroupPrimitive.Indicator>
           </RadioGroupPrimitive.Item>
         </View>
@@ -104,7 +96,7 @@ const RadioTile = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioTileProps>(
             <Text className="text-base text-sys-text-body">{description}</Text>
           </View>
         )}
-      </Pressable>
+      </View>
     )
   },
 )

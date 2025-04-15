@@ -20,10 +20,24 @@ const styles = StyleSheet.create({
 
 const TextClassContext = React.createContext<string | undefined>(undefined);
 
+// Base text component that ensures font scaling is disabled
+const BaseText = React.forwardRef<TextRef, SlottableTextProps>(
+  ({ style, ...props }, ref) => {
+    return (
+      <RNText
+        allowFontScaling={false}
+        style={style}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+
 const Text = React.forwardRef<TextRef, SlottableTextProps>(
   ({ className, asChild = false, style, ...props }, ref) => {
     const textClass = React.useContext(TextClassContext);
-    const Component = asChild ? Slot.Text : RNText;
+    const Component = asChild ? Slot.Text : BaseText;
     return (
       <Component
         className={cn('text-base  web:select-text', textClass, className)}
@@ -39,7 +53,7 @@ Text.displayName = 'Text';
 const TextSemiBold = React.forwardRef<TextRef, SlottableTextProps>(
   ({ className, asChild = false, style, ...props }, ref) => {
     const textClass = React.useContext(TextClassContext);
-    const Component = asChild ? Slot.Text : RNText;
+    const Component = asChild ? Slot.Text : BaseText;
     return (
       <Component
         className={cn('text-base  web:select-text font-bold', textClass, className)}
@@ -55,7 +69,7 @@ TextSemiBold.displayName = 'TextSemiBold';
 const TextBold = React.forwardRef<TextRef, SlottableTextProps>(
   ({ className, asChild = false, style, ...props }, ref) => {
     const textClass = React.useContext(TextClassContext);
-    const Component = asChild ? Slot.Text : RNText;
+    const Component = asChild ? Slot.Text : BaseText;
     return (
       <Component
         className={cn('text-base  web:select-text font-bold', textClass, className)}

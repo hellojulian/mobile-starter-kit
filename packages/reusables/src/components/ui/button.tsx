@@ -16,9 +16,9 @@ const buttonVariants = cva(
         link: 'web:underline-offset-4 web:hover:underline web:focus:underline active:bg-sys-surface-secondary-pressed',
       },
       size: {
-        default: 'h-11 rounded-full px-6 native:h-14',
+        default: 'h-16 rounded-full px-6 native:h-[56px]',
         sm: 'h-9 rounded-full px-3',
-        lg: 'h-11 rounded-full px-8 native:h-14',
+        lg: 'h-17 rounded-full px-8 native:h-17',
         icon: 'h-10 w-10',
       },
     },
