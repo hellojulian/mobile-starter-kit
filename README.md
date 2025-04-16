@@ -8,7 +8,7 @@ Crafted with [NativeWind v4](https://www.nativewind.dev/) and accessibility in m
 
 
 
-[📖 Documentation]([https://rnr-docs.vercel.app](https://msk.framer.wiki/getting-started/how-to-use)/)
+[📖 Documentation](https://msk.framer.wiki/getting-started/how-to-use/)
 
 [📖 React Native Reusables](https://rnr-docs.vercel.app/)
 <br>
