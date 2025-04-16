@@ -8,7 +8,9 @@ Crafted with [NativeWind v4](https://www.nativewind.dev/) and accessibility in m
 
 
 
-[📖 Docs](https://rnr-docs.vercel.app/)
+[📖 Documentation]([https://rnr-docs.vercel.app](https://msk.framer.wiki/getting-started/how-to-use)/)
+
+[📖 React Native Reusables](https://rnr-docs.vercel.app/)
 <br>
 [✏️ Figma UI Kit](https://www.figma.com/design/bvo3Wk0Vxi5PeiVGgfibJk/Mobile-App-Starter-Kit?node-id=2062-11367&t=aiitMPY486u9rCB1-1
 )
