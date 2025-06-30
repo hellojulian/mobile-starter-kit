@@ -4,7 +4,6 @@ import React, { useState, useCallback } from "react"
 import { View } from "react-native"
 import { Text } from "~/components/ui/text"
 import { Muted } from "~/components/ui/typography"
-import { H6 } from "~/components/ui/typography"
 import { StyleSheet, ScrollView, SafeAreaView, Platform, RefreshControl } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Card, CardContent, CardOverline, CardDescription, CardFooter, CardHeader, CardTitle } from "~/components/ui/card"
@@ -125,7 +124,7 @@ export default function BlueScreen() {
               </View>
             </CardFooter>
           </Card>
-            <H6 className="py-4 font-medium text-sys-text-neutral-3">Swipe to see other tabs</H6>
+            <Muted className="py-4">Swipe to see other tabs</Muted>
           </View>
         </View>
       </ScrollView>

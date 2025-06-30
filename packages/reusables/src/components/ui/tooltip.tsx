@@ -48,12 +48,12 @@ export const Tooltip: React.FC<TooltipProps> = ({
 
   // Determine arrow border classes based on position
   const arrowBorderClasses = {
-    top: "w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-sys-surface-neutral-1",
+    top: "w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-sys-surface-neutral-5",
     bottom:
-      "w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[8px] border-b-sys-surface-neutral-1",
-    left: "w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-l-[8px] border-l-sys-surface-neutral-1",
+      "w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[8px] border-b-sys-surface-neutral-5",
+    left: "w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-l-[8px] border-l-sys-surface-neutral-5",
     right:
-      "w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-r-[8px] border-r-sys-surface-neutral-1",
+      "w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-r-[8px] border-r-sys-surface-neutral-5",
   }
 
   // Animation styles
@@ -84,8 +84,8 @@ export const Tooltip: React.FC<TooltipProps> = ({
 
   return (
     <View className={cn("m-2", wrapperPositionClasses[position], className)}>
-      <Animated.View style={animatedStyles} className="relative bg-sys-surface-neutral-1 rounded-lg p-4 max-w-[240px]">
-        {variant === "text" && <Text className="text-sys-text-body text-sm my-1">{text}</Text>}
+      <Animated.View style={animatedStyles} className="relative bg-sys-surface-neutral-5 rounded-lg p-4 max-w-[240px]">
+        {variant === "text" && <Text className="text-sys-text-body-inverse text-sm my-1">{text}</Text>}
 
         {variant === "media" && (
           <>
@@ -103,8 +103,8 @@ export const Tooltip: React.FC<TooltipProps> = ({
                 <Image source={imageSrc} style={{ width: "100%", height: "100%", resizeMode: "cover" }} />
               </View>
             )}
-            {title && <Text className="text-sys-text-body text-base font-semibold mb-1.5">{title}</Text>}
-            {text && <Text className="text-sys-text-body text-sm mb-3">{text}</Text>}
+            {title && <Text className="text-sys-text-body-inverse text-base font-semibold mb-1.5">{title}</Text>}
+            {text && <Text className="text-sys-text-body-inverse text-sm mb-3">{text}</Text>}
             {renderButton}
           </>
         )}

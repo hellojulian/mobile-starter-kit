@@ -62,10 +62,10 @@
     },
     "extra": {
       "eas": {
-        "projectId": ""
+        "projectId": "1c179c92-fa69-4105-91fa-f50883099333"
       }
     },
-    "owner": "",
+    "owner": "hellojulian",
     "slug": "mobile-starter-kit",
     "developmentClient": {
       "silentLaunch": false

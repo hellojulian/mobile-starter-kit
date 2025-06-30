@@ -26,7 +26,6 @@ export default function MaterialTopTabsLayout() {
     <>
       <Stack.Screen options={{ headerShadowVisible: false }} />
       <MaterialTopTabs
-        id="components-material-top-tabs"
         initialRouteName='index'
         screenOptions={{
           tabBarActiveTintColor: colors.text,

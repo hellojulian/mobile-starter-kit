@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "turbo": "^1.12.4",
-    "typescript": "^5.3.3"
+    "typescript": "^5.8.3"
   },
   "pnpm": {
     "peerDependencyRules": {
@@ -40,5 +40,10 @@
   "engines": {
     "node": ">=20.11.0"
   },
-  "packageManager": "pnpm@9.1.4"
+  "packageManager": "pnpm@9.1.4",
+  "dependencies": {
+    "@react-navigation/material-top-tabs": "^7.3.2",
+    "@react-navigation/native": "^7.1.14",
+    "use-latest-callback": "^0.2.4"
+  }
 }
