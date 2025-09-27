@@ -1,3 +1,4 @@
+import './react-devtools.config.js';
 import './global.css';
 import { AppRegistry } from 'react-native';
 import { ExpoRoot } from 'expo-router';

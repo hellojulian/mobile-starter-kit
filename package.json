@@ -27,7 +27,15 @@
         "@babel/*",
         "expo-modules-*",
         "typescript"
-      ]
+      ],
+      "allowedVersions": {
+        "react": "19",
+        "@types/react": "19"
+      }
+    },
+    "overrides": {
+      "react-native>@types/react": "^19.0.0",
+      "lucide-react-native": "^0.511.0"
     }
   },
   "prettier": {
@@ -44,6 +52,8 @@
   "dependencies": {
     "@react-navigation/material-top-tabs": "^7.3.2",
     "@react-navigation/native": "^7.1.14",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "use-latest-callback": "^0.2.4"
   }
 }
