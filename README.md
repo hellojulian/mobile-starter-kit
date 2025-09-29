@@ -16,6 +16,12 @@ A Mobile app starter kit featuring a clean and well-organized design system. Cra
 
 ### How to use
 
+Clone the repo 
+
+```bash
+git clone https://github.com/hellojulian/mobile-starter-kit.git
+```
+
 
 Install project/dependencies
 
