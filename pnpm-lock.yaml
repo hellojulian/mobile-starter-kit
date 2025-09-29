@@ -214,7 +214,7 @@ importers:
     dependencies:
       '@gorhom/bottom-sheet':
         specifier: ^5.1.4
-        version: 5.1.6(@types/react@19.0.14)(react-native-gesture-handler@2.24.0(react-native@0.79.5(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native-reanimated@3.17.5(@babel/core@7.27.7)(react-native@0.79.5(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+        version: 5.1.6(@types/react-native@0.73.0(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(@types/react@19.0.14)(react-native-gesture-handler@2.24.0(react-native@0.79.5(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native-reanimated@3.17.5(@babel/core@7.27.7)(react-native@0.79.5(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
       '@hookform/resolvers':
         specifier: ^3.3.4
         version: 3.10.0(react-hook-form@7.59.0(react@19.0.0))
@@ -399,6 +399,9 @@ importers:
       '@types/react-dom':
         specifier: ^19.1.6
         version: 19.1.6(@types/react@19.0.14)
+      '@types/react-native':
+        specifier: ^0.73.0
+        version: 0.73.0(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0)
       patch-package:
         specifier: ^8.0.0
         version: 8.0.0
@@ -416,7 +419,7 @@ importers:
     dependencies:
       '@gorhom/bottom-sheet':
         specifier: ^4.6.0
-        version: 4.6.4(@types/react@19.0.14)(react-native-gesture-handler@2.24.0(react-native@0.76.6(@babel/core@7.27.7)(@babel/preset-env@7.27.2(@babel/core@7.27.7))(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native-reanimated@3.16.7(@babel/core@7.27.7)(react-native@0.76.6(@babel/core@7.27.7)(@babel/preset-env@7.27.2(@babel/core@7.27.7))(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.76.6(@babel/core@7.27.7)(@babel/preset-env@7.27.2(@babel/core@7.27.7))(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+        version: 4.6.4(@types/react-native@0.73.0(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(@types/react@19.0.14)(react-native-gesture-handler@2.24.0(react-native@0.76.6(@babel/core@7.27.7)(@babel/preset-env@7.27.2(@babel/core@7.27.7))(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native-reanimated@3.16.7(@babel/core@7.27.7)(react-native@0.76.6(@babel/core@7.27.7)(@babel/preset-env@7.27.2(@babel/core@7.27.7))(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.76.6(@babel/core@7.27.7)(@babel/preset-env@7.27.2(@babel/core@7.27.7))(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
       '@hookform/resolvers':
         specifier: ^3.3.4
         version: 3.10.0(react-hook-form@7.59.0(react@19.0.0))
@@ -4093,6 +4096,10 @@ packages:
     resolution: {integrity: sha512-4hOiT/dwO8Ko0gV1m/TJZYk3y0KBnY9vzDh7W+DH17b2HFSOGgdj33dhihPeuy3l0q23+4e+hoXHV6hCC4dCXw==}
     peerDependencies:
       '@types/react': ^19.0.0
+
+  '@types/react-native@0.73.0':
+    resolution: {integrity: sha512-6ZRPQrYM72qYKGWidEttRe6M5DZBEV5F+MHMHqd4TTYx0tfkcdrUFGdef6CCxY0jXU7wldvd/zA/b0A/kTeJmA==}
+    deprecated: This is a stub types definition. react-native provides its own type definitions, so you do not need this installed.
 
   '@types/react@18.3.23':
     resolution: {integrity: sha512-/LDXMQh55EzZQ0uVAZmKKhfENivEvWz6E+EYzh+/MCjMhNsotd+ZHhBGIjFDTi6+fz0OhQQQLbTgdQIxxCsC0w==}
@@ -11175,7 +11182,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@gorhom/bottom-sheet@4.6.4(@types/react@19.0.14)(react-native-gesture-handler@2.24.0(react-native@0.76.6(@babel/core@7.27.7)(@babel/preset-env@7.27.2(@babel/core@7.27.7))(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native-reanimated@3.16.7(@babel/core@7.27.7)(react-native@0.76.6(@babel/core@7.27.7)(@babel/preset-env@7.27.2(@babel/core@7.27.7))(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.76.6(@babel/core@7.27.7)(@babel/preset-env@7.27.2(@babel/core@7.27.7))(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)':
+  '@gorhom/bottom-sheet@4.6.4(@types/react-native@0.73.0(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(@types/react@19.0.14)(react-native-gesture-handler@2.24.0(react-native@0.76.6(@babel/core@7.27.7)(@babel/preset-env@7.27.2(@babel/core@7.27.7))(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native-reanimated@3.16.7(@babel/core@7.27.7)(react-native@0.76.6(@babel/core@7.27.7)(@babel/preset-env@7.27.2(@babel/core@7.27.7))(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.76.6(@babel/core@7.27.7)(@babel/preset-env@7.27.2(@babel/core@7.27.7))(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@gorhom/portal': 1.0.14(react-native@0.76.6(@babel/core@7.27.7)(@babel/preset-env@7.27.2(@babel/core@7.27.7))(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
       invariant: 2.2.4
@@ -11185,8 +11192,9 @@ snapshots:
       react-native-reanimated: 3.16.7(@babel/core@7.27.7)(react-native@0.76.6(@babel/core@7.27.7)(@babel/preset-env@7.27.2(@babel/core@7.27.7))(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
     optionalDependencies:
       '@types/react': 19.0.14
+      '@types/react-native': 0.73.0(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0)
 
-  '@gorhom/bottom-sheet@5.1.6(@types/react@19.0.14)(react-native-gesture-handler@2.24.0(react-native@0.79.5(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native-reanimated@3.17.5(@babel/core@7.27.7)(react-native@0.79.5(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)':
+  '@gorhom/bottom-sheet@5.1.6(@types/react-native@0.73.0(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(@types/react@19.0.14)(react-native-gesture-handler@2.24.0(react-native@0.79.5(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native-reanimated@3.17.5(@babel/core@7.27.7)(react-native@0.79.5(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.5(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@gorhom/portal': 1.0.14(react-native@0.79.5(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
       invariant: 2.2.4
@@ -11196,6 +11204,7 @@ snapshots:
       react-native-reanimated: 3.17.5(@babel/core@7.27.7)(react-native@0.79.5(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
     optionalDependencies:
       '@types/react': 19.0.14
+      '@types/react-native': 0.73.0(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0)
 
   '@gorhom/portal@1.0.14(react-native@0.76.6(@babel/core@7.27.7)(@babel/preset-env@7.27.2(@babel/core@7.27.7))(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)':
     dependencies:
@@ -13787,6 +13796,18 @@ snapshots:
   '@types/react-dom@19.1.6(@types/react@19.0.14)':
     dependencies:
       '@types/react': 19.0.14
+
+  '@types/react-native@0.73.0(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0)':
+    dependencies:
+      react-native: 0.79.5(@babel/core@7.27.7)(@types/react@19.0.14)(react@19.0.0)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - '@react-native-community/cli'
+      - '@types/react'
+      - bufferutil
+      - react
+      - supports-color
+      - utf-8-validate
 
   '@types/react@18.3.23':
     dependencies:
