@@ -5,7 +5,7 @@
 A Mobile app starter kit featuring a clean and well-organized design system. Crafted with [NativeWind v4](https://www.nativewind.dev/) and accessibility in mind, `react-native-reusables` is open source, offering a foundation for developing your own high-quality component library. If you'd like access to the Figma UI Kit, please send me a message and we can discuss things further.
 
 
-[📖 Documentation](https://msk.framer.wiki/getting-started/how-to-use/)
+[📖 Documentation](https://hellojulian.github.io/msk/)
 
 [📖 React Native Reusables](https://rnr-docs.vercel.app/)
 
@@ -15,6 +15,12 @@ A Mobile app starter kit featuring a clean and well-organized design system. Cra
 
 
 ### How to use
+
+Clone the repo 
+
+```bash
+git clone https://github.com/hellojulian/mobile-starter-kit.git
+```
 
 
 Install project/dependencies
@@ -30,9 +36,4 @@ pnpm dev:showcase
 ```
 
 
-Clean cache/node_modules
-
-```bash
-pnpm clean
-```
 
