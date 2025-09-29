@@ -59,8 +59,8 @@ const DropdownMenuSubTrigger = React.forwardRef<
   return (
     <TextClassContext.Provider
       value={cn(
-        'select-none text-md native:text-md text-primary',
-        open && 'native:text-accent-foreground'
+        'select-none text-md native:text-md text-sys-text-body',
+        open && 'native:text-sys-text-body'
       )}
     >
       <DropdownMenuPrimitive.SubTrigger
@@ -165,7 +165,7 @@ const DropdownMenuItem = React.forwardRef<
     accessibilityLabel?: string;
   }
 >(({ className, inset, accessibilityLabel, ...props }, ref) => (
-  <TextClassContext.Provider value='select-none text-md native:text-md text-popover-foreground web:group-focus:text-accent-foreground'>
+  <TextClassContext.Provider value='select-none text-md native:text-md text-sys-text-body web:group-focus:text-sys-text-body'>
     <DropdownMenuPrimitive.Item
       ref={ref}
       className={cn(
@@ -249,7 +249,7 @@ const DropdownMenuLabel = React.forwardRef<
   <DropdownMenuPrimitive.Label
     ref={ref}
     className={cn(
-      'px-2 py-1.5 text-md native:text-base font-semibold text-foreground web:cursor-default',
+      'px-2 py-1.5 text-md native:text-base font-semibold text-sys-text-body web:cursor-default',
       inset && 'pl-8',
       className
     )}
@@ -274,7 +274,7 @@ const DropdownMenuShortcut = ({ className, ...props }: TextProps) => {
   return (
     <Text
       className={cn(
-        'ml-auto text-xs native:text-md tracking-widest text-muted-foreground',
+        'ml-auto text-xs native:text-md tracking-widest text-sys-text-body',
         className
       )}
       {...props}
