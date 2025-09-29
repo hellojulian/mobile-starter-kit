@@ -109,13 +109,13 @@
     --sys-text-black: var(--ref-neutral-950);
     --sys-text-body: var(--ref-neutral-950);
     --sys-text-body-inverse: var(--ref-neutral-50);
-    --sys-text-secondary: var(--ref-secondary-500);
+    --sys-text-secondary: var(--ref-secondary-700);
     --sys-text-primary: var(--ref-secondary-500);
     --sys-text-neutral-1: var(--ref-neutral-50);
     --sys-text-neutral-2: var(--ref-neutral-300);
     --sys-text-neutral-3: var(--ref-neutral-600);
     --sys-text-neutral-4: var(--ref-neutral-900);
-    --sys-text-disabled: var(--ref-neutral-400);
+    --sys-text-disabled: var(--ref-neutral-600);
     /* Border Tokens */
     --sys-border-1: var(--ref-neutral-900);
     --sys-border-2: var(--ref-neutral-800);
@@ -134,7 +134,7 @@
     --sys-fn-success: var(--ref-success-200);
     --sys-fn-success-text: var(--ref-success-900);
     --sys-fn-warning: var(--ref-warning-200);
-    --sys-fn-warning-text: var(--ref-warning-900);
+    --sys-fn-warning-text: var(--ref-warning-800);
     --sys-fn-information: var(--ref-information-200);
     --sys-fn-information-text: var(--ref-information-800);
 
@@ -195,12 +195,12 @@
     --sys-text-black: var(--ref-neutral-950);
     --sys-text-body: var(--ref-neutral-50);
     --sys-text-body-inverse: var(--ref-neutral-950);
-    --sys-text-secondary: var(--ref-secondary-300);
+    --sys-text-secondary: var(--ref-secondary-400);
     --sys-text-neutral-1: var(--ref-neutral-900);
     --sys-text-neutral-2: var(--ref-neutral-600);
     --sys-text-neutral-3: var(--ref-neutral-300);
     --sys-text-neutral-4: var(--ref-neutral-50);
-    --sys-text-disabled: var(--ref-neutral-800);
+    --sys-text-disabled: var(--ref-neutral-600);
     /* Border Tokens */
     --sys-border-1: var(--ref-neutral-200);
     --sys-border-2: var(--ref-neutral-300);
@@ -216,7 +216,7 @@
     --sys-fn-success: var(--ref-success-950);
     --sys-fn-success-text: var(--ref-success-400);
     --sys-fn-warning: var(--ref-warning-950);
-    --sys-fn-warning-text: var(--ref-warning-400);
+    --sys-fn-warning-text: var(--ref-warning-300);
     --sys-fn-information: var(--ref-information-950);
     --sys-fn-information-text: var(--ref-information-400);
 

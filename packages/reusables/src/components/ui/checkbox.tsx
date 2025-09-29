@@ -7,12 +7,35 @@ import { Text } from "react-native"
 import { Globe } from "lucide-react-native"
 
 // Original Checkbox component
-const Checkbox = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxPrimitive.RootProps & { label?: string }>(
-  ({ className, label, ...props }, ref) => {
+const Checkbox = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxPrimitive.RootProps & { 
+  label?: string;
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
+}>(
+  ({ className, label, accessibilityLabel, accessibilityHint, ...props }, ref) => {
+    // Cross-platform accessibility props
+    const accessibilityProps = Platform.select({
+      web: {
+        'aria-label': accessibilityLabel || label,
+        'aria-describedby': accessibilityHint,
+        'aria-checked': !!props.checked,
+      },
+      default: {
+        accessibilityRole: 'checkbox',
+        accessibilityLabel: accessibilityLabel || label,
+        accessibilityHint,
+        accessibilityState: { 
+          checked: !!props.checked,
+          disabled: !!props.disabled,
+        },
+      }
+    });
+
     return (
       <Pressable
         onPress={() => props.onCheckedChange?.(!props.checked)}
         className={cn("flex-row items-center gap-2", props.disabled && "opacity-50")}
+        {...accessibilityProps}
       >
         <CheckboxPrimitive.Root
           ref={ref}
@@ -24,10 +47,24 @@ const Checkbox = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxPrimitive.R
           {...props}
         >
           <CheckboxPrimitive.Indicator className={cn("items-center justify-center h-full w-full")}>
-            <Check size={16} strokeWidth={Platform.OS === "web" ? 2.5 : 3.5} className="text-sys-text-secondary" />
+            <Check 
+              size={16} 
+              strokeWidth={Platform.OS === "web" ? 2.5 : 3.5} 
+              className="text-sys-text-secondary"
+              importantForAccessibility="no-hide-descendants"
+              accessibilityElementsHidden={true}
+            />
           </CheckboxPrimitive.Indicator>
         </CheckboxPrimitive.Root>
-        {label && <CheckboxPrimitive.Label className="text-sm">{label}</CheckboxPrimitive.Label>}
+        {label && (
+          <CheckboxPrimitive.Label 
+            className="text-sm"
+            importantForAccessibility="no-hide-descendants"
+            accessibilityElementsHidden={true}
+          >
+            {label}
+          </CheckboxPrimitive.Label>
+        )}
       </Pressable>
     )
   },
@@ -39,15 +76,40 @@ type CheckboxTileProps = CheckboxPrimitive.RootProps & {
   title: string
   description?: string
   icon?: React.ReactNode
+  accessibilityLabel?: string
+  accessibilityHint?: string
 }
 
 const CheckboxTile = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxTileProps>(
-  ({ className, title, description, icon, ...props }, ref) => {
+  ({ className, title, description, icon, accessibilityLabel, accessibilityHint, ...props }, ref) => {
     const colorScheme = useColorScheme()
     const isDark = colorScheme === "dark"
 
     // Theme-aware icon color
     const iconColor = isDark ? "#E5E7EB" : "#1F2937" // text-sys-text-body in dark/light mode
+
+    // Generate comprehensive accessibility label
+    const fullAccessibilityLabel = accessibilityLabel || 
+      `${title}${description ? `. ${description}` : ''}`;
+
+    // Cross-platform accessibility props
+    const accessibilityProps = Platform.select({
+      web: {
+        'aria-label': fullAccessibilityLabel,
+        'aria-describedby': accessibilityHint,
+        'aria-checked': !!props.checked,
+        role: 'checkbox',
+      },
+      default: {
+        accessibilityRole: 'checkbox',
+        accessibilityLabel: fullAccessibilityLabel,
+        accessibilityHint,
+        accessibilityState: { 
+          checked: !!props.checked,
+          disabled: !!props.disabled,
+        },
+      }
+    });
 
     return (
       <Pressable
@@ -59,6 +121,7 @@ const CheckboxTile = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxTilePro
             : "bg-sys-surface-neutral-0 border-sys-border-4",
           props.disabled && "opacity-50",
         )}
+        {...accessibilityProps}
       >
         {/* Top section: Icon, Title, and Checkbox */}
         <View className="flex-row items-center justify-between mb-3">
@@ -66,14 +129,29 @@ const CheckboxTile = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxTilePro
             {/* Use theme-aware icon color */}
             {icon ? (
               React.isValidElement(icon) ? (
-                React.cloneElement(icon, { color: icon.props.color || iconColor })
+                React.cloneElement(icon, { 
+                  color: icon.props.color || iconColor,
+                  importantForAccessibility: 'no-hide-descendants',
+                  accessibilityElementsHidden: true,
+                })
               ) : (
                 icon
               )
             ) : (
-              <Globe size={24} color={iconColor} />
+              <Globe 
+                size={24} 
+                color={iconColor}
+                importantForAccessibility="no-hide-descendants"
+                accessibilityElementsHidden={true}
+              />
             )}
-            <Text className="text-md font-medium text-sys-text-body">{title}</Text>
+            <Text 
+              className="text-md font-medium text-sys-text-body"
+              importantForAccessibility="no-hide-descendants"
+              accessibilityElementsHidden={true}
+            >
+              {title}
+            </Text>
           </View>
 
           <CheckboxPrimitive.Root
@@ -83,10 +161,18 @@ const CheckboxTile = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxTilePro
               props.checked && "bg-sys-surface-secondary-pressed",
               className,
             )}
+            importantForAccessibility="no-hide-descendants"
+            accessibilityElementsHidden={true}
             {...props}
           >
             <CheckboxPrimitive.Indicator className={cn("items-center justify-center h-full w-full")}>
-              <Check size={16} strokeWidth={Platform.OS === "web" ? 2.5 : 3.5} className="text-sys-text-secondary" />
+              <Check 
+                size={16} 
+                strokeWidth={Platform.OS === "web" ? 2.5 : 3.5} 
+                className="text-sys-text-secondary"
+                importantForAccessibility="no-hide-descendants"
+                accessibilityElementsHidden={true}
+              />
             </CheckboxPrimitive.Indicator>
           </CheckboxPrimitive.Root>
         </View>
@@ -94,7 +180,13 @@ const CheckboxTile = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxTilePro
         {/* Bottom section: Description text */}
         {description && (
           <View className="pl-0">
-            <Text className="text-base text-sys-text-body">{description}</Text>
+            <Text 
+              className="text-base text-sys-text-body"
+              importantForAccessibility="no-hide-descendants"
+              accessibilityElementsHidden={true}
+            >
+              {description}
+            </Text>
           </View>
         )}
       </Pressable>

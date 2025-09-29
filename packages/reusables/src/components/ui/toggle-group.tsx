@@ -10,11 +10,15 @@ const ToggleGroupContext = React.createContext<VariantProps<typeof toggleVariant
 
 const ToggleGroup = React.forwardRef<
   ToggleGroupPrimitive.RootRef,
-  ToggleGroupPrimitive.RootProps & VariantProps<typeof toggleVariants>
->(({ className, variant, size, children, ...props }, ref) => (
+  ToggleGroupPrimitive.RootProps & VariantProps<typeof toggleVariants> & {
+    accessibilityLabel?: string;
+  }
+>(({ className, variant, size, children, accessibilityLabel, ...props }, ref) => (
   <ToggleGroupPrimitive.Root
     ref={ref}
     className={cn('flex flex-row items-center justify-center gap-1', className)}
+    accessibilityRole="group"
+    accessibilityLabel={accessibilityLabel || "Toggle group"}
     {...props}
   >
     <ToggleGroupContext.Provider value={{ variant, size }}>{children}</ToggleGroupContext.Provider>
@@ -35,8 +39,10 @@ function useToggleGroupContext() {
 
 const ToggleGroupItem = React.forwardRef<
   ToggleGroupPrimitive.ItemRef,
-  ToggleGroupPrimitive.ItemProps & VariantProps<typeof toggleVariants>
->(({ className, children, variant, size, ...props }, ref) => {
+  ToggleGroupPrimitive.ItemProps & VariantProps<typeof toggleVariants> & {
+    accessibilityLabel?: string;
+  }
+>(({ className, children, variant, size, accessibilityLabel, ...props }, ref) => {
   const context = useToggleGroupContext();
   const { value } = ToggleGroupPrimitive.useRootContext();
 
@@ -60,6 +66,12 @@ const ToggleGroupItem = React.forwardRef<
           ToggleGroupPrimitive.utils.getIsSelected(value, props.value) && 'bg-sys-surface-secondary-pressed',
           className
         )}
+        accessibilityRole="radio"
+        accessibilityLabel={accessibilityLabel}
+        accessibilityState={{ 
+          selected: ToggleGroupPrimitive.utils.getIsSelected(value, props.value),
+          disabled: !!props.disabled 
+        }}
         {...props}
       >
         {children}

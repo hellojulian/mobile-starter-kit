@@ -47,8 +47,11 @@ const toggleTextVariants = cva('text-sm native:text-sys-text-secondary text-fore
 
 const Toggle = React.forwardRef<
   TogglePrimitive.RootRef,
-  TogglePrimitive.RootProps & VariantProps<typeof toggleVariants>
->(({ className, variant, size, ...props }, ref) => (
+  TogglePrimitive.RootProps & VariantProps<typeof toggleVariants> & {
+    accessibilityLabel?: string;
+    accessibilityHint?: string;
+  }
+>(({ className, variant, size, accessibilityLabel, accessibilityHint, ...props }, ref) => (
   <TextClassContext.Provider
     value={cn(
       toggleTextVariants({ variant, size }),
@@ -64,6 +67,13 @@ const Toggle = React.forwardRef<
         props.pressed && 'bg-accent',
         className
       )}
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel}
+      accessibilityHint={accessibilityHint}
+      accessibilityState={{ 
+        disabled: !!props.disabled,
+        expanded: !!props.pressed 
+      }}
       {...props}
     />
   </TextClassContext.Provider>

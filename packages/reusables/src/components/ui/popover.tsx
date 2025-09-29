@@ -7,12 +7,35 @@ import { TextClassContext } from './text';
 
 const Popover = PopoverPrimitive.Root;
 
-const PopoverTrigger = PopoverPrimitive.Trigger;
+const PopoverTrigger = React.forwardRef<
+  PopoverPrimitive.TriggerRef,
+  PopoverPrimitive.TriggerProps & {
+    accessibilityLabel?: string;
+    accessibilityHint?: string;
+  }
+>(({ accessibilityLabel, accessibilityHint, ...props }, ref) => {
+  const { open } = PopoverPrimitive.useRootContext();
+  return (
+    <PopoverPrimitive.Trigger
+      ref={ref}
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel}
+      accessibilityHint={accessibilityHint}
+      accessibilityState={{ expanded: open }}
+      {...props}
+    />
+  );
+});
+PopoverTrigger.displayName = PopoverPrimitive.Trigger.displayName;
 
 const PopoverContent = React.forwardRef<
   PopoverPrimitive.ContentRef,
-  PopoverPrimitive.ContentProps & { portalHost?: string }
->(({ className, align = 'center', sideOffset = 4, portalHost, ...props }, ref) => {
+  PopoverPrimitive.ContentProps & { 
+    portalHost?: string;
+    accessibilityLabel?: string;
+    accessibilityRole?: 'dialog' | 'tooltip';
+  }
+>(({ className, align = 'center', sideOffset = 4, portalHost, accessibilityLabel, accessibilityRole = 'dialog', ...props }, ref) => {
   return (
     <PopoverPrimitive.Portal hostName={portalHost}>
       <PopoverPrimitive.Overlay style={Platform.OS !== 'web' ? StyleSheet.absoluteFill : undefined}>
@@ -26,6 +49,9 @@ const PopoverContent = React.forwardRef<
                 'z-50 w-72 rounded-md web:cursor-auto border border-border bg-sys-surface-neutral-0 p-4 shadow-md shadow-foreground/5 web:outline-none web:data-[side=bottom]:slide-in-from-top-2 web:data-[side=left]:slide-in-from-right-2 web:data-[side=right]:slide-in-from-left-2 web:data-[side=top]:slide-in-from-bottom-2 web:animate-in web:zoom-in-95 web:fade-in-0',
                 className
               )}
+              accessibilityRole={accessibilityRole}
+              accessibilityLabel={accessibilityLabel || "Popover content"}
+              accessibilityViewIsModal={accessibilityRole === 'dialog'}
               {...props}
             />
           </TextClassContext.Provider>

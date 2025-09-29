@@ -35,8 +35,10 @@ const SelectValue = React.forwardRef<SelectPrimitive.ValueRef, SelectPrimitive.V
 );
 SelectValue.displayName = SelectPrimitive.Value.displayName;
 
-const SelectTrigger = React.forwardRef<SelectPrimitive.TriggerRef, SelectPrimitive.TriggerProps>(
-  ({ className, children, ...props }, ref) => {
+const SelectTrigger = React.forwardRef<SelectPrimitive.TriggerRef, SelectPrimitive.TriggerProps & {
+  accessibilityLabel?: string;
+}>(
+  ({ className, children, accessibilityLabel, ...props }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
     const { open } = SelectPrimitive.useRootContext();
 
@@ -54,10 +56,19 @@ const SelectTrigger = React.forwardRef<SelectPrimitive.TriggerRef, SelectPrimiti
           className
         )}
         style={styles.Inter}
+        accessibilityRole="combobox"
+        accessibilityLabel={accessibilityLabel}
+        accessibilityState={{ expanded: isOpen, disabled: props.disabled }}
         {...props}
       >
         <>{children}</>
-        <ChevronDown size={16} aria-hidden={true} className=' text-sys-text-body' />
+        <ChevronDown 
+          size={16} 
+          aria-hidden={true} 
+          className=' text-sys-text-body'
+          importantForAccessibility="no-hide-descendants"
+          accessibilityElementsHidden={true}
+        />
       </SelectPrimitive.Trigger>
     );
   }
@@ -116,6 +127,7 @@ const SelectContent = React.forwardRef<
                 : 'web:zoom-out-95 web:animate-out web:fade-out-up-0',
               className
             )}
+            accessibilityRole="listbox"
             style={[
               props.style,
               {
@@ -168,8 +180,10 @@ const SelectLabel = React.forwardRef<SelectPrimitive.LabelRef, SelectPrimitive.L
 );
 SelectLabel.displayName = SelectPrimitive.Label.displayName;
 
-const SelectItem = React.forwardRef<SelectPrimitive.ItemRef, SelectPrimitive.ItemProps>(
-  ({ className, children, ...props }, ref) => (
+const SelectItem = React.forwardRef<SelectPrimitive.ItemRef, SelectPrimitive.ItemProps & {
+  accessibilityLabel?: string;
+}>(
+  ({ className, children, accessibilityLabel, ...props }, ref) => (
     <SelectPrimitive.Item
       ref={ref}
       className={cn(
@@ -177,6 +191,8 @@ const SelectItem = React.forwardRef<SelectPrimitive.ItemRef, SelectPrimitive.Ite
         props.disabled && 'web:pointer-events-none opacity-50',
         className
       )}
+      accessibilityRole="option"
+      accessibilityLabel={accessibilityLabel || (typeof children === 'string' ? children : undefined)}
       {...props}
     >
       <View className='absolute left-2 native:left-3.5 flex h-3.5 native:pt-px w-3.5 items-center justify-center'>

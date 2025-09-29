@@ -4,15 +4,27 @@ import { View, Text, useColorScheme } from "react-native"
 import { cn } from "../../lib/utils"
 import { Globe } from "lucide-react-native"
 
-const RadioGroup = React.forwardRef<RadioGroupPrimitive.RootRef, RadioGroupPrimitive.RootProps>(
-  ({ className, ...props }, ref) => {
-    return <RadioGroupPrimitive.Root className={cn("web:grid gap-2", className)} {...props} ref={ref} />
+const RadioGroup = React.forwardRef<RadioGroupPrimitive.RootRef, RadioGroupPrimitive.RootProps & {
+  accessibilityLabel?: string;
+}>(
+  ({ className, accessibilityLabel, ...props }, ref) => {
+    return (
+      <RadioGroupPrimitive.Root 
+        className={cn("web:grid gap-2", className)} 
+        accessibilityRole="radiogroup"
+        accessibilityLabel={accessibilityLabel}
+        {...props} 
+        ref={ref} 
+      />
+    )
   },
 )
 RadioGroup.displayName = RadioGroupPrimitive.Root.displayName
 
-const RadioGroupItem = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioGroupPrimitive.ItemProps>(
-  ({ className, ...props }, ref) => {
+const RadioGroupItem = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioGroupPrimitive.ItemProps & {
+  accessibilityLabel?: string;
+}>(
+  ({ className, accessibilityLabel, ...props }, ref) => {
     return (
       <RadioGroupPrimitive.Item
         ref={ref}
@@ -21,6 +33,9 @@ const RadioGroupItem = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioGroupP
           props.disabled && "web:cursor-not-allowed opacity-50",
           className,
         )}
+        accessibilityRole="radio"
+        accessibilityLabel={accessibilityLabel}
+        accessibilityState={{ selected: props.checked, disabled: props.disabled }}
         {...props}
       >
         <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
@@ -36,10 +51,12 @@ type RadioTileProps = RadioGroupPrimitive.ItemProps & {
   title: string
   description?: string
   icon?: React.ReactNode
+  accessibilityLabel?: string
+  accessibilityHint?: string
 }
 
 const RadioTile = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioTileProps>(
-  ({ className, title, description, icon, ...props }, ref) => {
+  ({ className, title, description, icon, accessibilityLabel, accessibilityHint, ...props }, ref) => {
     const colorScheme = useColorScheme()
     const isDark = colorScheme === "dark"
 
@@ -48,6 +65,10 @@ const RadioTile = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioTileProps>(
 
     // Check if this tile is selected - use the checked prop directly
     const isSelected = props.checked === true
+
+    // Generate comprehensive accessibility label
+    const fullAccessibilityLabel = accessibilityLabel || 
+      `${title}${description ? `. ${description}` : ''}`;
 
     return (
       <View
@@ -58,6 +79,10 @@ const RadioTile = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioTileProps>(
             : "bg-sys-surface-neutral-0 border-sys-border-4",
           props.disabled && "opacity-50",
         )}
+        accessibilityRole="radio"
+        accessibilityLabel={fullAccessibilityLabel}
+        accessibilityHint={accessibilityHint}
+        accessibilityState={{ selected: isSelected, disabled: props.disabled }}
       >
         {/* Top section: Icon, Title, and Radio */}
         <View className="flex-row items-center justify-between mb-3">
@@ -82,6 +107,8 @@ const RadioTile = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioTileProps>(
               props.disabled && "web:cursor-not-allowed opacity-50",
               className,
             )}
+            importantForAccessibility="no-hide-descendants"
+            accessibilityElementsHidden={true}
             {...props}
           >
             <RadioGroupPrimitive.Indicator className="flex items-center justify-center">

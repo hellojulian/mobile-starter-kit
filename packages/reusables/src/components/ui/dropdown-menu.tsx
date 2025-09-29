@@ -18,7 +18,26 @@ import { TextClassContext } from './text';
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 
-const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
+const DropdownMenuTrigger = React.forwardRef<
+  DropdownMenuPrimitive.TriggerRef,
+  DropdownMenuPrimitive.TriggerProps & {
+    accessibilityLabel?: string;
+    accessibilityHint?: string;
+  }
+>(({ accessibilityLabel, accessibilityHint, ...props }, ref) => {
+  const { open } = DropdownMenuPrimitive.useRootContext();
+  return (
+    <DropdownMenuPrimitive.Trigger
+      ref={ref}
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel}
+      accessibilityHint={accessibilityHint}
+      accessibilityState={{ expanded: open }}
+      {...props}
+    />
+  );
+});
+DropdownMenuTrigger.displayName = DropdownMenuPrimitive.Trigger.displayName;
 
 const DropdownMenuGroup = DropdownMenuPrimitive.Group;
 
@@ -32,8 +51,9 @@ const DropdownMenuSubTrigger = React.forwardRef<
   DropdownMenuPrimitive.SubTriggerRef,
   DropdownMenuPrimitive.SubTriggerProps & {
     inset?: boolean;
+    accessibilityLabel?: string;
   }
->(({ className, inset, children, ...props }, ref) => {
+>(({ className, inset, children, accessibilityLabel, ...props }, ref) => {
   const { open } = DropdownMenuPrimitive.useSubContext();
   const Icon = Platform.OS === 'web' ? ChevronRight : open ? ChevronUp : ChevronDown;
   return (
@@ -51,10 +71,18 @@ const DropdownMenuSubTrigger = React.forwardRef<
           inset && 'pl-8',
           className
         )}
+        accessibilityRole="menuitem"
+        accessibilityLabel={accessibilityLabel}
+        accessibilityState={{ expanded: open }}
         {...props}
       >
         <>{children}</>
-        <Icon size={18} className='ml-auto text-foreground' />
+        <Icon 
+          size={18} 
+          className='ml-auto text-foreground'
+          importantForAccessibility="no-hide-descendants"
+          accessibilityElementsHidden={true}
+        />
       </DropdownMenuPrimitive.SubTrigger>
     </TextClassContext.Provider>
   );
@@ -63,8 +91,10 @@ DropdownMenuSubTrigger.displayName = DropdownMenuPrimitive.SubTrigger.displayNam
 
 const DropdownMenuSubContent = React.forwardRef<
   DropdownMenuPrimitive.SubContentRef,
-  DropdownMenuPrimitive.SubContentProps
->(({ className, ...props }, ref) => {
+  DropdownMenuPrimitive.SubContentProps & {
+    accessibilityLabel?: string;
+  }
+>(({ className, accessibilityLabel, ...props }, ref) => {
   const { open } = DropdownMenuPrimitive.useSubContext();
   return (
     <DropdownMenuPrimitive.SubContent
@@ -76,6 +106,8 @@ const DropdownMenuSubContent = React.forwardRef<
           : 'web:animate-out web:fade-out-0 web:zoom-out ',
         className
       )}
+      accessibilityRole="menu"
+      accessibilityLabel={accessibilityLabel || "Submenu"}
       {...props}
     />
   );
@@ -88,8 +120,9 @@ const DropdownMenuContent = React.forwardRef<
     overlayStyle?: StyleProp<ViewStyle>;
     overlayClassName?: string;
     portalHost?: string;
+    accessibilityLabel?: string;
   }
->(({ className, overlayClassName, overlayStyle, portalHost, ...props }, ref) => {
+>(({ className, overlayClassName, overlayStyle, portalHost, accessibilityLabel, ...props }, ref) => {
   const { open } = DropdownMenuPrimitive.useRootContext();
   return (
     <DropdownMenuPrimitive.Portal hostName={portalHost}>
@@ -115,6 +148,8 @@ const DropdownMenuContent = React.forwardRef<
               : 'web:animate-out web:fade-out-0 web:zoom-out-95',
             className
           )}
+          accessibilityRole="menu"
+          accessibilityLabel={accessibilityLabel || "Dropdown menu"}
           {...props}
         />
       </DropdownMenuPrimitive.Overlay>
@@ -127,8 +162,9 @@ const DropdownMenuItem = React.forwardRef<
   DropdownMenuPrimitive.ItemRef,
   DropdownMenuPrimitive.ItemProps & {
     inset?: boolean;
+    accessibilityLabel?: string;
   }
->(({ className, inset, ...props }, ref) => (
+>(({ className, inset, accessibilityLabel, ...props }, ref) => (
   <TextClassContext.Provider value='select-none text-md native:text-md text-popover-foreground web:group-focus:text-accent-foreground'>
     <DropdownMenuPrimitive.Item
       ref={ref}
@@ -138,6 +174,9 @@ const DropdownMenuItem = React.forwardRef<
         props.disabled && 'opacity-50 web:pointer-events-none',
         className
       )}
+      accessibilityRole="menuitem"
+      accessibilityLabel={accessibilityLabel}
+      accessibilityState={{ disabled: props.disabled }}
       {...props}
     />
   </TextClassContext.Provider>
@@ -146,8 +185,10 @@ DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName;
 
 const DropdownMenuCheckboxItem = React.forwardRef<
   DropdownMenuPrimitive.CheckboxItemRef,
-  DropdownMenuPrimitive.CheckboxItemProps
->(({ className, children, checked, ...props }, ref) => (
+  DropdownMenuPrimitive.CheckboxItemProps & {
+    accessibilityLabel?: string;
+  }
+>(({ className, children, checked, accessibilityLabel, ...props }, ref) => (
   <DropdownMenuPrimitive.CheckboxItem
     ref={ref}
     className={cn(
@@ -156,6 +197,9 @@ const DropdownMenuCheckboxItem = React.forwardRef<
       className
     )}
     checked={checked}
+    accessibilityRole="menuitemcheckbox"
+    accessibilityLabel={accessibilityLabel}
+    accessibilityState={{ checked: !!checked, disabled: props.disabled }}
     {...props}
   >
     <View className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>
@@ -170,8 +214,10 @@ DropdownMenuCheckboxItem.displayName = DropdownMenuPrimitive.CheckboxItem.displa
 
 const DropdownMenuRadioItem = React.forwardRef<
   DropdownMenuPrimitive.RadioItemRef,
-  DropdownMenuPrimitive.RadioItemProps
->(({ className, children, ...props }, ref) => (
+  DropdownMenuPrimitive.RadioItemProps & {
+    accessibilityLabel?: string;
+  }
+>(({ className, children, accessibilityLabel, ...props }, ref) => (
   <DropdownMenuPrimitive.RadioItem
     ref={ref}
     className={cn(
@@ -179,6 +225,9 @@ const DropdownMenuRadioItem = React.forwardRef<
       props.disabled && 'web:pointer-events-none opacity-50',
       className
     )}
+    accessibilityRole="menuitemradio"
+    accessibilityLabel={accessibilityLabel}
+    accessibilityState={{ selected: !!props.value, disabled: props.disabled }}
     {...props}
   >
     <View className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>

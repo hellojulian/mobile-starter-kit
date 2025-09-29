@@ -46,10 +46,12 @@ const badgeTextVariants = cva('web:whitespace-nowrap', {
 type BadgeProps = SlottableViewProps &
   VariantProps<typeof badgeVariants> & {
     children: React.ReactNode;
+    accessibilityLabel?: string;
+    accessibilityHint?: string;
   };
 
 const Badge = React.forwardRef<React.ElementRef<typeof View>, BadgeProps>(
-  ({ className, variant, asChild, children, ...props }, ref) => {
+  ({ className, variant, asChild, children, accessibilityLabel, accessibilityHint, ...props }, ref) => {
     const Component = asChild ? Slot.View : View;
 
     const styles = StyleSheet.create({
@@ -59,8 +61,20 @@ const Badge = React.forwardRef<React.ElementRef<typeof View>, BadgeProps>(
     });
 
     return (
-      <Component className={cn(badgeVariants({ variant }), className)} ref={ref} {...props}>
-        <TextSemiBold style={styles.text} className={cn(badgeTextVariants({ variant }))}>
+      <Component 
+        className={cn(badgeVariants({ variant }), className)} 
+        ref={ref} 
+        accessibilityRole="text"
+        accessibilityLabel={accessibilityLabel || `${variant || 'default'} badge: ${children}`}
+        accessibilityHint={accessibilityHint}
+        {...props}
+      >
+        <TextSemiBold 
+          style={styles.text} 
+          className={cn(badgeTextVariants({ variant }))}
+          importantForAccessibility="no-hide-descendants"
+          accessibilityElementsHidden={true}
+        >
           {children}
         </TextSemiBold>
       </Component>

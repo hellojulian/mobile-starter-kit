@@ -14,8 +14,10 @@ const Progress = React.forwardRef<
   ProgressPrimitive.RootRef,
   ProgressPrimitive.RootProps & {
     indicatorClassName?: string;
+    accessibilityLabel?: string;
+    accessibilityHint?: string;
   }
->(({ className, value, indicatorClassName, ...props }, ref) => {
+>(({ className, value, indicatorClassName, accessibilityLabel, accessibilityHint, ...props }, ref) => {
   return (
     <ProgressPrimitive.Root
       ref={ref}
@@ -23,6 +25,10 @@ const Progress = React.forwardRef<
         'relative h-3 w-full overflow-hidden rounded-full bg-sys-border-4',
         className
       )}
+      accessibilityRole="progressbar"
+      accessibilityLabel={accessibilityLabel || `Progress: ${value || 0} percent`}
+      accessibilityHint={accessibilityHint}
+      accessibilityValue={{ min: 0, max: 100, now: value || 0 }}
       {...props}
     >
       <Indicator value={value} className={indicatorClassName} />

@@ -10,8 +10,11 @@ import Animated, {
 import { useColorScheme } from '../../lib/useColorScheme';
 import { cn } from '../../lib/utils';
 
-const SwitchWeb = React.forwardRef<SwitchPrimitives.RootRef, SwitchPrimitives.RootProps>(
-  ({ className, ...props }, ref) => (
+const SwitchWeb = React.forwardRef<SwitchPrimitives.RootRef, SwitchPrimitives.RootProps & {
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
+}>(
+  ({ className, accessibilityLabel, accessibilityHint, ...props }, ref) => (
     <SwitchPrimitives.Root
       className={cn(
         'peer flex-row h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed',
@@ -19,6 +22,10 @@ const SwitchWeb = React.forwardRef<SwitchPrimitives.RootRef, SwitchPrimitives.Ro
         props.disabled && 'opacity-50',
         className
       )}
+      role="switch"
+      aria-checked={props.checked}
+      aria-label={accessibilityLabel}
+      aria-describedby={accessibilityHint}
       {...props}
       ref={ref}
     >
@@ -45,8 +52,11 @@ const RGB_COLORS = {
   },
 } as const;
 
-const SwitchNative = React.forwardRef<SwitchPrimitives.RootRef, SwitchPrimitives.RootProps>(
-  ({ className, ...props }, ref) => {
+const SwitchNative = React.forwardRef<SwitchPrimitives.RootRef, SwitchPrimitives.RootProps & {
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
+}>(
+  ({ className, accessibilityLabel, accessibilityHint, ...props }, ref) => {
     const { colorScheme } = useColorScheme();
     const translateX = useDerivedValue(() => (props.checked ? 27 : 0));
     const animatedRootStyle = useAnimatedStyle(() => {
@@ -72,6 +82,10 @@ const SwitchNative = React.forwardRef<SwitchPrimitives.RootRef, SwitchPrimitives
             props.checked ? 'bg-sys-surface-secondary-4' : 'bg-sys-border-4',
             className
           )}
+          accessibilityRole="switch"
+          accessibilityLabel={accessibilityLabel}
+          accessibilityHint={accessibilityHint}
+          accessibilityState={{ checked: !!props.checked, disabled: !!props.disabled }}
           {...props}
           ref={ref}
         >

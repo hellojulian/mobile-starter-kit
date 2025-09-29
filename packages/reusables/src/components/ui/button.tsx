@@ -1,6 +1,6 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
-import { Pressable, Text, StyleSheet, View, useColorScheme } from 'react-native';
+import { Pressable, Text, StyleSheet, View, useColorScheme, Platform } from 'react-native';
 import { cn } from '../../lib/utils';
 
 const buttonVariants = cva(
@@ -104,6 +104,8 @@ type ButtonProps = React.ComponentPropsWithoutRef<typeof Pressable> &
     icon?: React.ReactNode;
     iconPosition?: 'left' | 'right';
     textSize?: 'sm' | 'md' | 'lg';
+    accessibilityLabel?: string;
+    accessibilityHint?: string;
   };
 
 const Button = React.forwardRef<React.ElementRef<typeof Pressable>, ButtonProps>(
@@ -115,6 +117,8 @@ const Button = React.forwardRef<React.ElementRef<typeof Pressable>, ButtonProps>
     icon, 
     iconPosition = 'left',
     textSize = 'md',
+    accessibilityLabel,
+    accessibilityHint,
     ...props 
   }, ref) => {
     // State to store the text color
@@ -142,6 +146,26 @@ const Button = React.forwardRef<React.ElementRef<typeof Pressable>, ButtonProps>
       return textSize === 'sm' ? 16 : textSize === 'lg' ? 20 : 18;
     };
 
+    // Determine if this is an icon-only button
+    const isIconOnly = icon && !children;
+    
+    // Generate appropriate accessibility label
+    const finalAccessibilityLabel = accessibilityLabel || 
+      (isIconOnly ? 'Button' : undefined);
+
+    // Cross-platform accessibility props
+    const accessibilityProps = Platform.select({
+      web: {
+        'aria-label': finalAccessibilityLabel,
+        'aria-describedby': accessibilityHint,
+      },
+      default: {
+        accessibilityLabel: finalAccessibilityLabel,
+        accessibilityHint,
+        accessibilityState: { disabled: !!props.disabled },
+      }
+    });
+
     return (
       <>
         {/* Component to extract the text color based on the variant and color scheme */}
@@ -154,6 +178,7 @@ const Button = React.forwardRef<React.ElementRef<typeof Pressable>, ButtonProps>
           )}
           ref={ref}
           role='button'
+          {...accessibilityProps}
           {...props}
         >
           <View style={styles.container}>
@@ -163,23 +188,29 @@ const Button = React.forwardRef<React.ElementRef<typeof Pressable>, ButtonProps>
                   React.cloneElement(icon, { 
                     size: icon.props.size || getIconSize(),
                     color: icon.props.color || textColor, // Use the extracted text color
+                    importantForAccessibility: 'no-hide-descendants',
+                    accessibilityElementsHidden: true,
                   }) : 
                   icon
                 }
-                <View style={styles.iconSpacing} />
+                {!isIconOnly && <View style={styles.iconSpacing} />}
               </>
             )}
-            <Text
-              style={styles.text}
-              className={cn(
-                buttonTextVariants({ variant, textSize })
-              )}
-              numberOfLines={1}
-              adjustsFontSizeToFit={false} // Disable auto-adjusting
-              minimumFontScale={0.9} // Increase minimum scale if needed
-            >
-              {children}
-            </Text>
+            {!isIconOnly && (
+              <Text
+                style={styles.text}
+                className={cn(
+                  buttonTextVariants({ variant, textSize })
+                )}
+                numberOfLines={1}
+                adjustsFontSizeToFit={false} // Disable auto-adjusting
+                minimumFontScale={0.9} // Increase minimum scale if needed
+                importantForAccessibility="no-hide-descendants"
+                accessibilityElementsHidden={true}
+              >
+                {children}
+              </Text>
+            )}
           </View>
         </Pressable>
       </>

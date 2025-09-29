@@ -204,7 +204,14 @@ const CustomToast = ({ title, description, type, props, onPress }: CustomToastPr
   const iconColor = isDark ? variantStyles.icon.color.dark : variantStyles.icon.color.light
 
   return (
-    <Pressable onPress={onPress} className="w-full max-w-xl px-4" style={{ zIndex: 9999 }}>
+    <Pressable 
+      onPress={onPress} 
+      className="w-full max-w-xl px-4" 
+      style={{ zIndex: 9999 }}
+      accessibilityRole="alert"
+      accessibilityLabel={`${variant} toast: ${title}. ${description}`}
+      accessibilityLiveRegion="assertive"
+    >
       <View
         className={cn(
           "w-full p-4 rounded-lg flex-row items-start border",
@@ -214,12 +221,22 @@ const CustomToast = ({ title, description, type, props, onPress }: CustomToastPr
           customStyles?.border,
         )}
         style={{ elevation: 9999 }}
+        accessibilityRole="alert"
       >
         {/* Icon */}
-        <IconComponent size={24} color={iconColor} />
+        <IconComponent 
+          size={24} 
+          color={iconColor}
+          importantForAccessibility="no-hide-descendants"
+          accessibilityElementsHidden={true}
+        />
 
         {/* Content */}
-        <View className="flex-1 ml-3">
+        <View 
+          className="flex-1 ml-3"
+          importantForAccessibility="no-hide-descendants"
+          accessibilityElementsHidden={true}
+        >
           <ToastTitle variant={variant} customStyles={customStyles?.text}>
             {title}
           </ToastTitle>
@@ -230,9 +247,14 @@ const CustomToast = ({ title, description, type, props, onPress }: CustomToastPr
 
         {/* Label */}
         {labelText && (
-          <ToastLabel variant={variant} customStyles={customStyles?.label}>
-            {labelText}
-          </ToastLabel>
+          <View 
+            importantForAccessibility="no-hide-descendants"
+            accessibilityElementsHidden={true}
+          >
+            <ToastLabel variant={variant} customStyles={customStyles?.label}>
+              {labelText}
+            </ToastLabel>
+          </View>
         )}
       </View>
     </Pressable>

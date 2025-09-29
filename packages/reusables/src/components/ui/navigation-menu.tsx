@@ -16,11 +16,15 @@ import { cn } from '../../lib/utils';
 
 const NavigationMenu = React.forwardRef<
   NavigationMenuPrimitive.RootRef,
-  NavigationMenuPrimitive.RootProps
->(({ className, children, ...props }, ref) => (
+  NavigationMenuPrimitive.RootProps & {
+    accessibilityLabel?: string;
+  }
+>(({ className, children, accessibilityLabel, ...props }, ref) => (
   <NavigationMenuPrimitive.Root
     ref={ref}
     className={cn('relative z-10 flex flex-row max-w-max items-center justify-center', className)}
+    accessibilityRole="navigation"
+    accessibilityLabel={accessibilityLabel || "Main navigation"}
     {...props}
   >
     {children}
@@ -31,14 +35,18 @@ NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName;
 
 const NavigationMenuList = React.forwardRef<
   NavigationMenuPrimitive.ListRef,
-  NavigationMenuPrimitive.ListProps
->(({ className, ...props }, ref) => (
+  NavigationMenuPrimitive.ListProps & {
+    accessibilityLabel?: string;
+  }
+>(({ className, accessibilityLabel, ...props }, ref) => (
   <NavigationMenuPrimitive.List
     ref={ref}
     className={cn(
       'web:group flex flex-1 flex-row web:list-none items-center justify-center gap-1',
       className
     )}
+    accessibilityRole="menubar"
+    accessibilityLabel={accessibilityLabel}
     {...props}
   />
 ));
@@ -52,8 +60,11 @@ const navigationMenuTriggerStyle = cva(
 
 const NavigationMenuTrigger = React.forwardRef<
   NavigationMenuPrimitive.TriggerRef,
-  NavigationMenuPrimitive.TriggerProps
->(({ className, children, ...props }, ref) => {
+  NavigationMenuPrimitive.TriggerProps & {
+    accessibilityLabel?: string;
+    accessibilityHint?: string;
+  }
+>(({ className, children, accessibilityLabel, accessibilityHint, ...props }, ref) => {
   const { value } = NavigationMenuPrimitive.useRootContext();
   const { value: itemValue } = NavigationMenuPrimitive.useItemContext();
 
@@ -65,15 +76,21 @@ const NavigationMenuTrigger = React.forwardRef<
     opacity: interpolate(progress.value, [0, 1], [1, 0.8], Extrapolation.CLAMP),
   }));
 
+  const isExpanded = value === itemValue;
+  
   return (
     <NavigationMenuPrimitive.Trigger
       ref={ref}
       className={cn(
         navigationMenuTriggerStyle(),
         'web:group gap-1.5',
-        value === itemValue && 'bg-accent',
+        isExpanded && 'bg-accent',
         className
       )}
+      accessibilityRole="menuitem"
+      accessibilityLabel={accessibilityLabel}
+      accessibilityHint={accessibilityHint}
+      accessibilityState={{ expanded: isExpanded }}
       {...props}
     >
       <>{children}</>
@@ -82,6 +99,8 @@ const NavigationMenuTrigger = React.forwardRef<
           size={12}
           className={cn('relative text-sys-text-body h-3 w-3 web:transition web:duration-200')}
           aria-hidden={true}
+          importantForAccessibility="no-hide-descendants"
+          accessibilityElementsHidden={true}
         />
       </Animated.View>
     </NavigationMenuPrimitive.Trigger>
@@ -93,8 +112,9 @@ const NavigationMenuContent = React.forwardRef<
   NavigationMenuPrimitive.ContentRef,
   NavigationMenuPrimitive.ContentProps & {
     portalHost?: string;
+    accessibilityLabel?: string;
   }
->(({ className, children, portalHost, ...props }, ref) => {
+>(({ className, children, portalHost, accessibilityLabel, ...props }, ref) => {
   const { value } = NavigationMenuPrimitive.useRootContext();
   const { value: itemValue } = NavigationMenuPrimitive.useItemContext();
   return (
@@ -108,6 +128,8 @@ const NavigationMenuContent = React.forwardRef<
             : 'web:animate-out web:fade-out web:slide-out-to-left-20',
           className
         )}
+        accessibilityRole="menu"
+        accessibilityLabel={accessibilityLabel || "Navigation menu content"}
         {...props}
       >
         <Animated.View

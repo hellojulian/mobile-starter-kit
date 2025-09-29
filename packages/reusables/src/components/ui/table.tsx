@@ -3,11 +3,16 @@ import * as React from 'react';
 import { cn } from '../../lib/utils';
 import { TextClassContext } from './text';
 
-const Table = React.forwardRef<TablePrimitive.RootRef, TablePrimitive.RootProps>(
-  ({ className, ...props }, ref) => (
+const Table = React.forwardRef<TablePrimitive.RootRef, TablePrimitive.RootProps & {
+  accessibilityLabel?: string;
+  caption?: string;
+}>(
+  ({ className, accessibilityLabel, caption, ...props }, ref) => (
     <TablePrimitive.Root
       ref={ref}
       className={cn('w-full caption-bottom text-sm', className)}
+      accessibilityRole="table"
+      accessibilityLabel={accessibilityLabel || caption}
       {...props}
     />
   )
@@ -19,6 +24,7 @@ const TableHeader = React.forwardRef<TablePrimitive.HeaderRef, TablePrimitive.He
     <TablePrimitive.Header
       ref={ref}
       className={cn('border-border [&_tr]:border-b', className)}
+      accessibilityRole="rowgroup"
       {...props}
     />
   )
@@ -31,6 +37,7 @@ const TableBody = React.forwardRef<TablePrimitive.BodyRef, TablePrimitive.BodyPr
       ref={ref}
       className={cn('flex-1 border-border [&_tr:last-child]:border-0', className)}
       style={[{ minHeight: 2 }, style]}
+      accessibilityRole="rowgroup"
       {...props}
     />
   )
@@ -56,6 +63,7 @@ const TableRow = React.forwardRef<TablePrimitive.RowRef, TablePrimitive.RowProps
         'flex-row border-border border-b web:transition-colors web:hover:bg-muted/50 web:data-[state=selected]:bg-muted',
         className
       )}
+      accessibilityRole="row"
       {...props}
     />
   )
@@ -71,6 +79,7 @@ const TableHead = React.forwardRef<TablePrimitive.HeadRef, TablePrimitive.HeadPr
           'h-12 px-4 text-left justify-center font-medium [&:has([role=checkbox])]:pr-0',
           className
         )}
+        accessibilityRole="columnheader"
         {...props}
       />
     </TextClassContext.Provider>
@@ -83,6 +92,7 @@ const TableCell = React.forwardRef<TablePrimitive.CellRef, TablePrimitive.CellPr
     <TablePrimitive.Cell
       ref={ref}
       className={cn('p-4 align-middle [&:has([role=checkbox])]:pr-0', className)}
+      accessibilityRole="cell"
       {...props}
     />
   )

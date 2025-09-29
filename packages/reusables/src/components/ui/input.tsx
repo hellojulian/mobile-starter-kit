@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TextInput, View, Text, type TextInputProps, StyleSheet } from 'react-native';
+import { TextInput, View, Text, type TextInputProps, StyleSheet, Platform } from 'react-native';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../lib/utils';
 
@@ -29,13 +29,31 @@ const inputVariants = cva(
 
 interface InputProps extends TextInputProps, VariantProps<typeof inputVariants> {
   error?: string;
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
 }
 
 const Input = React.forwardRef<React.ElementRef<typeof TextInput>, InputProps>(
-  ({ className, placeholderClassName, state, error, style, ...props }, ref) => {
+  ({ className, placeholderClassName, state, error, style, accessibilityLabel, accessibilityHint, ...props }, ref) => {
     const [isFocused, setIsFocused] = React.useState(false);
 
     const inputState = error ? 'error' : isFocused ? 'active' : state;
+
+    // Cross-platform accessibility props
+    const accessibilityProps = Platform.select({
+      web: {
+        'aria-label': accessibilityLabel || props.placeholder,
+        'aria-describedby': error ? `${props.nativeID || 'input'}-error` : accessibilityHint,
+        'aria-invalid': !!error,
+      },
+      default: {
+        accessibilityLabel: accessibilityLabel || props.placeholder,
+        accessibilityHint: error ? `Error: ${error}` : accessibilityHint,
+        accessibilityState: { 
+          disabled: props.editable === false,
+        },
+      }
+    });
 
     return (
       <View>
@@ -69,10 +87,17 @@ const Input = React.forwardRef<React.ElementRef<typeof TextInput>, InputProps>(
             },
             style,
           ]}
+          {...accessibilityProps}
           {...props}
         />
         {error && (
-          <Text style={styles.Inter} className='mt-1 text-base text-sys-fn-error-text'>
+          <Text 
+            style={styles.Inter} 
+            className='mt-1 text-base text-sys-fn-error-text'
+            nativeID={`${props.nativeID || 'input'}-error`}
+            accessibilityRole="text"
+            accessibilityLiveRegion="polite"
+          >
             {error}
           </Text>
         )}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TextInput, type TextInputProps, StyleSheet } from 'react-native';
+import { TextInput, type TextInputProps, StyleSheet, Platform } from 'react-native';
 import { cn } from '../../lib/utils';
 
 const styles = StyleSheet.create({
@@ -8,11 +8,31 @@ const styles = StyleSheet.create({
   },
 });
 
-const Textarea = React.forwardRef<React.ElementRef<typeof TextInput>, TextInputProps>(
+interface TextareaProps extends TextInputProps {
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
+}
+
+const Textarea = React.forwardRef<React.ElementRef<typeof TextInput>, TextareaProps>(
   (
-    { className, multiline = true, numberOfLines = 4, placeholderClassName, style, ...props },
+    { className, multiline = true, numberOfLines = 4, placeholderClassName, style, accessibilityLabel, accessibilityHint, ...props },
     ref
   ) => {
+    // Cross-platform accessibility props
+    const accessibilityProps = Platform.select({
+      web: {
+        'aria-label': accessibilityLabel || props.placeholder,
+        'aria-describedby': accessibilityHint,
+      },
+      default: {
+        accessibilityLabel: accessibilityLabel || props.placeholder,
+        accessibilityHint,
+        accessibilityState: { 
+          disabled: props.editable === false,
+        },
+      }
+    });
+
     return (
       <TextInput
         ref={ref}
@@ -26,6 +46,7 @@ const Textarea = React.forwardRef<React.ElementRef<typeof TextInput>, TextInputP
         multiline={multiline}
         numberOfLines={numberOfLines}
         textAlignVertical='top'
+        {...accessibilityProps}
         {...props}
       />
     );
