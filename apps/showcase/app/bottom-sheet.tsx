@@ -95,29 +95,34 @@ export default function BottomSheetScreen() {
           <Text style={styles.Inter}>Open</Text>
         </Button>
 
-        <BottomSheet
-          ref={bottomSheetRef}
-          index={-1}
-          snapPoints={snapPoints}
-          onChange={handleSheetChanges}
-          enablePanDownToClose
-          backdropComponent={renderBackdrop}
-          backgroundStyle={{ backgroundColor: 'transparent' }}
-          handleComponent={null}
-          accessibilityViewIsModal={true}
-          accessibilityLabel="Edit profile modal"
-          style={{
-            marginBottom: -34, // Match your device's safe area
-            paddingBottom: 34, // Add padding to content instead
-          }}
-        >
-          <BottomSheetView 
-            className='flex-1 rounded-t-2xl bg-sys-surface-neutral-0'
-            accessibilityRole="dialog"
+        <View style={{ 
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: -34, // Extend beyond safe area
+          zIndex: 1000,
+          pointerEvents: 'box-none'
+        }}>
+          <BottomSheet
+            ref={bottomSheetRef}
+            index={-1}
+            snapPoints={snapPoints}
+            onChange={handleSheetChanges}
+            enablePanDownToClose
+            backdropComponent={renderBackdrop}
+            backgroundStyle={{ backgroundColor: 'transparent' }}
+            handleComponent={null}
+            accessibilityViewIsModal={true}
+            accessibilityLabel="Edit profile modal"
           >
+            <BottomSheetView 
+              className='flex-1 rounded-t-2xl bg-sys-surface-neutral-0'
+              accessibilityRole="dialog"
+            >
             {/* Add a clearly visible drag indicator */}
             <View 
-              className='w-full items-center pt-8'
+              className='w-full items-center pt-3'
               accessibilityRole="button"
               accessibilityLabel="Drag to resize or close"
               accessibilityHint="Swipe up to expand or down to close"
@@ -125,7 +130,7 @@ export default function BottomSheetScreen() {
               <View className='w-[40px] h-[4px] bg-sys-surface-neutral-2 rounded-full' />
             </View>
             
-            <View className='px-6 pb-10'>
+            <View className='px-6 pb-16'>
               <View className='items-center w-full mt-2'>
                 <Image
                   source={require('../assets/bjork.png')} 
@@ -236,6 +241,7 @@ export default function BottomSheetScreen() {
             </View>
           </BottomSheetView>
         </BottomSheet>
+        </View>
       </View>
     </GestureHandlerRootView>
   );
