@@ -2,7 +2,7 @@ import type {
   BottomSheetBackdropProps,
   BottomSheetFooterProps as GBottomSheetFooterProps,
 } from '@gorhom/bottom-sheet';
-import {
+import BottomSheetLibrary, {
   BottomSheetBackdrop,
   BottomSheetModal,
   BottomSheetFlatList as GBottomSheetFlatList,
@@ -127,20 +127,36 @@ const BottomSheetContent = React.forwardRef<BottomSheetContentRef, BottomSheetCo
     );
 
     return (
-      <BottomSheetModal
-        ref={sheetRef}
-        index={0}
-        enablePanDownToClose={enablePanDownToClose}
-        backdropComponent={renderBackdrop}
-        enableDynamicSizing={enableDynamicSizing}
-        backgroundStyle={[{ backgroundColor: colors.card }, backgroundStyle]}
-        handleIndicatorStyle={{
-          backgroundColor: colors.text,
-        }}
-        topInset={insets.top}
-        android_keyboardInputMode={android_keyboardInputMode}
-        {...props}
-      />
+      <View style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 1000,
+        pointerEvents: 'box-none'
+      }}>
+        <BottomSheetLibrary
+          ref={sheetRef}
+          index={-1}
+          enablePanDownToClose={enablePanDownToClose}
+          backdropComponent={renderBackdrop}
+          snapPoints={['100%']}
+          backgroundStyle={[{ backgroundColor: colors.card }, backgroundStyle]}
+          handleIndicatorStyle={{
+            backgroundColor: colors.text,
+          }}
+          android_keyboardInputMode={android_keyboardInputMode}
+          style={{ 
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: -4 },
+            shadowOpacity: 0.25,
+            shadowRadius: 4,
+            elevation: 5,
+          }}
+          {...props}
+        />
+      </View>
     );
   }
 );
@@ -195,15 +211,9 @@ function BottomSheetView({
   style,
   ...props
 }: BottomSheetViewProps) {
-  const insets = useSafeAreaInsets();
   return (
     <GBottomSheetView
-      style={[
-        {
-          paddingBottom: insets.bottom + (hadHeader ? BOTTOM_SHEET_HEADER_HEIGHT : 0),
-        },
-        style,
-      ]}
+      style={[style]}
       className={cn(`px-4`, className)}
       {...props}
     >
@@ -293,7 +303,7 @@ const BottomSheetFooter = React.forwardRef<BottomSheetFooterRef, BottomSheetFoot
       <GBottomSheetFooter {...bottomSheetFooterProps}>
         <View
           ref={ref}
-          style={[{ paddingBottom: insets.bottom + 6 }, style]}
+          style={[{ paddingBottom: insets.bottom }, style]}
           className={cn('px-4 pt-1.5', className)}
           {...props}
         >

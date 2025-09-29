@@ -84,22 +84,6 @@ export default function NavigationMenuScreen() {
               </View>
             </NavigationMenuContent>
           </NavigationMenuItem>
-          <NavigationMenuItem value="components">
-            <NavigationMenuTrigger>
-              <Text className="text-sys-text-body">Components</Text>
-            </NavigationMenuTrigger>
-            <NavigationMenuContent insets={contentInsets}>
-              <View role="list" className="web:grid gap-3 p-6 md:w-[400px] lg:w-[500px] web:md:grid-cols-2">
-                {components.map((component) => (
-                  <ListItem key={component.title} title={component.title} href={component.href}>
-                    <Text className="flex-wrap text-sm leading-snug line-clamp-2 native:text-base text-sys-text-body">
-                      {component.description}
-                    </Text>
-                  </ListItem>
-                ))}
-              </View>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
     </View>

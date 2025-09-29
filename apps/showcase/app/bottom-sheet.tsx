@@ -106,6 +106,10 @@ export default function BottomSheetScreen() {
           handleComponent={null}
           accessibilityViewIsModal={true}
           accessibilityLabel="Edit profile modal"
+          style={{
+            marginBottom: -34, // Match your device's safe area
+            paddingBottom: 34, // Add padding to content instead
+          }}
         >
           <BottomSheetView 
             className='flex-1 rounded-t-2xl bg-sys-surface-neutral-0'
@@ -113,7 +117,7 @@ export default function BottomSheetScreen() {
           >
             {/* Add a clearly visible drag indicator */}
             <View 
-              className='w-full items-center pt-3'
+              className='w-full items-center pt-8'
               accessibilityRole="button"
               accessibilityLabel="Drag to resize or close"
               accessibilityHint="Swipe up to expand or down to close"
@@ -121,7 +125,7 @@ export default function BottomSheetScreen() {
               <View className='w-[40px] h-[4px] bg-sys-surface-neutral-2 rounded-full' />
             </View>
             
-            <View className='px-6 pb-6'>
+            <View className='px-6 pb-10'>
               <View className='items-center w-full mt-2'>
                 <Image
                   source={require('../assets/bjork.png')} 
