@@ -36,9 +36,4 @@ pnpm dev:showcase
 ```
 
 
-Clean cache/node_modules
-
-```bash
-pnpm clean
-```
 
