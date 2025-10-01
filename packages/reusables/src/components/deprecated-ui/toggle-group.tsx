@@ -43,7 +43,7 @@ const ToggleGroup = React.forwardRef<
         <View
           role={type === 'single' ? 'radiogroup' : 'group'}
           ref={ref}
-          className={cn('flex-row gap-3', className)}
+          className={cn('flex-row gap-sm', className)}
           {...props}
         />
       </ToggleGroupContext.Provider>

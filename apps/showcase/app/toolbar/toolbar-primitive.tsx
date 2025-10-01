@@ -11,13 +11,13 @@ export default function ToolbarScreen() {
   const [singleValue, setSingleValue] = React.useState<string>();
   const [multipleValue, setMultipleValue] = React.useState<string[]>([]);
   return (
-    <View className='flex-1 justify-center items-center p-6 gap-12'>
-      <Toolbar.Root className='flex-row gap-3 justify-center border border-border p-2 rounded-lg'>
+    <View className='flex-1 justify-center items-center p-6 gap-xxs2'>
+      <Toolbar.Root className='flex-row gap-sm justify-center border border-border p-2 rounded-lg'>
         <Toolbar.ToggleGroup
           type='multiple'
           value={multipleValue}
           onValueChange={setMultipleValue}
-          className='flex-row gap-1'
+          className='flex-row gap-xxs'
         >
           <Toolbar.ToggleItem
             value='bold'
@@ -37,7 +37,7 @@ export default function ToolbarScreen() {
           type='single'
           value={singleValue}
           onValueChange={setSingleValue}
-          className='flex-row gap-1'
+          className='flex-row gap-xxs'
         >
           <Toolbar.ToggleItem
             value='left'

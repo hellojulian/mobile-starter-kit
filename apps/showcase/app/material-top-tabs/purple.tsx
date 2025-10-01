@@ -83,7 +83,7 @@ export default function BlueScreen() {
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       >
         <View className="items-center justify-center gap-5 px-4">
-          <View className="items-center gap-1 w-full max-w-md">
+          <View className="items-center gap-xxs w-full max-w-md">
             {/* Marketing Card */}
             <CardMarketing
               style={styles.marketingCard}

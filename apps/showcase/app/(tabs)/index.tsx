@@ -608,7 +608,7 @@ export default function CardScreen() {
             </CardHeader>
             <CardContent>
               <View
-                className='flex-row gap-1'
+                className='flex-row gap-xxs'
                 accessibilityLabel='Available screening times'
                 accessibilityRole='group'
                 accessibilityHint='List of available screening times for Halloween III'

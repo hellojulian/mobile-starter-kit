@@ -44,7 +44,7 @@ export default function PopoverScreen() {
                 Set the dimensions for the layer.
               </Text>
             </View>
-            <View className='gap-2 web:grid'>
+            <View className='gap-xs web:grid'>
               <LabelledInput autoFocus id='width' label='Width' />
               <LabelledInput id='maxWidth' label='Max. Width' />
               <LabelledInput id='height' label='Height' />

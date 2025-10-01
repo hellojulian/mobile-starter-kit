@@ -117,7 +117,7 @@ const DialogHeader = React.forwardRef<
   React.ElementRef<typeof View>,
   React.ComponentPropsWithoutRef<typeof View>
 >(({ className, ...props }, ref) => {
-  return <View className={cn('gap-2', className)} ref={ref} {...props} />;
+  return <View className={cn('gap-xs', className)} ref={ref} {...props} />;
 });
 
 DialogHeader.displayName = 'DialogHeader';
@@ -151,7 +151,7 @@ const DialogFooter = React.forwardRef<
   React.ElementRef<typeof View>,
   React.ComponentPropsWithoutRef<typeof View>
 >(({ className, ...props }, ref) => {
-  return <View className={cn('flex-row justify-end gap-3', className)} ref={ref} {...props} />;
+  return <View className={cn('flex-row justify-end gap-sm', className)} ref={ref} {...props} />;
 });
 
 DialogFooter.displayName = 'DialogFooter';

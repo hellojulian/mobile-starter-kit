@@ -41,7 +41,7 @@ export default function NavigationMenuScreen() {
   }, [])
 
   return (
-    <View className="items-center flex-1 gap-12 px-6 py-3">
+    <View className="items-center flex-1 gap-xxs2 px-6 py-3">
       {Platform.OS !== "web" && !!value && (
         <Pressable
           onPress={() => {
@@ -57,7 +57,7 @@ export default function NavigationMenuScreen() {
               <Text className="text-sys-text-body">Getting started</Text>
             </NavigationMenuTrigger>
             <NavigationMenuContent insets={contentInsets}>
-              <View role="list" className="web:grid gap-3 p-6 md:w-[400px] lg:w-[500px] web:lg:grid-cols-[.75fr_1fr]">
+              <View role="list" className="web:grid gap-sm p-6 md:w-[400px] lg:w-[500px] web:lg:grid-cols-[.75fr_1fr]">
                 <View role="listitem" className="web:row-span-3">
                   <NavigationMenuLink asChild>
                     <View className="flex flex-col justify-end p-6 rounded-md web:select-none web:bg-gradient-to-b web:from-muted/50 web:to-muted native:border native:border-border web:no-underline web:outline-none web:focus:shadow-md web:focus:shadow-foreground/5">
@@ -134,7 +134,7 @@ const ListItem = React.forwardRef<
       <NavigationMenuLink
         ref={ref}
         className={cn(
-          "web:block web:select-none gap-1 rounded-md p-3 leading-none no-underline text-sys-text-body web:outline-none web:transition-colors web:hover:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0 web:hover:text-accent-foreground web:focus:bg-sys-surface-neutral-0 web:focus:text-accent-foreground",
+          "web:block web:select-none gap-xxs rounded-md p-3 leading-none no-underline text-sys-text-body web:outline-none web:transition-colors web:hover:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0 web:hover:text-accent-foreground web:focus:bg-sys-surface-neutral-0 web:focus:text-accent-foreground",
           className,
         )}
         {...props}

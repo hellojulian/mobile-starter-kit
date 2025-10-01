@@ -158,7 +158,7 @@ function Header({ title, column }: { title: string; column: Column<User> }) {
       }}
       size='sm'
       variant='ghost'
-      className='flex flex-row px-0 justify-start gap-1.5 web:hover:bg-background/0 web:hover:opacity-80 active:bg-background/0'
+      className='flex flex-row px-0 justify-start gap-xxs.5 web:hover:bg-background/0 web:hover:opacity-80 active:bg-background/0'
     >
       <Text className={'font-medium text-muted-foreground'}>{title}</Text>
       {column.getIsSorted() === 'asc' ? (

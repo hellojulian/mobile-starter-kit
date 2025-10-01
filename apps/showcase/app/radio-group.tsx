@@ -32,7 +32,7 @@ export default function RadioGroupScreen() {
           <RadioGroup
             value={value}
             onValueChange={setValue}
-            className="gap-3"
+            className="gap-sm"
             accessibilityRole="radiogroup"
             accessibilityLabel="Display options"
             accessibilityHint="Select your preferred option"
@@ -146,7 +146,7 @@ function RadioGroupItemWithLabel({
   onLabelPress: () => void
 }) {
   return (
-    <View className={"flex-row gap-2 items-center"}>
+    <View className={"flex-row gap-xs items-center"}>
       <RadioGroupItem aria-labelledby={`label-for-${value}`} value={value} />
       <Label nativeID={`label-for-${value}`} onPress={onLabelPress}>
         {value}

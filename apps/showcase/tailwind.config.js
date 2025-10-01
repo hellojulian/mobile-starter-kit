@@ -193,8 +193,8 @@ module.exports = {
         '8xl': ['40px', { lineHeight: '45px' }], // HEADING8XL
       },
       spacing: {
+        // Numeric tokens matching Figma t-shirt sizing
         0: '0px',      // NONE - 0
-        0.5: '2px',    // XXXS - 2
         1: '4px',      // XXS - 4
         2: '8px',      // XS - 8
         3: '12px',     // SM - 12
@@ -204,29 +204,30 @@ module.exports = {
         10: '40px',    // XXL - 40
         12: '48px',    // XXXL - 48
         16: '64px',    // XXXXL - 64
-        'none': 'var(--space-none)',
-        'xxxs': 'var(--space-xxxs)',
-        'xxs': 'var(--space-xxs)',
-        'xs': 'var(--space-xs)',
-        'sm': 'var(--space-sm)',
-        'md': 'var(--space-md)',
-        'lg': 'var(--space-lg)',
-        'xl': 'var(--space-xl)',
-        'xxl': 'var(--space-xxl)',
-        'xxxl': 'var(--space-xxxl)',
-        'xxxxl': 'var(--space-xxxxl)',
+        
+        // Semantic tokens (t-shirt sizing)
+        'none': '0px',     // NONE - 0
+        'xxs': '4px',      // XXS - 4
+        'xs': '8px',       // XS - 8
+        'sm': '12px',      // SM - 12
+        'md': '16px',      // MD - 16
+        'lg': '24px',      // LG - 24
+        'xl': '32px',      // XL - 32
+        'xxl': '40px',     // XXL - 40
+        'xxxl': '48px',    // XXXL - 48
+        'xxxxl': '64px',   // XXXXL - 64
       },
       borderRadius: {
-        none: '0',
-        xs: '4px',
-        sm: '8px',
-        DEFAULT: '8px',
-        md: '12px',
-        lg: '24px',
-        xl: '32px',
-        '2xl': '40px',
-        '3xl': '64px',
-        full: '999px',
+        none: '0px',       // NONE - 0
+        xs: '4px',         // XS - 4  
+        sm: '8px',         // SM - 8
+        DEFAULT: '8px',    // Default to SM
+        md: '12px',        // MD - 12
+        lg: '24px',        // LG - 24
+        xl: '32px',        // XL - 32
+        xxl: '40px',       // XXL - 40
+        xxxl: '64px',      // XXXL - 64
+        full: '999px',     // FULL - 999
       },
       borderWidth: {
         hairline: hairlineWidth(),

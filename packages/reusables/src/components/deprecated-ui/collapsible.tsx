@@ -38,7 +38,7 @@ const Collapsible = React.forwardRef<
         disabled: disabled ?? false,
       }}
     >
-      <View ref={ref} role='presentation' className={cn('gap-3', className)} {...props} />
+      <View ref={ref} role='presentation' className={cn('gap-sm', className)} {...props} />
     </CollapsibleContext.Provider>
   );
 });
@@ -61,7 +61,7 @@ const CollapsibleHeader = React.forwardRef<
     <View
       role='heading'
       ref={ref}
-      className={cn('flex-row items-center justify-between gap-3 px-4', className)}
+      className={cn('flex-row items-center justify-between gap-sm px-4', className)}
       {...props}
     />
   );
@@ -109,7 +109,7 @@ const CollapsibleContent = React.forwardRef<
       exiting={FadeOutUp.duration(150)}
       role='summary'
       ref={ref}
-      className={cn('gap-3', className)}
+      className={cn('gap-sm', className)}
       key={`collapsible-content-${nativeID}`}
       aria-labelledby={nativeID}
       {...props}

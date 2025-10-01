@@ -66,7 +66,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
       <DropdownMenuPrimitive.SubTrigger
         ref={ref}
         className={cn(
-          'flex flex-row web:cursor-default web:select-none gap-2 items-center web:focus:bg-sys-surface-neutral-0 web:hover:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0 rounded-sm px-2 py-1.5 native:py-2 web:outline-none',
+          'flex flex-row web:cursor-default web:select-none gap-xs items-center web:focus:bg-sys-surface-neutral-0 web:hover:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0 rounded-sm px-2 py-1.5 native:py-2 web:outline-none',
           open && 'bg-sys-surface-neutral-0',
           inset && 'pl-8',
           className
@@ -169,7 +169,7 @@ const DropdownMenuItem = React.forwardRef<
     <DropdownMenuPrimitive.Item
       ref={ref}
       className={cn(
-        'relative flex flex-row web:cursor-default gap-2 items-center rounded-sm px-2 py-1.5 native:py-2 web:outline-none web:focus:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0 web:hover:bg-sys-surface-neutral-0 group',
+        'relative flex flex-row web:cursor-default gap-xs items-center rounded-sm px-2 py-1.5 native:py-2 web:outline-none web:focus:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0 web:hover:bg-sys-surface-neutral-0 group',
         inset && 'pl-8',
         props.disabled && 'opacity-50 web:pointer-events-none',
         className

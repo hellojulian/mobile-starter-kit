@@ -8,7 +8,7 @@ export default function SliderScreen() {
 
   return (
     <>
-      <View className='items-center justify-center flex-1 gap-12 p-6'>
+      <View className='items-center justify-center flex-1 gap-xxs2 p-6'>
         <Pressable
           onPress={() => {
             setValue(Math.floor(Math.random() * 100));

@@ -253,12 +253,12 @@ const DialogContent = React.forwardRef<
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 
 const DialogHeader = ({ className, ...props }: ViewProps) => (
-  <View className={cn('flex flex-col gap-2', className)} {...props} />
+  <View className={cn('flex flex-col gap-xs', className)} {...props} />
 );
 DialogHeader.displayName = 'DialogHeader';
 
 const DialogFooter = ({ className, ...props }: ViewProps) => (
-  <View className={cn('flex flex-row justify-end gap-2', className)} {...props} />
+  <View className={cn('flex flex-row justify-end gap-xs', className)} {...props} />
 );
 DialogFooter.displayName = 'DialogFooter';
 

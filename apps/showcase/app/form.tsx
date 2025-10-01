@@ -213,7 +213,7 @@ export default function FormScreen() {
                 >
                   {(['staff', 'admin', 'owner'] as const).map((value) => {
                     return (
-                      <View key={value} className={'flex-row gap-2 items-center'}>
+                      <View key={value} className={'flex-row gap-xs items-center'}>
                         <RadioGroupItem aria-labelledby={`label-for-${value}`} value={value} />
                         <Label
                           nativeID={`label-for-${value}`}

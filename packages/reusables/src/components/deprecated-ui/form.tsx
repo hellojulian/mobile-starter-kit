@@ -326,7 +326,7 @@ const FormCheckbox = React.forwardRef<
 
   return (
     <FormItem className='px-1'>
-      <View className='flex-row gap-3 items-center'>
+      <View className='flex-row gap-sm items-center'>
         <Checkbox
           ref={checkboxRef}
           aria-labelledby={formItemNativeID}
@@ -368,7 +368,7 @@ const FormDatePicker = React.forwardRef<
           <Button
             variant='outline'
             size='sm'
-            className='gap-3 justify-start px-4 relative'
+            className='gap-sm justify-start px-4 relative'
             ref={ref}
             aria-labelledby={formItemNativeID}
             aria-describedby={
@@ -461,7 +461,7 @@ const FormRadioGroup = React.forwardRef<
   const { error, formItemNativeID, formDescriptionNativeID, formMessageNativeID } = useFormField();
 
   return (
-    <FormItem className='gap-3'>
+    <FormItem className='gap-sm'>
       <View>
         {!!label && <FormLabel nativeID={formItemNativeID}>{label}</FormLabel>}
         {!!description && <FormDescription className='pt-0'>{description}</FormDescription>}
@@ -580,7 +580,7 @@ const FormSwitch = React.forwardRef<
 
   return (
     <FormItem className='px-1'>
-      <View className='flex-row gap-3 items-center'>
+      <View className='flex-row gap-sm items-center'>
         <Switch
           ref={switchRef}
           aria-labelledby={formItemNativeID}

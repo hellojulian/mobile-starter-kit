@@ -58,7 +58,7 @@ export default function ToastScreen() {
   accessibilityLabel="Notification"
   importantForAccessibility="yes"
 >
-  <View className='gap-1.5'>
+  <View className='gap-xxs.5'>
     <Toast.Title 
       className='text-foreground text-3xl'
       accessibilityRole="header"
@@ -74,7 +74,7 @@ export default function ToastScreen() {
       It will disappear in {seconds} seconds
     </Toast.Description>
   </View>
-  <View className='gap-2'>
+  <View className='gap-xs'>
     <Toast.Action 
       className='border border-primary px-4 py-2'
       accessibilityRole="button"
@@ -96,7 +96,7 @@ export default function ToastScreen() {
           </View>
         </Portal>
       )}
-      <View className='flex-1 justify-center items-center p-6 gap-12'>
+      <View className='flex-1 justify-center items-center p-6 gap-xxs2'>
         <Pressable onPress={() => setOpen((prev) => !prev)}>
           <Text className='text-foreground text-xl'>Show Toast</Text>
         </Pressable>

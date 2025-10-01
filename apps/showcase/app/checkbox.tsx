@@ -25,7 +25,7 @@ export default function CheckboxScreen() {
           Checkbox
         </Label>
         <View
-          className='flex-row gap-3 items-center'
+          className='flex-row gap-sm items-center'
           accessibilityRole='none'
           importantForAccessibility='no'
         >

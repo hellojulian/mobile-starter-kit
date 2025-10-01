@@ -12,7 +12,7 @@ export default function CollapsibleScreen() {
     <View className='flex-1 justify-center items-center p-6'>
       <Collapsible asChild open={open} onOpenChange={setOpen}>
         <Animated.View layout={Platform.OS !== 'web' ? LinearTransition : undefined}>
-          <View className='w-full max-w-[350px] gap-2'>
+          <View className='w-full max-w-[350px] gap-xs'>
             <View className='flex flex-row items-center justify-between space-x-4 px-4'>
               <Text className='text-foreground text-sm native:text-lg font-semibold'>
                 @peduarte starred 3 repositories
@@ -31,7 +31,7 @@ export default function CollapsibleScreen() {
             <View className='rounded-md border border-border px-4 py-3 '>
               <Text className='text-foreground text-sm native:text-lg'>@radix-ui/primitives</Text>
             </View>
-            <CollapsibleContent className='gap-2'>
+            <CollapsibleContent className='gap-xs'>
               <CollapsibleItem delay={100}>@radix-ui/react</CollapsibleItem>
               <CollapsibleItem delay={200}>@stitches/core</CollapsibleItem>
             </CollapsibleContent>

@@ -58,7 +58,7 @@ export default function ModalScreen() {
               resizeMode='contain'
             />
           </View>
-          <View className='gap-1'>
+          <View className='gap-xxs'>
           <H1 className='text-5xl text-center font-semibold tracking-tighter text-sys-text-body'>Create an account</H1>
             <Muted className='text-base text-sys-text-body text-center'>
               Enter your email below to create your account

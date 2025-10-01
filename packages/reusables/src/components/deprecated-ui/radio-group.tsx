@@ -33,7 +33,7 @@ const RadioGroup = React.forwardRef<
         onValueChange,
       }}
     >
-      <View role='radiogroup' ref={ref} className={cn('gap-2', className)} {...props} />
+      <View role='radiogroup' ref={ref} className={cn('gap-xs', className)} {...props} />
     </RadioGroupContext.Provider>
   );
 });
@@ -73,7 +73,7 @@ const RadioGroupItem = React.forwardRef<
     }
 
     return (
-      <View className={cn('flex-row gap-3 items-center', className)}>
+      <View className={cn('flex-row gap-sm items-center', className)}>
         <Pressable
           disabled={disabled}
           onPress={handleOnPress}

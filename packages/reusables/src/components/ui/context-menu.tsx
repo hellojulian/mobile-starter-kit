@@ -40,7 +40,7 @@ const ContextMenuSubTrigger = React.forwardRef<
       <ContextMenuPrimitive.SubTrigger
         ref={ref}
         className={cn(
-          'flex flex-row web:cursor-default web:select-none items-center gap-2 web:focus:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0 web:hover:bg-sys-surface-neutral-0 rounded-sm px-2 py-1.5 native:py-2 web:outline-none',
+          'flex flex-row web:cursor-default web:select-none items-center gap-xs web:focus:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0 web:hover:bg-sys-surface-neutral-0 rounded-sm px-2 py-1.5 native:py-2 web:outline-none',
           open && 'bg-sys-surface-neutral-0',
           inset && 'pl-8',
           className
@@ -127,7 +127,7 @@ const ContextMenuItem = React.forwardRef<
     <ContextMenuPrimitive.Item
       ref={ref}
       className={cn(
-        'relative flex flex-row web:cursor-default items-center gap-2 rounded-sm px-2 py-1.5 native:py-2 web:outline-none web:focus:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0 web:hover:bg-sys-surface-neutral-0 group ',
+        'relative flex flex-row web:cursor-default items-center gap-xs rounded-sm px-2 py-1.5 native:py-2 web:outline-none web:focus:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0 web:hover:bg-sys-surface-neutral-0 group ',
         inset && 'pl-8',
         props.disabled && 'opacity-50 web:pointer-events-none',
         className

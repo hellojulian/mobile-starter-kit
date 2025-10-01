@@ -42,7 +42,7 @@ const NavigationMenuList = React.forwardRef<
   <NavigationMenuPrimitive.List
     ref={ref}
     className={cn(
-      'web:group flex flex-1 flex-row web:list-none items-center justify-center gap-1',
+      'web:group flex flex-1 flex-row web:list-none items-center justify-center gap-xxs',
       className
     )}
     accessibilityRole="menubar"
@@ -83,7 +83,7 @@ const NavigationMenuTrigger = React.forwardRef<
       ref={ref}
       className={cn(
         navigationMenuTriggerStyle(),
-        'web:group gap-1.5',
+        'web:group gap-xxs.5',
         isExpanded && 'bg-accent',
         className
       )}

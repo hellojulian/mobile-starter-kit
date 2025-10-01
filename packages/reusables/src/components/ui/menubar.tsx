@@ -70,7 +70,7 @@ const MenubarSubTrigger = React.forwardRef<
       <MenubarPrimitive.SubTrigger
         ref={ref}
         className={cn(
-          'flex flex-row web:cursor-default web:select-none items-center gap-2 web:focus:bg-accent active:bg-accent web:hover:bg-accent rounded-sm px-2 py-1.5 native:py-2 web:outline-none',
+          'flex flex-row web:cursor-default web:select-none items-center gap-xs web:focus:bg-accent active:bg-accent web:hover:bg-accent rounded-sm px-2 py-1.5 native:py-2 web:outline-none',
           open && 'bg-sys-surface-neutral-0',
           inset && 'pl-8',
           className
@@ -140,7 +140,7 @@ const MenubarItem = React.forwardRef<
     <MenubarPrimitive.Item
       ref={ref}
       className={cn(
-        'relative flex flex-row web:cursor-default items-center gap-2 rounded-sm px-2 py-1.5 native:py-2 web:outline-none web:focus:bg-accent active:bg-accent web:hover:bg-accent group',
+        'relative flex flex-row web:cursor-default items-center gap-xs rounded-sm px-2 py-1.5 native:py-2 web:outline-none web:focus:bg-accent active:bg-accent web:hover:bg-accent group',
         inset && 'pl-8',
         props.disabled && 'opacity-50 web:pointer-events-none',
         className

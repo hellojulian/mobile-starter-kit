@@ -82,7 +82,7 @@ export default function BlueScreen() {
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       >
         <View className="items-center justify-center gap-5">
-          <View className="items-center gap-1 w-full max-w-md">
+          <View className="items-center gap-xxs w-full max-w-md">
           {/* Entertainment Card */}
           <Card accessible={true} accessibilityRole='article' accessibilityLabel='Information card'>
             <CardHeader

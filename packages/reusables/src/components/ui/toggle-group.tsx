@@ -16,7 +16,7 @@ const ToggleGroup = React.forwardRef<
 >(({ className, variant, size, children, accessibilityLabel, ...props }, ref) => (
   <ToggleGroupPrimitive.Root
     ref={ref}
-    className={cn('flex flex-row items-center justify-center gap-1', className)}
+    className={cn('flex flex-row items-center justify-center gap-xxs', className)}
     accessibilityRole="group"
     accessibilityLabel={accessibilityLabel || "Toggle group"}
     {...props}

@@ -310,7 +310,7 @@ const FormCheckbox = React.forwardRef<
 
   return (
     <FormItem className='px-1'>
-      <View className='flex-row items-center gap-3'>
+      <View className='flex-row items-center gap-sm'>
         <Checkbox
           ref={ref}
           aria-labelledby={formItemNativeID}
@@ -351,7 +351,7 @@ const FormDatePicker = React.forwardRef<
         <BottomSheetOpenTrigger asChild>
           <Button
             variant='outline'
-            className='relative flex-row justify-start gap-3 px-3'
+            className='relative flex-row justify-start gap-sm px-3'
             ref={ref}
             aria-labelledby={formItemNativeID}
             aria-describedby={
@@ -433,7 +433,7 @@ const FormRadioGroup = React.forwardRef<
   const { error, formItemNativeID, formDescriptionNativeID, formMessageNativeID } = useFormField();
 
   return (
-    <FormItem className='gap-3'>
+    <FormItem className='gap-sm'>
       <View>
         {!!label && <FormLabel nativeID={formItemNativeID}>{label}</FormLabel>}
         {!!description && <FormDescription className='pt-0'>{description}</FormDescription>}
@@ -562,7 +562,7 @@ const FormSwitch = React.forwardRef<
 
   return (
     <FormItem className='px-1'>
-      <View className='flex-row items-center gap-3'>
+      <View className='flex-row items-center gap-sm'>
         <Switch
           ref={switchRef}
           aria-labelledby={formItemNativeID}

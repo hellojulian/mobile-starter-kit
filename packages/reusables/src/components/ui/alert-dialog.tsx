@@ -238,12 +238,12 @@ const AlertDialogContent = React.forwardRef<
 AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName;
 
 const AlertDialogHeader = ({ className, ...props }: ViewProps) => (
-  <View className={cn('flex flex-col gap-2', className)} {...props} />
+  <View className={cn('flex flex-col gap-xs', className)} {...props} />
 );
 AlertDialogHeader.displayName = 'AlertDialogHeader';
 
 const AlertDialogFooter = ({ className, ...props }: ViewProps) => (
-  <View className={cn('flex flex-row justify-end gap-2', className)} {...props} />
+  <View className={cn('flex flex-row justify-end gap-xs', className)} {...props} />
 );
 AlertDialogFooter.displayName = 'AlertDialogFooter';
 

@@ -21,7 +21,7 @@ export default function TabsScreen() {
       <Tabs
         value={value}
         onValueChange={setValue}
-        className='w-full max-w-[400px] mx-auto flex-col gap-1.5'
+        className='w-full max-w-[400px] mx-auto flex-col gap-xxs.5'
       >
         <TabsList className='flex-row w-full'>
           <TabsTrigger value='account' className='flex-1'>
@@ -39,12 +39,12 @@ export default function TabsScreen() {
                 Make changes to your account here. Click save when you're done.
               </CardDescription>
             </CardHeader>
-            <CardContent className='gap-4 native:gap-2'>
-              <View className='gap-1'>
+            <CardContent className='gap-4 native:gap-xs'>
+              <View className='gap-xxs'>
                 <Label nativeID='name'>Name</Label>
                 <Input aria-aria-labelledby='name' defaultValue='Pedro Duarte' />
               </View>
-              <View className='gap-1'>
+              <View className='gap-xxs'>
                 <Label nativeID='username'>Username</Label>
                 <Input id='username' defaultValue='@peduarte' />
               </View>
@@ -64,12 +64,12 @@ export default function TabsScreen() {
                 Change your password here. After saving, you'll be logged out.
               </CardDescription>
             </CardHeader>
-            <CardContent className='gap-4 native:gap-2'>
-              <View className='gap-1'>
+            <CardContent className='gap-4 native:gap-xs'>
+              <View className='gap-xxs'>
                 <Label nativeID='current'>Current password</Label>
                 <Input placeholder='********' aria-labelledby='current' secureTextEntry />
               </View>
-              <View className='gap-1'>
+              <View className='gap-xxs'>
                 <Label nativeID='new'>New password</Label>
                 <Input placeholder='********' aria-labelledby='new' secureTextEntry />
               </View>

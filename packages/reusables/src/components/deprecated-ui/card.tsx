@@ -52,7 +52,7 @@ const CardOverline = React.forwardRef<ViewRef, ViewProps & { text: string; icon?
   ({ className, text, icon, ...props }, ref) => (
     <View 
       ref={ref} 
-      className={cn('flex-row items-center gap-2 mb-2', className)} 
+      className={cn('flex-row items-center gap-xs mb-2', className)} 
       {...props}
     >
       {icon || <InfoIcon size={16} color="#6366F1" />}

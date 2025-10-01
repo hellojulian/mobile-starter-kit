@@ -44,7 +44,7 @@ export default function TableScreen() {
               <TableHead className='px-0.5' style={{ width: columnWidths[0] }}>
                 <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                   <PopoverTrigger asChild>
-                    <Button variant='ghost' size='sm' className='flex-row justify-start gap-3'>
+                    <Button variant='ghost' size='sm' className='flex-row justify-start gap-sm'>
                       <Text className={cn('text-base text-sys-text-body font-medium')}>
                         Invoice
                       </Text>
@@ -52,7 +52,7 @@ export default function TableScreen() {
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className='p-5' insets={{ left: 6 }}>
-                    <View className='gap-1.5'>
+                    <View className='gap-xxs.5'>
                       <Text className='text-2xl font-bold text-foreground'>Table Head</Text>
                       <Text className='text-lg text-sys-text-body'>
                         This is the Invoice column. Just an example of a popover.

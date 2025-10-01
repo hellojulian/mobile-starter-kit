@@ -20,7 +20,7 @@ export default function AlertScreen() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <View className='items-center justify-start flex-1 gap-3 p-4'>
+        <View className='items-center justify-start flex-1 gap-sm p-4'>
           <Alert
             icon={OctagonAlert}
             variant='error'

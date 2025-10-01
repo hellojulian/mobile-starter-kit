@@ -10,7 +10,7 @@ const RadioGroup = React.forwardRef<RadioGroupPrimitive.RootRef, RadioGroupPrimi
   ({ className, accessibilityLabel, ...props }, ref) => {
     return (
       <RadioGroupPrimitive.Root 
-        className={cn("web:grid gap-2", className)} 
+        className={cn("web:grid gap-xs", className)} 
         accessibilityRole="radiogroup"
         accessibilityLabel={accessibilityLabel}
         {...props} 
@@ -86,7 +86,7 @@ const RadioTile = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioTileProps>(
       >
         {/* Top section: Icon, Title, and Radio */}
         <View className="flex-row items-center justify-between mb-3">
-          <View className="flex-row items-center gap-2">
+          <View className="flex-row items-center gap-xs">
             {/* Use theme-aware icon color */}
             {icon ? (
               React.isValidElement(icon) ? (

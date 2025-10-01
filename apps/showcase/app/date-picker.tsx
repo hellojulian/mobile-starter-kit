@@ -75,7 +75,7 @@ export default function DatePickerScreen() {
 
   return (
     <View className="items-center justify-center flex-1">
-      <Button variant="outline" className="gap-3" onPress={showDatepicker}>
+      <Button variant="outline" className="gap-sm" onPress={showDatepicker}>
         {({ pressed }) => (
           <>
             <CalendarIcon

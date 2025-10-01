@@ -34,7 +34,7 @@ const Checkbox = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxPrimitive.R
     return (
       <Pressable
         onPress={() => props.onCheckedChange?.(!props.checked)}
-        className={cn("flex-row items-center gap-2", props.disabled && "opacity-50")}
+        className={cn("flex-row items-center gap-xs", props.disabled && "opacity-50")}
         {...accessibilityProps}
       >
         <CheckboxPrimitive.Root
@@ -125,7 +125,7 @@ const CheckboxTile = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxTilePro
       >
         {/* Top section: Icon, Title, and Checkbox */}
         <View className="flex-row items-center justify-between mb-3">
-          <View className="flex-row items-center gap-2">
+          <View className="flex-row items-center gap-xs">
             {/* Use theme-aware icon color */}
             {icon ? (
               React.isValidElement(icon) ? (

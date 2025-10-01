@@ -159,7 +159,7 @@ const SelectItem = React.forwardRef<
         variant={'ghost'}
         className={cn(
           index === 0 ? '' : 'border-t border-border',
-          'justify-start gap-3 pl-3 w-full',
+          'justify-start gap-sm pl-3 w-full',
           className
         )}
         onPress={handleOnPress}

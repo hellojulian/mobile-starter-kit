@@ -119,7 +119,7 @@ const AlertDialogHeader = React.forwardRef<
   React.ElementRef<typeof View>,
   React.ComponentPropsWithoutRef<typeof View>
 >(({ className, ...props }, ref) => {
-  return <View className={cn('gap-2', className)} ref={ref} {...props} />;
+  return <View className={cn('gap-xs', className)} ref={ref} {...props} />;
 });
 
 AlertDialogHeader.displayName = 'AlertDialogHeader';
@@ -153,7 +153,7 @@ const AlertDialogFooter = React.forwardRef<
   React.ElementRef<typeof View>,
   React.ComponentPropsWithoutRef<typeof View>
 >(({ className, ...props }, ref) => {
-  return <View className={cn('flex-row justify-end gap-3 pt-8', className)} ref={ref} {...props} />;
+  return <View className={cn('flex-row justify-end gap-sm pt-8', className)} ref={ref} {...props} />;
 });
 
 AlertDialogFooter.displayName = 'AlertDialogFooter';
