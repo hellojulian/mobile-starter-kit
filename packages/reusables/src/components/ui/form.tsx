@@ -98,7 +98,7 @@ const FormItem = React.forwardRef<
 
   return (
     <FormItemContext.Provider value={{ nativeID }}>
-      <View ref={ref} className={cn('space-y-2', className)} {...props} />
+      <View ref={ref} className={cn('space-y-xs', className)} {...props} />
     </FormItemContext.Provider>
   );
 });
@@ -115,7 +115,7 @@ const FormLabel = React.forwardRef<
   return (
     <Label
       ref={ref}
-      className={cn('pb-1 native:pb-2 px-px', error && 'text-destructive', className)}
+      className={cn('pb-xxs native:pb-xs px-px', error && 'text-destructive', className)}
       nativeID={formItemNativeID}
       {...props}
     />
@@ -133,7 +133,7 @@ const FormDescription = React.forwardRef<
     <Text
       ref={ref}
       nativeID={formDescriptionNativeID}
-      className={cn('text-sm text-muted-foreground pt-1', className)}
+      className={cn('text-body-sm text-muted-foreground pt-xxs', className)}
       {...props}
     />
   );
@@ -157,7 +157,7 @@ const FormMessage = React.forwardRef<
       exiting={FadeOut.duration(275)}
       ref={ref}
       nativeID={formMessageNativeID}
-      className={cn('text-sm font-medium text-destructive', className)}
+      className={cn('text-body-sm font-medium text-destructive', className)}
       {...props}
     >
       {body}
@@ -309,7 +309,7 @@ const FormCheckbox = React.forwardRef<
   }
 
   return (
-    <FormItem className='px-1'>
+    <FormItem className='px-xxs'>
       <View className='flex-row items-center gap-sm'>
         <Checkbox
           ref={ref}
@@ -351,7 +351,7 @@ const FormDatePicker = React.forwardRef<
         <BottomSheetOpenTrigger asChild>
           <Button
             variant='outline'
-            className='relative flex-row justify-start gap-sm px-3'
+            className='relative flex-row justify-start gap-sm px-sm'
             ref={ref}
             aria-labelledby={formItemNativeID}
             aria-describedby={
@@ -380,13 +380,13 @@ const FormDatePicker = React.forwardRef<
                 </Text>
                 {!!value && (
                   <Button
-                    className='absolute right-0 active:opacity-70 native:pr-3'
+                    className='absolute right-0 active:opacity-70 native:pr-sm'
                     variant='ghost'
                     onPress={() => {
                       onChange?.('');
                     }}
                   >
-                    <X size={18} className='text-xs text-muted-foreground' />
+                    <X size={18} className='text-body-xs text-muted-foreground' />
                   </Button>
                 )}
               </>
@@ -394,7 +394,7 @@ const FormDatePicker = React.forwardRef<
           </Button>
         </BottomSheetOpenTrigger>
         <BottomSheetContent>
-          <BottomSheetView hadHeader={false} className='pt-2'>
+          <BottomSheetView hadHeader={false} className='pt-xs'>
             <Calendar
               style={{ height: 358 }}
               onDayPress={(day) => {
@@ -408,7 +408,7 @@ const FormDatePicker = React.forwardRef<
               current={value} // opens calendar on selected date
               {...props}
             />
-            <View className={'pb-2 pt-4'}>
+            <View className={'pb-xs pt-md'}>
               <BottomSheetCloseTrigger asChild>
                 <Button>
                   <Text>Close</Text>
@@ -495,7 +495,7 @@ FormCombobox.displayName = 'FormCombobox';
  * @example
  *  <SelectTrigger className='w-[250px]'>
       <SelectValue
-        className='text-sm text-foreground native:text-lg'
+        className='text-body-sm text-foreground native:text-body-lg'
         placeholder='Select a fruit'
       />
     </SelectTrigger>
@@ -561,7 +561,7 @@ const FormSwitch = React.forwardRef<
   }
 
   return (
-    <FormItem className='px-1'>
+    <FormItem className='px-xxs'>
       <View className='flex-row items-center gap-sm'>
         <Switch
           ref={switchRef}

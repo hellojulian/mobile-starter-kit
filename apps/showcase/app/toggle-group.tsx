@@ -9,7 +9,7 @@ export default function ToggleGroupScreen() {
   const [value, setValue] = React.useState<string[]>([]);
 
   return (
-    <View className='flex-1 justify-center items-center p-6 gap-xxs2'>
+    <View className='flex-1 justify-center items-center p-lg gap-xxs2'>
       <ToggleGroup value={value} onValueChange={setValue} type='multiple'>
         <ToggleGroupItem value='bold' aria-label='Toggle bold'>
           <ToggleGroupIcon icon={Bold} size={18} />

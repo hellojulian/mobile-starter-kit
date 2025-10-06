@@ -8,7 +8,7 @@ export default function SliderScreen() {
 
   return (
     <>
-      <View className='items-center justify-center flex-1 gap-xxs2 p-6'>
+      <View className='items-center justify-center flex-1 gap-xxs2 p-lg'>
         <Pressable
           onPress={() => {
             setValue(Math.floor(Math.random() * 100));
@@ -41,7 +41,7 @@ export default function SliderScreen() {
 
         {Platform.OS !== 'web' && (
           <View>
-            <Text className='pb-2 text-xl text-center text-foreground'>
+            <Text className='pb-xs text-xl text-center text-foreground'>
               You will have to implement the gesture handling
             </Text>
             <Text className='text-sm text-center text-foreground'>

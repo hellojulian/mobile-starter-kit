@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
 
 export default function SkeletonScreen() {
   return (
-    <View className='flex-1 justify-center items-center p-4'>
+    <View className='flex-1 justify-center items-center p-md'>
       <Card
         accessible={true}
         accessibilityRole='article'
@@ -68,7 +68,7 @@ export default function SkeletonScreen() {
             <Skeleton className='h-6 w-[180px]' />
             <Skeleton className='h-6 w-[70px]' />
           </View>
-          <Skeleton className='h-6 w-[120px] mt-2' />
+          <Skeleton className='h-6 w-[120px] mt-xs' />
         </CardHeader>
         <CardFooter className='flex-row justify-between mt-0'>
           <View style={{ flex: 1, marginRight: 8 }} accessibilityElementsHidden={false}>

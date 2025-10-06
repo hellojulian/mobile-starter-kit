@@ -73,7 +73,7 @@ const RadioTile = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioTileProps>(
     return (
       <View
         className={cn(
-          "w-full p-4 rounded-md border",
+          "w-full p-md rounded-md border",
           isSelected
             ? "bg-sys-surface-secondary-pressed border-sys-border-6"
             : "bg-sys-surface-neutral-0 border-sys-border-4",
@@ -85,7 +85,7 @@ const RadioTile = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioTileProps>(
         accessibilityState={{ selected: isSelected, disabled: props.disabled }}
       >
         {/* Top section: Icon, Title, and Radio */}
-        <View className="flex-row items-center justify-between mb-3">
+        <View className="flex-row items-center justify-between mb-sm">
           <View className="flex-row items-center gap-xs">
             {/* Use theme-aware icon color */}
             {icon ? (
@@ -97,7 +97,7 @@ const RadioTile = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioTileProps>(
             ) : (
               <Globe size={24} color={iconColor} />
             )}
-            <Text className="text-md font-medium text-sys-text-body">{title}</Text>
+            <Text className="text-body-md font-medium text-sys-text-body">{title}</Text>
           </View>
 
           <RadioGroupPrimitive.Item
@@ -120,7 +120,7 @@ const RadioTile = React.forwardRef<RadioGroupPrimitive.ItemRef, RadioTileProps>(
         {/* Bottom section: Description text */}
         {description && (
           <View className="pl-0">
-            <Text className="text-base text-sys-text-body">{description}</Text>
+            <Text className="text-body-base text-sys-text-body">{description}</Text>
           </View>
         )}
       </View>

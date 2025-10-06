@@ -39,7 +39,7 @@ export default function DropdownMenuScreen() {
   };
 
   return (
-    <View className='items-center justify-center flex-1 gap-xxs2 p-6'>
+    <View className='items-center justify-center flex-1 gap-xxs2 p-lg'>
       <Pressable
         className='absolute top-0 right-0 w-16 h-16 active:bg-primary/5'
         onPress={() => {

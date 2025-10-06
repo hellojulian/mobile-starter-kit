@@ -59,7 +59,7 @@ export default function ButtonScreen() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      <View className='items-center justify-center flex-1 gap-5 p-6'>
+      <View className='items-center justify-center flex-1 gap-lg p-lg'>
   <Button 
     variant='default' 
     textSize='md'
@@ -116,6 +116,56 @@ export default function ButtonScreen() {
     Text Link
   </Button>
 
+  <Button 
+    variant='disabled' 
+    textSize='md'
+    accessibilityRole='disabled'
+    accessibilityLabel='Disabled Button'
+    accessibilityState={{ 
+      disabled: true,
+      busy: false
+    }}
+  >
+    Disabled
+  </Button>
+
+  {/* Size Variants - Testing Figma Master Component Heights */}
+  <View 
+    className='w-full gap-md'
+    accessibilityRole='group'
+    accessibilityLabel='Button size variants'
+  >
+    <Button 
+      variant='default' 
+      size='default'
+      textSize='lg'
+      accessibilityRole='button'
+      accessibilityLabel='Default button - 56px height'
+    >
+      Default (XL - 56px)
+    </Button>
+    
+    <Button 
+      variant='default' 
+      size='md'
+      textSize='md'
+      accessibilityRole='button'
+      accessibilityLabel='Medium button - 40px height'
+    >
+      Medium (MD - 40px)
+    </Button>
+    
+    <Button 
+      variant='default' 
+      size='sm'
+      textSize='sm'
+      accessibilityRole='button'
+      accessibilityLabel='Small button - 32px height'
+    >
+      Small (SM - 32px)
+    </Button>
+  </View>
+
   {/* Social Login Buttons */}
   <View 
     className='w-full'
@@ -125,7 +175,7 @@ export default function ButtonScreen() {
     <Button 
       variant='secondary' 
       textSize='md' 
-      className='w-full mb-4' 
+      className='w-full mb-md' 
       icon={
         <GoogleIcon 
           accessibilityRole='image'
@@ -147,7 +197,7 @@ export default function ButtonScreen() {
     <Button
       variant='secondary'
       textSize='md'
-      className='w-full mb-4'
+      className='w-full mb-md'
       icon={
         <FacebookIcon 
           accessibilityRole='image'

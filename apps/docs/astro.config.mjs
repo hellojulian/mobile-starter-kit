@@ -183,6 +183,10 @@ export default defineConfig({
               label: 'Typography',
               link: '/components/typography/',
             },
+            {
+              label: 'Illustration',
+              link: '/components/illustration/',
+            },
           ],
         },
         {

@@ -108,7 +108,7 @@ export default function CardScreen() {
         contentContainerStyle={styles.contentContainer}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       >
-        <View className='items-center justify-center gap-5'>
+        <View className='items-center justify-center gap-lg'>
           {/* Log In Card */}
           <Card
             accessible={true}
@@ -287,7 +287,7 @@ export default function CardScreen() {
                 </SelectTrigger>
                 <SelectContent
                   insets={contentInsets}
-                  className='w-full mt-2'
+                  className='w-full mt-xs'
                   accessibilityRole='menu'
                   accessibilityLabel='Genre options'
                   accessibilityViewIsModal={true}
@@ -323,7 +323,7 @@ export default function CardScreen() {
               </Select>
               <Text
                 style={styles.Inter}
-                className='mt-4'
+                className='mt-md'
                 accessibilityRole='text'
                 accessibilityLabel='Additional information'
               >
@@ -331,7 +331,7 @@ export default function CardScreen() {
                 incididunt ut labore et dolore magna aliqua.
               </Text>
             </CardContent>
-            <CardFooter className='flex-row justify-between mt-2'>
+            <CardFooter className='flex-row justify-between mt-xs'>
               <View
                 style={{ flex: 1, marginRight: 8 }}
                 accessibilityElementsHidden={false}
@@ -679,7 +679,7 @@ export default function CardScreen() {
             className='w-full' // Ensure full width
           >
             <CardFooter
-              className='absolute bottom-0 w-full px-6 pb-6' // Added proper padding
+              className='absolute bottom-0 w-full px-lg pb-lg' // Added proper padding
               accessible={true}
               accessibilityRole='none'
             >

@@ -23,10 +23,10 @@ export default function InputScreen() {
   }
 
   return (
-    <ScrollView contentContainerClassName='flex-1 justify-center items-center p-6'>
+    <ScrollView contentContainerClassName='flex-1 justify-center items-center p-lg'>
       <View className='w-full web:max-w-xs'>
         <Label
-          className='pb-2 native:pb-1 pl-0.5'
+          className='pb-xs native:pb-xxs pl-0.5'
           nativeID='textareaLabel'
           onPress={handleOnLabelPress}
         >

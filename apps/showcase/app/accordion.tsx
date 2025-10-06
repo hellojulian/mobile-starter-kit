@@ -10,7 +10,7 @@ import { Text } from '~/components/ui/text';
 
 export default function AccordionScreen() {
   return (
-    <View className='flex-1 justify-center items-center p-6'>
+    <View className='flex-1 justify-center items-center p-lg'>
       <Accordion
         type='multiple'
         collapsible
@@ -26,13 +26,11 @@ export default function AccordionScreen() {
         >
           <AccordionTrigger
             accessibilityRole='button'
-            // Let the component handle its own state internally
-            // but provide accessibility information
             accessibilityHint='Tap to expand or collapse'
             accessibilityLabel='Is it accessible?'
             aria-controls='content-item-1'
           >
-            <Text>Is it accessible?</Text>
+            Is it accessible?
           </AccordionTrigger>
           <AccordionContent
             accessibilityRole='region'
@@ -40,7 +38,7 @@ export default function AccordionScreen() {
             nativeID='content-item-1'
             accessibilityLiveRegion='polite'
           >
-            <Text>Yes. It adheres to the WAI-ARIA design pattern.</Text>
+            Yes. It adheres to the WAI-ARIA design pattern and follows accessibility best practices.
           </AccordionContent>
         </AccordionItem>
 
@@ -55,7 +53,7 @@ export default function AccordionScreen() {
             accessibilityLabel='What are universal components?'
             aria-controls='content-item-2'
           >
-            <Text>What are universal components?</Text>
+            What are universal components?
           </AccordionTrigger>
           <AccordionContent
             accessibilityRole='region'
@@ -63,10 +61,7 @@ export default function AccordionScreen() {
             nativeID='content-item-2'
             accessibilityLiveRegion='polite'
           >
-            <Text>
-              In the world of React Native, universal components are components that work on both
-              web and native platforms.
-            </Text>
+            In the world of React Native, universal components are components that work on both web and native platforms with consistent styling and behavior.
           </AccordionContent>
         </AccordionItem>
 
@@ -81,7 +76,7 @@ export default function AccordionScreen() {
             accessibilityLabel='Is this component universal?'
             aria-controls='content-item-3'
           >
-            <Text>Is this component universal?</Text>
+            Is this component universal?
           </AccordionTrigger>
           <AccordionContent
             accessibilityRole='region'
@@ -89,7 +84,33 @@ export default function AccordionScreen() {
             nativeID='content-item-3'
             accessibilityLiveRegion='polite'
           >
-            <Text>Yes. Try it out on the web, iOS, and/or Android.</Text>
+            Yes. Try it out on the web, iOS, and/or Android platforms to see the consistent experience.
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem 
+          value='item-4' 
+          disabled={true}
+          accessibilityRole='region'
+          nativeID='accordion-item-4'
+        >
+          <AccordionTrigger
+            disabled={true}
+            accessibilityRole='button'
+            accessibilityHint='This item is disabled'
+            accessibilityLabel='Disabled accordion item'
+            aria-controls='content-item-4'
+          >
+            This item is disabled
+          </AccordionTrigger>
+          <AccordionContent
+            disabled={true}
+            accessibilityRole='region'
+            accessibilityLabel='Content for disabled item'
+            nativeID='content-item-4'
+            accessibilityLiveRegion='polite'
+          >
+            This content cannot be accessed because the item is disabled.
           </AccordionContent>
         </AccordionItem>
       </Accordion>

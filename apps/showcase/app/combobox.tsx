@@ -30,7 +30,7 @@ const frameworks = [
 export default function ComboboxScreen() {
   const [selectedItem, setSelectedItem] = React.useState<DeprecatedUi.ComboboxOption | null>(null);
   return (
-    <View className='flex-1 justify-center items-center p-6'>
+    <View className='flex-1 justify-center items-center p-lg'>
       <Combobox
         selectedItem={selectedItem}
         onSelectedItemChange={setSelectedItem}

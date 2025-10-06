@@ -147,13 +147,13 @@ export default function FormScreen() {
   return (
     <ScrollView
       ref={scrollRef}
-      contentContainerClassName='p-6 mx-auto w-full max-w-xl'
+      contentContainerClassName='p-lg mx-auto w-full max-w-xl'
       showsVerticalScrollIndicator={false}
       automaticallyAdjustContentInsets={false}
       contentInset={{ top: 12 }}
     >
       <Form {...form}>
-        <View className='gap-7'>
+        <View className='gap-xl'>
           <FormField
             control={form.control}
             name='email'
@@ -208,12 +208,12 @@ export default function FormScreen() {
                 <FormRadioGroup
                   label='Account Type'
                   description='Select your account type.'
-                  className='gap-4'
+                  className='gap-md'
                   {...field}
                 >
                   {(['staff', 'admin', 'owner'] as const).map((value) => {
                     return (
-                      <View key={value} className={'flex-row gap-xs items-center'}>
+                      <View key={value} className={'flex-row gap-xxs items-center'}>
                         <RadioGroupItem aria-labelledby={`label-for-${value}`} value={value} />
                         <Label
                           nativeID={`label-for-${value}`}

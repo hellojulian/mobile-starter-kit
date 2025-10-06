@@ -162,9 +162,9 @@ function Header({ title, column }: { title: string; column: Column<User> }) {
     >
       <Text className={'font-medium text-muted-foreground'}>{title}</Text>
       {column.getIsSorted() === 'asc' ? (
-        <ArrowUp size={15} className='ml-2 text-muted-foreground' />
+        <ArrowUp size={15} className='ml-xs text-muted-foreground' />
       ) : column.getIsSorted() === 'desc' ? (
-        <ArrowDown size={15} className='ml-2 text-muted-foreground' />
+        <ArrowDown size={15} className='ml-xs text-muted-foreground' />
       ) : null}
     </Button>
   );

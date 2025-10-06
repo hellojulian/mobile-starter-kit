@@ -476,4 +476,16 @@ export const COMPONENTS = [
       },
     ],
   },
+  {
+    name: 'illustration',
+    dependencies: [],
+    icons: [],
+    npmPackages: [],
+    paths: [
+      {
+        from: './node_modules/@rnr/reusables/src/components/ui/illustration.tsx',
+        to: { folder: 'ui', file: 'illustration.tsx' },
+      },
+    ],
+  },
 ];

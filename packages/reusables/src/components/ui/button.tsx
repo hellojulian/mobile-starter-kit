@@ -1,6 +1,8 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
-import { Pressable, Text, StyleSheet, View, useColorScheme, Platform } from 'react-native';
+import { Pressable, StyleSheet, View, Platform } from 'react-native';
+import { Text } from './text';
+import { useColorScheme } from '../../lib/useColorScheme';
 import { cn } from '../../lib/utils';
 
 const buttonVariants = cva(
@@ -14,11 +16,13 @@ const buttonVariants = cva(
         black:
           'border border-input bg-sys-surface-black web:hover:bg-accent web:hover:text-accent-foreground active:bg-ref-neutral-800',
         link: 'web:underline-offset-4 web:hover:underline web:focus:underline active:bg-sys-surface-secondary-pressed',
+        disabled:
+        'border-0 bg-sys-surface-disabled text-sys-text-disabled',
       },
       size: {
-        default: 'h-16 rounded-full px-6 native:h-[56px]',
-        sm: 'h-9 rounded-full px-3',
-        lg: 'h-17 rounded-full px-8 native:h-17',
+        sm: 'py-xxs px-sm rounded-full',     // SM: 4px vertical, 12px horizontal (32px total height)
+        md: 'py-xs px-sm rounded-full',      // MD: 8px vertical, 12px horizontal (40px total height)
+        default: 'py-md px-lg rounded-full', // XL: 16px vertical, 24px horizontal (56px total height) - DEFAULT
         icon: 'h-10 w-10',
       },
     },
@@ -30,18 +34,19 @@ const buttonVariants = cva(
 );
 
 // Define text size variants explicitly
-const buttonTextVariants = cva('web:whitespace-nowrap text-sys-text-body web:transition-colors', {
+const buttonTextVariants = cva('web:whitespace-nowrap web:transition-colors', {
   variants: {
     variant: {
-      default: 'text-white font-medium',
-      secondary: 'text-sys-text-body font-medium',
-      black: 'text-sys-text-white font-medium',
-      link: 'text-sys-text-secondary font-medium',
+      default: '!text-sys-text-white font-medium',
+      secondary: '!text-sys-text-body font-medium',
+      black: '!text-sys-text-white font-medium',
+      link: '!text-sys-text-body font-medium',
+      disabled: '!text-sys-text-disabled font-medium',
     },
     textSize: {
-      sm: 'text-sm',
-      md: 'text-md',
-      lg: 'text-lg',
+      sm: 'text-body-sm',
+      md: 'text-body-md',
+      lg: 'text-body-lg',
     },
   },
   defaultVariants: {
@@ -56,13 +61,15 @@ const variantColorMap = {
     default: '#FFFFFF', // white
     secondary: '#1F2937', // sys-text-body in light mode
     outline: '#1F2937', // sys-text-body in light mode
-    link: '#6366F1', // sys-secondary-text in light mode
+    black: '#FFFFFF', // white
+    link: '#1F2937', // sys-text-body in light mode
   },
   dark: {
     default: '#FFFFFF', // white
     secondary: '#E5E7EB', // sys-text-body in dark mode
     outline: '#E5E7EB', // sys-text-body in dark mode
-    link: '#818CF8', // sys-secondary-text in dark mode
+    black: '#FFFFFF', // white
+    link: '#E5E7EB', // sys-text-body in dark mode
   }
 };
 
@@ -74,8 +81,8 @@ const TextColorProvider = React.forwardRef<
     onColor: (color: string) => void;
   }
 >(({ variant, onColor }, ref) => {
-  const colorScheme = useColorScheme();
-  const isDark = colorScheme === 'dark';
+  const { isDarkColorScheme } = useColorScheme();
+  const isDark = isDarkColorScheme;
 
   React.useEffect(() => {
     // Get the appropriate color based on the variant and color scheme
@@ -137,7 +144,7 @@ const Button = React.forwardRef<React.ElementRef<typeof Pressable>, ButtonProps>
         justifyContent: 'center',
       },
       iconSpacing: {
-        width: 8, // Space between icon and text
+        width: 8, // xs token (8px) - Space between icon and text
       }
     });
 
@@ -198,7 +205,6 @@ const Button = React.forwardRef<React.ElementRef<typeof Pressable>, ButtonProps>
             )}
             {!isIconOnly && (
               <Text
-                style={styles.text}
                 className={cn(
                   buttonTextVariants({ variant, textSize })
                 )}

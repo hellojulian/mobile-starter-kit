@@ -7,7 +7,7 @@ import { cn } from '../../lib/utils';
 import { TextSemiBold } from '../ui/text';
 
 const badgeVariants = cva(
-  'web:inline-flex items-center rounded-sm border border-border px-2 py-1 web:transition-colors web:focus:outline-none web:focus:ring-2 web:focus:ring-ring web:focus:ring-offset-2',
+  'web:inline-flex items-center rounded-sm border border-border py-xxs web:transition-colors web:focus:outline-none web:focus:ring-2 web:focus:ring-ring web:focus:ring-offset-2',
   {
     variants: {
       variant: {
@@ -19,9 +19,14 @@ const badgeVariants = cva(
         warning: 'border-transparent bg-sys-fn-warning',
         information: 'border-transparent bg-sys-fn-information',
       },
+      size: {
+        sm: 'px-xs',   // SM: 8px horizontal (matches Figma)
+        xl: 'px-sm',   // XL: 12px horizontal (matches Figma)
+      },
     },
     defaultVariants: {
       variant: 'default',
+      size: 'sm',
     },
   }
 );
@@ -37,9 +42,24 @@ const badgeTextVariants = cva('web:whitespace-nowrap', {
       warning: 'text-sys-fn-warning-text',
       information: 'text-sys-fn-information-text',
     },
+    size: {
+      sm: 'text-body-xs',  // SM: 12px text (matches Figma)
+      xl: 'text-body-sm',  // XL: 14px text (matches Figma)
+    },
   },
+  compoundVariants: [
+    // Ensure color classes take precedence over size classes
+    { variant: 'brand', class: 'text-sys-text-black' },
+    { variant: 'default', class: 'text-sys-text-secondary' },
+    { variant: 'error', class: 'text-sys-fn-error-text' },
+    { variant: 'success', class: 'text-sys-fn-success-text' },
+    { variant: 'secondary', class: 'text-sys-text-white' },
+    { variant: 'warning', class: 'text-sys-fn-warning-text' },
+    { variant: 'information', class: 'text-sys-fn-information-text' },
+  ],
   defaultVariants: {
     variant: 'default',
+    size: 'sm',
   },
 });
 
@@ -51,7 +71,7 @@ type BadgeProps = SlottableViewProps &
   };
 
 const Badge = React.forwardRef<React.ElementRef<typeof View>, BadgeProps>(
-  ({ className, variant, asChild, children, accessibilityLabel, accessibilityHint, ...props }, ref) => {
+  ({ className, variant, size, asChild, children, accessibilityLabel, accessibilityHint, ...props }, ref) => {
     const Component = asChild ? Slot.View : View;
 
     const styles = StyleSheet.create({
@@ -62,7 +82,7 @@ const Badge = React.forwardRef<React.ElementRef<typeof View>, BadgeProps>(
 
     return (
       <Component 
-        className={cn(badgeVariants({ variant }), className)} 
+        className={cn(badgeVariants({ variant, size }), className)} 
         ref={ref} 
         accessibilityRole="text"
         accessibilityLabel={accessibilityLabel || `${variant || 'default'} badge: ${children}`}
@@ -71,7 +91,7 @@ const Badge = React.forwardRef<React.ElementRef<typeof View>, BadgeProps>(
       >
         <TextSemiBold 
           style={styles.text} 
-          className={cn(badgeTextVariants({ variant }))}
+          className={cn(badgeTextVariants({ variant, size }))}
           importantForAccessibility="no-hide-descendants"
           accessibilityElementsHidden={true}
         >

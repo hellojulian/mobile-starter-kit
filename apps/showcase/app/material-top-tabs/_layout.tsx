@@ -26,17 +26,14 @@ export default function MaterialTopTabsLayout() {
       initialRouteName='index'
       screenOptions={{
         tabBarActiveTintColor: colors.text,
-        tabBarInactiveTintColor: 'grey',
+        tabBarInactiveTintColor: 'gray',
         tabBarLabelStyle: {
-          fontSize: 14,
-          textTransform: 'capitalize',
+          fontSize: 16,
           fontWeight: 'bold',
         },
         tabBarIndicatorStyle: {
           backgroundColor: colors.text,
         },
-        tabBarScrollEnabled: true,
-        tabBarItemStyle: { width: 'auto', minWidth: 100 },
       }}
     >
       <MaterialTopTabs.Screen

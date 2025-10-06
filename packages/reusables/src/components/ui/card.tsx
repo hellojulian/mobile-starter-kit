@@ -91,7 +91,7 @@ const CardHeader = React.forwardRef<ViewRef, ViewProps & { imageSource?: ImagePr
           resizeMode='cover'
         />
       )}
-      <View className='p-6 pb-2'>{props.children}</View>
+      <View className='p-lg pb-xs'>{props.children}</View>
     </View>
   )
 );
@@ -109,7 +109,7 @@ const CardOverline = React.forwardRef<
   ({ className, text, icon, iconColor = "#6366F1", ...props }, ref) => (
     <View 
       ref={ref} 
-      className={cn('flex-row items-center gap-xs mb-2', className)} 
+      className={cn('flex-row items-center gap-xs mb-xs', className)} 
       {...props}
     >
       {icon ? (
@@ -145,7 +145,7 @@ const CardTitle = React.forwardRef<TextRef, TextProps>(({ className, style, ...p
     role='heading'
     aria-level={3}
     ref={ref}
-    className={cn('text-5xl text-sys-text-body leading-none tracking-tighter mb-1', className)}
+    className={cn('text-5xl text-sys-text-body leading-none tracking-tighter mb-xxs', className)}
     style={[styles.Inter, style]}
     {...props}
   />
@@ -156,7 +156,7 @@ const CardDescription = React.forwardRef<TextRef, TextProps>(
   ({ className, style, ...props }, ref) => (
     <Text
       ref={ref}
-      className={cn('text-base text-sys-text-neutral-3 mb-0 font-medium', className)}
+      className={cn('text-base text-sys-text-neutral-3 mb-none font-medium', className)}
       style={[styles.Inter, style]}
       {...props}
     />
@@ -166,7 +166,7 @@ CardDescription.displayName = 'CardDescription';
 
 const CardContent = React.forwardRef<ViewRef, ViewProps>(({ className, ...props }, ref) => (
   <TextClassContext.Provider value='text-sys-text-neutral-4'>
-    <View ref={ref} className={cn('px-6 pt-1', className)} {...props} />
+    <View ref={ref} className={cn('px-lg pt-xxs', className)} {...props} />
   </TextClassContext.Provider>
 ));
 CardContent.displayName = 'CardContent';
@@ -175,7 +175,7 @@ const CardFooter = React.forwardRef<
   ViewRef,
   ViewProps & { buttonText?: string; onButtonPress?: () => void }
 >(({ className, buttonText, onButtonPress, ...props }, ref) => (
-  <View ref={ref} className={cn('flex flex-col p-6 pt-4', className)} {...props}>
+  <View ref={ref} className={cn('flex flex-col p-lg pt-md', className)} {...props}>
     {props.children}
     {buttonText && (
       <Button onPress={onButtonPress} className='w-full' textSize='lg'>
@@ -243,7 +243,7 @@ const CardMarketing = React.forwardRef<
         
         {/* Badge at the top */}
         <View 
-          className='absolute top-4 left-4' 
+          className='absolute top-md left-md' 
           accessible={true}
           accessibilityRole='none'
           importantForAccessibility='no'
@@ -260,7 +260,7 @@ const CardMarketing = React.forwardRef<
 
         {/* Main heading in the middle */}
         <View
-          className='absolute w-full px-6'
+          className='absolute w-full px-lg'
           style={{ top: '40%' }}
           accessible={true}
           accessibilityRole='none'

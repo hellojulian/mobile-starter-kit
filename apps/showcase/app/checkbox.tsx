@@ -14,7 +14,7 @@ export default function CheckboxScreen() {
 
   return (
     <ScrollView>
-      <View className='p-4 gap-6'>
+      <View className='p-md gap-lg'>
         {/* Original checkbox */}
         <Label
           className='text-lg font-medium'
@@ -52,7 +52,7 @@ export default function CheckboxScreen() {
         </View>
 
         {/* Checkbox tiles section */}
-        <View className='gap-4'>
+        <View className='gap-md'>
           <Label
             className='text-lg font-medium'
             accessibilityRole='header'

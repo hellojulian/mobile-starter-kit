@@ -6,7 +6,7 @@ import { Bold } from '~/lib/icons/Bold';
 export default function ToggleUniversalcreen() {
   const [pressed, setPressed] = React.useState(false);
   return (
-    <View className='flex-1 justify-center items-center p-6 gap-xxs2'>
+    <View className='flex-1 justify-center items-center p-lg gap-xxs2'>
       <Toggle
         pressed={pressed}
         onPressedChange={setPressed}

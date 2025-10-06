@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
 });
 
 const inputVariants = cva(
-  'web:flex h-10 native:h-12 web:w-full rounded-md border bg-background px-3 web:py-2 text-md lg:text-md native:text-md native:leading-[1.25] text-sys-text-body web:ring-offset-background file:border-0 file:bg-transparent file:font-medium web:focus-visible:outline-none web:focus-visible:ring-2 web:focus-visible:ring-offset-2',
+  'web:flex h-10 native:h-12 web:w-full rounded-md border bg-background px-sm web:py-xs text-md lg:text-md native:text-md native:leading-[1.25] text-sys-text-body web:ring-offset-background file:border-0 file:bg-transparent file:font-medium web:focus-visible:outline-none web:focus-visible:ring-2 web:focus-visible:ring-offset-2',
   {
     variants: {
       state: {
@@ -93,7 +93,7 @@ const Input = React.forwardRef<React.ElementRef<typeof TextInput>, InputProps>(
         {error && (
           <Text 
             style={styles.Inter} 
-            className='mt-1 text-base text-sys-fn-error-text'
+            className='mt-xxs text-base text-sys-fn-error-text'
             nativeID={`${props.nativeID || 'input'}-error`}
             accessibilityRole="text"
             accessibilityLiveRegion="polite"

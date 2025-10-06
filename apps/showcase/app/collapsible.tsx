@@ -9,11 +9,11 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '~/component
 export default function CollapsibleScreen() {
   const [open, setOpen] = React.useState(false);
   return (
-    <View className='flex-1 justify-center items-center p-6'>
+    <View className='flex-1 justify-center items-center p-lg'>
       <Collapsible asChild open={open} onOpenChange={setOpen}>
         <Animated.View layout={Platform.OS !== 'web' ? LinearTransition : undefined}>
           <View className='w-full max-w-[350px] gap-xs'>
-            <View className='flex flex-row items-center justify-between space-x-4 px-4'>
+            <View className='flex flex-row items-center justify-between space-x-md px-md'>
               <Text className='text-foreground text-sm native:text-lg font-semibold'>
                 @peduarte starred 3 repositories
               </Text>
@@ -28,7 +28,7 @@ export default function CollapsibleScreen() {
                 </Button>
               </CollapsibleTrigger>
             </View>
-            <View className='rounded-md border border-border px-4 py-3 '>
+            <View className='rounded-md border border-border px-md py-sm '>
               <Text className='text-foreground text-sm native:text-lg'>@radix-ui/primitives</Text>
             </View>
             <CollapsibleContent className='gap-xs'>
@@ -45,7 +45,7 @@ export default function CollapsibleScreen() {
 function CollapsibleItem({ children, delay }: { children: string; delay: number }) {
   if (Platform.OS === 'web') {
     return (
-      <View className='rounded-md border border-border px-4 py-3'>
+      <View className='rounded-md border border-border px-md py-sm'>
         <Text className='text-foreground text-sm'>{children}</Text>
       </View>
     );
@@ -54,7 +54,7 @@ function CollapsibleItem({ children, delay }: { children: string; delay: number 
   return (
     <Animated.View
       entering={FadeInDown.duration(200).delay(delay)}
-      className='rounded-md border border-border px-4 py-3'
+      className='rounded-md border border-border px-md py-sm'
     >
       <Text className='text-foreground text-lg'>{children}</Text>
     </Animated.View>

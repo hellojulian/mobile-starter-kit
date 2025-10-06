@@ -119,7 +119,7 @@ const ToastTitle = ({
   const variantStyles = TOAST_VARIANTS[variant].text
 
   return (
-    <Text weight="semibold" className={cn("text-[15px] font-semibold mb-1", variantStyles, customStyles)}>
+    <Text weight="semibold" className={cn("text-[15px] font-semibold mb-xxs", variantStyles, customStyles)}>
       {children}
     </Text>
   )
@@ -154,7 +154,7 @@ const ToastLabel = ({
   const variantLabelText = TOAST_VARIANTS[variant].label.text
 
   return (
-    <View className={cn("px-4 py-2 rounded-xl ml-3", variantLabelBg, customStyles?.background)}>
+    <View className={cn("px-md py-xs rounded-xl ml-sm", variantLabelBg, customStyles?.background)}>
       <Text className={cn("text-[14px] font-medium", variantLabelText, customStyles?.text)}>{children}</Text>
     </View>
   )
@@ -206,7 +206,7 @@ const CustomToast = ({ title, description, type, props, onPress }: CustomToastPr
   return (
     <Pressable 
       onPress={onPress} 
-      className="w-full max-w-xl px-4" 
+      className="w-full max-w-xl px-md" 
       style={{ zIndex: 9999 }}
       accessibilityRole="alert"
       accessibilityLabel={`${variant} toast: ${title}. ${description}`}
@@ -214,7 +214,7 @@ const CustomToast = ({ title, description, type, props, onPress }: CustomToastPr
     >
       <View
         className={cn(
-          "w-full p-4 rounded-lg flex-row items-start border",
+          "w-full p-md rounded-lg flex-row items-start border",
           variantStyles.background,
           variantStyles.border,
           customStyles?.background,
@@ -233,7 +233,7 @@ const CustomToast = ({ title, description, type, props, onPress }: CustomToastPr
 
         {/* Content */}
         <View 
-          className="flex-1 ml-3"
+          className="flex-1 ml-sm"
           importantForAccessibility="no-hide-descendants"
           accessibilityElementsHidden={true}
         >

@@ -178,19 +178,37 @@ module.exports = {
         },
       },
       fontSize: {
-        xs: ['12px', { lineHeight: '16px' }], // BODYXS
-        sm: ['14px', { lineHeight: '20px' }], // BODYSM
-        base: ['15px', { lineHeight: '20px' }], // BODYBASE
-        md: ['16px', { lineHeight: '23px' }], // BODYMD
-        lg: ['22px', { lineHeight: '28px' }], // BODYLG
-        xl: ['26px', { lineHeight: '28px' }], // BODYXL
-        '2xl': ['15px', { lineHeight: '15px' }], // HEADING2XL
-        '3xl': ['17px', { lineHeight: '36px' }], // HEADING3XL
-        '4xl': ['20px', { lineHeight: '45px' }], // HEADING4XL
-        '5xl': ['24px', { lineHeight: '45px' }], // HEADING5XL
-        '6xl': ['32px', { lineHeight: '45px' }], // HEADING6XL
-        '7xl': ['36px', { lineHeight: '45px' }], // HEADING7XL
-        '8xl': ['40px', { lineHeight: '45px' }], // HEADING8XL
+        // Legacy Tailwind tokens (for backward compatibility)
+        xs: ['12px', { lineHeight: '16px' }],   // body-xs: 12px
+        sm: ['14px', { lineHeight: '20px' }],   // body-sm: 14px  
+        base: ['15px', { lineHeight: '20px' }], // body-base: 15px
+        md: ['16px', { lineHeight: '23px' }],   // body-md: 16px (keeping current)
+        lg: ['22px', { lineHeight: '28px' }],   // body-lg: 22px
+        xl: ['26px', { lineHeight: '28px' }],   // body-xl: 26px
+        '2xl': ['15px', { lineHeight: '15px' }], // heading-2xl: 15px
+        '3xl': ['17px', { lineHeight: '36px' }], // heading-3xl: 17px
+        '4xl': ['20px', { lineHeight: '45px' }], // heading-4xl: 20px
+        '5xl': ['24px', { lineHeight: '45px' }], // heading-5xl: 24px
+        '6xl': ['32px', { lineHeight: '45px' }], // heading-6xl: 32px
+        '7xl': ['36px', { lineHeight: '45px' }], // heading-7xl: 36px
+        '8xl': ['40px', { lineHeight: '45px' }], // heading-8xl: 40px
+        
+        // Semantic body text tokens
+        'body-xs': ['12px', { lineHeight: '16px' }],   // 12px - Small annotations, captions
+        'body-sm': ['14px', { lineHeight: '20px' }],   // 14px - Secondary text, metadata
+        'body-base': ['15px', { lineHeight: '20px' }], // 15px - Default body text
+        'body-md': ['16px', { lineHeight: '23px' }],   // 16px - Primary content text
+        'body-lg': ['22px', { lineHeight: '28px' }],   // 22px - Large body text, emphasis
+        'body-xl': ['26px', { lineHeight: '28px' }],   // 26px - Extra large body text
+        
+        // Semantic heading tokens
+        'heading-2xl': ['15px', { lineHeight: '15px' }], // 15px - Small section headings
+        'heading-3xl': ['17px', { lineHeight: '36px' }], // 17px - Subsection headings
+        'heading-4xl': ['20px', { lineHeight: '45px' }], // 20px - Section headings
+        'heading-5xl': ['24px', { lineHeight: '45px' }], // 24px - Page headings
+        'heading-6xl': ['32px', { lineHeight: '45px' }], // 32px - Large headings
+        'heading-7xl': ['36px', { lineHeight: '45px' }], // 36px - Display headings
+        'heading-8xl': ['40px', { lineHeight: '45px' }], // 40px - Hero headings
       },
       spacing: {
         // Numeric tokens matching Figma t-shirt sizing
@@ -231,10 +249,11 @@ module.exports = {
       },
       borderWidth: {
         hairline: hairlineWidth(),
-        0: 'var(--border-width-0)', // NONE - 0
-        sm: 'var(--border-width-sm)', // SM - 1
-        md: 'var(--border-width-md)', // MD - 2
-        lg: 'var(--border-width-lg)', // LG - 3
+        none: '0px',     // NONE - 0
+        sm: '1px',       // SM - 1
+        md: '2px',       // MD - 2 
+        lg: '3px',       // LG - 3
+        DEFAULT: '1px',  // Default to SM
       },
       keyframes: {
         'accordion-down': {

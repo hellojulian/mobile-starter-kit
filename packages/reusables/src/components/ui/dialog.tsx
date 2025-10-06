@@ -88,7 +88,7 @@ const DialogOverlayWeb = React.forwardRef<DialogPrimitive.OverlayRef, DialogPrim
     return (
       <DialogPrimitive.Overlay
         className={cn(
-          'z-50 bg-black/90 flex justify-center items-center p-2 absolute top-0 right-0 bottom-0 left-0',
+          'z-50 bg-black/90 flex justify-center items-center p-xs absolute top-0 right-0 bottom-0 left-0',
           open ? 'web:animate-in web:fade-in-0' : 'web:animate-out web:fade-out-0',
           className
         )}
@@ -128,7 +128,7 @@ const DialogOverlayNative = React.forwardRef<
   return (
     <DialogPrimitive.Overlay
       style={StyleSheet.absoluteFill}
-      className={cn('z-50 flex justify-center items-center p-2', className)}
+      className={cn('z-50 flex justify-center items-center p-xs', className)}
       {...props}
       ref={ref}
     >
@@ -217,7 +217,7 @@ const DialogContent = React.forwardRef<
         <DialogPrimitive.Content
           ref={contentRef}
           className={cn(
-            'z-50 max-w-lg gap-4 border border-border bg-sys-surface-neutral-0 p-6 web:duration-200 rounded-lg',
+            'z-50 max-w-lg gap-md border border-border bg-sys-surface-neutral-0 p-lg web:duration-200 rounded-lg',
             open
               ? 'web:animate-in web:fade-in-0 web:zoom-in-95'
               : 'web:animate-out web:fade-out-0 web:zoom-out-95',
@@ -234,7 +234,7 @@ const DialogContent = React.forwardRef<
           <DialogPrimitive.Close
             ref={closeButtonRef}
             className={
-              'absolute right-4 top-4 p-1 web:group bg-sys-surface-neutral-2 text-sys-text-body rounded-lg opacity-70 web:ring-offset-background web:transition-opacity web:hover:opacity-100 web:focus:outline-none web:focus:ring-2 web:focus:ring-ring web:focus:ring-offset-2 web:disabled:pointer-events-none'
+              'absolute right-md top-md p-xxs web:group bg-sys-surface-neutral-2 text-sys-text-body rounded-lg opacity-70 web:ring-offset-background web:transition-opacity web:hover:opacity-100 web:focus:outline-none web:focus:ring-2 web:focus:ring-ring web:focus:ring-offset-2 web:disabled:pointer-events-none'
             }
             accessibilityRole="button"
             accessibilityLabel="Close dialog"

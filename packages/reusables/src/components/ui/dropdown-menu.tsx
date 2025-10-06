@@ -66,9 +66,9 @@ const DropdownMenuSubTrigger = React.forwardRef<
       <DropdownMenuPrimitive.SubTrigger
         ref={ref}
         className={cn(
-          'flex flex-row web:cursor-default web:select-none gap-xs items-center web:focus:bg-sys-surface-neutral-0 web:hover:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0 rounded-sm px-2 py-1.5 native:py-2 web:outline-none',
+          'flex flex-row web:cursor-default web:select-none gap-xs items-center web:focus:bg-sys-surface-neutral-0 web:hover:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0 rounded-sm px-xs py-1.5 native:py-xs web:outline-none',
           open && 'bg-sys-surface-neutral-0',
-          inset && 'pl-8',
+          inset && 'pl-xl',
           className
         )}
         accessibilityRole="menuitem"
@@ -100,7 +100,7 @@ const DropdownMenuSubContent = React.forwardRef<
     <DropdownMenuPrimitive.SubContent
       ref={ref}
       className={cn(
-        'z-50 min-w-[8rem] overflow-hidden rounded-md border border-border mt-1 bg-sys-surface-neutral-0 p-1 shadow-md shadow-foreground/5 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+        'z-50 min-w-[8rem] overflow-hidden rounded-md border border-border mt-xxs bg-sys-surface-neutral-0 p-xxs shadow-md shadow-foreground/5 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
         open
           ? 'web:animate-in web:fade-in-0 web:zoom-in-95'
           : 'web:animate-out web:fade-out-0 web:zoom-out ',
@@ -142,7 +142,7 @@ const DropdownMenuContent = React.forwardRef<
         <DropdownMenuPrimitive.Content
           ref={ref}
           className={cn(
-            'z-50 min-w-[8rem] overflow-hidden rounded-md border border-border bg-sys-surface-neutral-0 p-1 shadow-md shadow-foreground/5 web:data-[side=bottom]:slide-in-from-top-2 web:data-[side=left]:slide-in-from-right-2 web:data-[side=right]:slide-in-from-left-2 web:data-[side=top]:slide-in-from-bottom-2',
+            'z-50 min-w-[8rem] overflow-hidden rounded-md border border-border bg-sys-surface-neutral-0 p-xxs shadow-md shadow-foreground/5 web:data-[side=bottom]:slide-in-from-top-2 web:data-[side=left]:slide-in-from-right-2 web:data-[side=right]:slide-in-from-left-2 web:data-[side=top]:slide-in-from-bottom-2',
             open
               ? 'web:animate-in web:fade-in-0 web:zoom-in-95'
               : 'web:animate-out web:fade-out-0 web:zoom-out-95',
@@ -169,8 +169,8 @@ const DropdownMenuItem = React.forwardRef<
     <DropdownMenuPrimitive.Item
       ref={ref}
       className={cn(
-        'relative flex flex-row web:cursor-default gap-xs items-center rounded-sm px-2 py-1.5 native:py-2 web:outline-none web:focus:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0 web:hover:bg-sys-surface-neutral-0 group',
-        inset && 'pl-8',
+        'relative flex flex-row web:cursor-default gap-xs items-center rounded-sm px-xs py-1.5 native:py-xs web:outline-none web:focus:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0 web:hover:bg-sys-surface-neutral-0 group',
+        inset && 'pl-xl',
         props.disabled && 'opacity-50 web:pointer-events-none',
         className
       )}
@@ -192,7 +192,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
   <DropdownMenuPrimitive.CheckboxItem
     ref={ref}
     className={cn(
-      'relative flex flex-row web:cursor-default items-center web:group rounded-sm py-1.5 native:py-2 pl-8 pr-2 web:outline-none web:focus:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0',
+      'relative flex flex-row web:cursor-default items-center web:group rounded-sm py-1.5 native:py-xs pl-xl pr-xs web:outline-none web:focus:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0',
       props.disabled && 'web:pointer-events-none opacity-50',
       className
     )}
@@ -202,7 +202,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
     accessibilityState={{ checked: !!checked, disabled: props.disabled }}
     {...props}
   >
-    <View className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>
+    <View className='absolute left-xs flex h-3.5 w-3.5 items-center justify-center'>
       <DropdownMenuPrimitive.ItemIndicator>
         <Check size={14} strokeWidth={3} className='text-foreground' />
       </DropdownMenuPrimitive.ItemIndicator>
@@ -221,7 +221,7 @@ const DropdownMenuRadioItem = React.forwardRef<
   <DropdownMenuPrimitive.RadioItem
     ref={ref}
     className={cn(
-      'relative flex flex-row web:cursor-default web:group items-center rounded-sm py-1.5 native:py-2 pl-8 pr-2 web:outline-none web:focus:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0',
+      'relative flex flex-row web:cursor-default web:group items-center rounded-sm py-1.5 native:py-xs pl-xl pr-xs web:outline-none web:focus:bg-sys-surface-neutral-0 active:bg-sys-surface-neutral-0',
       props.disabled && 'web:pointer-events-none opacity-50',
       className
     )}
@@ -230,7 +230,7 @@ const DropdownMenuRadioItem = React.forwardRef<
     accessibilityState={{ selected: !!props.value, disabled: props.disabled }}
     {...props}
   >
-    <View className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>
+    <View className='absolute left-xs flex h-3.5 w-3.5 items-center justify-center'>
       <DropdownMenuPrimitive.ItemIndicator>
         <View className='w-2 h-2 rounded-full bg-foreground' />
       </DropdownMenuPrimitive.ItemIndicator>
@@ -249,8 +249,8 @@ const DropdownMenuLabel = React.forwardRef<
   <DropdownMenuPrimitive.Label
     ref={ref}
     className={cn(
-      'px-2 py-1.5 text-md native:text-base font-semibold text-sys-text-body web:cursor-default',
-      inset && 'pl-8',
+      'px-xs py-1.5 text-md native:text-base font-semibold text-sys-text-body web:cursor-default',
+      inset && 'pl-xl',
       className
     )}
     {...props}
@@ -264,7 +264,7 @@ const DropdownMenuSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DropdownMenuPrimitive.Separator
     ref={ref}
-    className={cn('-mx-1 my-1 h-px bg-border', className)}
+    className={cn('-mx-xxs my-xxs h-px bg-border', className)}
     {...props}
   />
 ));

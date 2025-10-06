@@ -82,7 +82,7 @@ const H4 = React.forwardRef<TextRef, SlottableTextProps>(({ className, asChild =
       role="heading"
       aria-level="4"
       className={cn(
-        "web:scroll-m-20 text-5xl text-sys-text-body font-semibold tracking-[-1px] web:select-text",
+        "web:scroll-m-20 text-5xl text-sys-text-body font-semibold tracking-[-0.5px] web:select-text",
         className,
       )}
       style={[styles.Inter, styles.baseText, style]}
@@ -102,7 +102,7 @@ const H5 = React.forwardRef<TextRef, SlottableTextProps>(({ className, asChild =
       role="heading"
       aria-level="5"
       className={cn(
-        "web:scroll-m-20 text-4xl text-sys-text-body font-semibold tracking-[-1px] web:select-text",
+        "web:scroll-m-20 text-4xl text-sys-text-body font-semibold tracking-[-0.5px] web:select-text",
         className,
       )}
       style={[styles.Inter, styles.baseText, style]}
@@ -122,7 +122,7 @@ const H6 = React.forwardRef<TextRef, SlottableTextProps>(({ className, asChild =
       role="heading"
       aria-level="6"
       className={cn(
-        "web:scroll-m-20 text-3xl text-sys-text-body font-semibold tracking-[-1px] web:select-text",
+        "web:scroll-m-20 text-3xl text-sys-text-body font-semibold tracking-[-0.5px] web:select-text",
         className,
       )}
       style={[styles.Inter, styles.baseText, style]}
@@ -142,7 +142,7 @@ const H7 = React.forwardRef<TextRef, SlottableTextProps>(({ className, asChild =
       role="heading"
       aria-level="7"
       className={cn(
-        "web:scroll-m-20 text-2xl text-sys-text-body font-semibold tracking-[-1px] web:select-text",
+        "web:scroll-m-20 text-2xl text-sys-text-body font-semibold tracking-[-0.5px] web:select-text",
         className,
       )}
       style={[styles.Inter, styles.baseText, style]}
@@ -159,7 +159,7 @@ const BodyXL = React.forwardRef<TextRef, SlottableTextProps>(({ className, asChi
   const Component = asChild ? Slot.Text : RNText
   return (
     <Component
-      className={cn("text-xl text-sys-text-body tracking-[-1px] web:select-text", className)}
+      className={cn("text-xl text-sys-text-body tracking-[-0.5px] web:select-text", className)}
       style={[styles.Inter, styles.baseText, style]}
       ref={ref}
       {...props}
@@ -174,7 +174,7 @@ const BodyLG = React.forwardRef<TextRef, SlottableTextProps>(({ className, asChi
   const Component = asChild ? Slot.Text : RNText
   return (
     <Component
-      className={cn("text-lg text-sys-text-body tracking-[-1px] web:select-text", className)}
+      className={cn("text-lg text-sys-text-body tracking-[-0.5px] web:select-text", className)}
       style={[styles.Inter, styles.baseText, style]}
       ref={ref}
       {...props}

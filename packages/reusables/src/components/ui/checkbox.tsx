@@ -58,7 +58,7 @@ const Checkbox = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxPrimitive.R
         </CheckboxPrimitive.Root>
         {label && (
           <CheckboxPrimitive.Label 
-            className="text-sm"
+            className="text-body-sm"
             importantForAccessibility="no-hide-descendants"
             accessibilityElementsHidden={true}
           >
@@ -115,7 +115,7 @@ const CheckboxTile = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxTilePro
       <Pressable
         onPress={() => props.onCheckedChange?.(!props.checked)}
         className={cn(
-          "w-full p-4 rounded-md border",
+          "w-full p-md rounded-md border",
           props.checked
             ? "bg-sys-surface-secondary-pressed border-sys-border-6"
             : "bg-sys-surface-neutral-0 border-sys-border-4",
@@ -124,7 +124,7 @@ const CheckboxTile = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxTilePro
         {...accessibilityProps}
       >
         {/* Top section: Icon, Title, and Checkbox */}
-        <View className="flex-row items-center justify-between mb-3">
+        <View className="flex-row items-center justify-between mb-sm">
           <View className="flex-row items-center gap-xs">
             {/* Use theme-aware icon color */}
             {icon ? (
@@ -146,7 +146,7 @@ const CheckboxTile = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxTilePro
               />
             )}
             <Text 
-              className="text-md font-medium text-sys-text-body"
+              className="text-body-md font-medium text-sys-text-body"
               importantForAccessibility="no-hide-descendants"
               accessibilityElementsHidden={true}
             >
@@ -181,7 +181,7 @@ const CheckboxTile = React.forwardRef<CheckboxPrimitive.RootRef, CheckboxTilePro
         {description && (
           <View className="pl-0">
             <Text 
-              className="text-base text-sys-text-body"
+              className="text-body-base text-sys-text-body"
               importantForAccessibility="no-hide-descendants"
               accessibilityElementsHidden={true}
             >

@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Text, View, type ViewProps } from 'react-native';
 import { cn } from '../../lib/utils';
 
-const alertVariants = cva('relative w-full rounded-md border border-border py-4 px-4', {
+const alertVariants = cva('relative w-full rounded-md border border-border py-md px-md', {
   variants: {
     variant: {
       default: 'border-sys-border-4 bg-sys-surface-neutral-0',
@@ -83,7 +83,7 @@ const AlertTitle = React.forwardRef<
   <Text
     ref={ref}
     className={cn(
-      'pl-2 mb-1 font-medium text-md leading-none tracking-tight',
+      'pl-xs mb-xxs font-medium text-md leading-none tracking-tight',
       getVariantColor(variant),
       className
     )}
@@ -96,7 +96,7 @@ const AlertDescription = React.forwardRef<
   React.ElementRef<typeof Text>,
   React.ComponentPropsWithoutRef<typeof Text> & VariantProps<typeof alertVariants>
 >(({ className, variant, ...props }, ref) => (
-  <Text ref={ref} className={cn('pl-2 text-sm', getVariantColor(variant), className)} {...props} />
+  <Text ref={ref} className={cn('pl-xs text-sm', getVariantColor(variant), className)} {...props} />
 ));
 AlertDescription.displayName = 'AlertDescription';
 

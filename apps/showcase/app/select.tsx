@@ -45,7 +45,7 @@ export default function SelectScreen() {
 
   return (
     <View
-      className='items-center justify-between flex-1 p-6'
+      className='items-center justify-between flex-1 p-lg'
       style={[{ paddingBottom: insets.bottom + 24 }, styles.Inter]}
     >
       <Pressable
@@ -65,7 +65,7 @@ export default function SelectScreen() {
           </SelectTrigger>
           <SelectContent
             insets={contentInsets}
-            className='w-[300px] mt-1'
+            className='w-[300px] mt-xxs'
             style={styles.Inter}
           >
             <SelectGroup>
@@ -92,7 +92,7 @@ export default function SelectScreen() {
         </Text>
       </View>
       <View>
-        <Text className='pb-2 text-center text-muted-foreground' style={styles.Inter}>
+        <Text className='pb-xs text-center text-muted-foreground' style={styles.Inter}>
           With scroll view
         </Text>
         <Select value={selectedScrollFruit} onValueChange={setSelectedScrollFruit}>

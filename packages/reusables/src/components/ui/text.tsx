@@ -40,7 +40,7 @@ const Text = React.forwardRef<TextRef, SlottableTextProps>(
     const Component = asChild ? Slot.Text : BaseText;
     return (
       <Component
-        className={cn('text-base  web:select-text', textClass, className)}
+        className={cn('text-body-base  web:select-text', textClass, className)}
         style={[styles.Inter, style]}
         ref={ref}
         {...props}
@@ -56,7 +56,7 @@ const TextSemiBold = React.forwardRef<TextRef, SlottableTextProps>(
     const Component = asChild ? Slot.Text : BaseText;
     return (
       <Component
-        className={cn('text-base  web:select-text font-bold', textClass, className)}
+        className={cn('text-body-base  web:select-text font-bold', textClass, className)}
         style={[styles.InterSemiBold, style]}
         ref={ref}
         {...props}
@@ -72,7 +72,7 @@ const TextBold = React.forwardRef<TextRef, SlottableTextProps>(
     const Component = asChild ? Slot.Text : BaseText;
     return (
       <Component
-        className={cn('text-base  web:select-text font-bold', textClass, className)}
+        className={cn('text-body-base  web:select-text font-bold', textClass, className)}
         style={[styles.InterBold, style]}
         ref={ref}
         {...props}

@@ -1,0 +1,133 @@
+---
+title: Illustration
+description: A component for displaying beautiful illustrations in your React Native app with multiple size variants.
+---
+
+{/* prettier-ignore-start */}
+{/* prettier-ignore-end */}
+
+import Code from '@/components/Code.astro';
+import { LinkButton } from '@/components/react/LinkButton';
+import { Aside, Tabs, TabItem } from '@astrojs/starlight/components';
+import importedCode from '@rnr/reusables/components/ui/illustration?raw';
+
+<LinkButton target='_blank' href='https://rnr-showcase.vercel.app/illustration'>
+  Demo
+</LinkButton>
+
+<br />
+
+A component for displaying beautiful illustrations in your React Native app with multiple size variants.
+
+### Installation
+
+<Tabs>
+  <TabItem label='CLI'> 
+    ```bash
+    npx @react-native-reusables/cli@latest add illustration
+    ```
+  </TabItem>
+  <TabItem label='Manual'>
+    **Copy/paste the following code to `~/components/ui/illustration.tsx`:**
+
+    <Code code={importedCode} lang='tsx' title='~/components/ui/illustration.tsx' />
+  </TabItem>
+</Tabs>
+
+### Usage
+
+```tsx
+import { Illustration } from '~/components/ui/illustration';
+
+function Example() {
+  return (
+    <View className='flex-1 justify-center items-center p-6 gap-12'>
+      {/* Basic usage */}
+      <Illustration name="Heart" size="medium" />
+      
+      {/* Different sizes */}
+      <View className="flex-row gap-4">
+        <Illustration name="Apple_Vision" size="small" />
+        <Illustration name="Apple_Vision" size="medium" />
+        <Illustration name="Apple_Vision" size="large" />
+      </View>
+      
+      {/* With accessibility */}
+      <Illustration 
+        name="Coffee" 
+        size="large"
+        accessibilityLabel="Coffee cup illustration"
+        accessibilityHint="Decorative coffee illustration"
+      />
+      
+      {/* Decorative (hidden from screen readers) */}
+      <Illustration 
+        name="Heart" 
+        size="medium"
+        decorative={true}
+      />
+    </View>
+  );
+}
+```
+
+## Props
+
+### Illustration
+
+|         Prop         |                     Type                     |   Default    |           Description           |
+| :------------------: | :------------------------------------------: | :----------: | :-----------------------------: |
+|        name          |                   string                     |      -       |        Name of illustration     |
+|        size          |        'small' \| 'medium' \| 'large'       |   'medium'   |      Size of illustration       |
+|        alt           |                   string                     |      -       |       Alt text for image       |
+|     decorative       |                   boolean                    |    false     |  Hide from accessibility tree   |
+|     className        |                   string                     |      -       |      Additional CSS classes     |
+|       style          |                  ViewStyle                   |      -       |     React Native view style     |
+|    imageStyle        |                 ImageStyle                   |      -       |     React Native image style    |
+| accessibilityLabel   |                   string                     |      -       |    Screen reader label text     |
+| accessibilityHint    |                   string                     |      -       |     Screen reader hint text     |
+
+## Available Illustrations
+
+The component includes 70+ beautiful illustrations:
+
+**Featured Illustrations:**
+- Apple_Vision, Apple_Watch, Brain_Pink, Coffee, Heart
+- Mac, Phone, Smiley, Headphones, Settings
+- Flower, Cloud, Glasses, Gradient, Keyboard
+- And many more!
+
+**Categories:**
+- **Tech**: Mac, Phone, Apple_Vision, Apple_Watch, Computer, Keyboard
+- **Objects**: Coffee, Heart, Flower, Clock, Book, Pen
+- **Abstract**: Gradient, Void, Pink_Shape, Goo, Glisten
+- **Fashion**: Glasses, Hoodie, Shoes, Tote, Ring
+
+## Size Guide
+
+- **Small**: 80x80 pixels - Perfect for inline usage, list items
+- **Medium**: 120x120 pixels - Great for cards, feature highlights  
+- **Large**: 160x160 pixels - Ideal for hero sections, empty states
+
+## Accessibility
+
+The Illustration component is built with accessibility in mind:
+
+- **Screen Reader Support**: Automatic or custom `accessibilityLabel` generation
+- **Decorative Mode**: Use `decorative={true}` to hide purely decorative illustrations
+- **Semantic Roles**: Proper image role assignment for meaningful content
+- **Hint Support**: Additional context via `accessibilityHint`
+
+## Best Practices
+
+1. **Use descriptive names**: `accessibilityLabel="Coffee cup illustration"` instead of just "Coffee"
+2. **Mark decorative content**: Set `decorative={true}` for purely visual elements
+3. **Choose appropriate sizes**: Small for lists, Medium for cards, Large for hero sections
+4. **Provide context**: Use `accessibilityHint` for additional context when needed
+
+## Technical Notes
+
+- All illustrations are statically imported for optimal Expo/React Native bundling
+- Images are optimized PNG format for crisp rendering at all sizes
+- Component uses `resizeMode: 'contain'` to maintain aspect ratios
+- TypeScript support with full type safety for illustration names

@@ -39,28 +39,52 @@ const Accordion = React.forwardRef<AccordionPrimitive.RootRef, AccordionPrimitiv
 
 Accordion.displayName = AccordionPrimitive.Root.displayName;
 
-const AccordionItem = React.forwardRef<AccordionPrimitive.ItemRef, AccordionPrimitive.ItemProps>(
-  ({ className, value, ...props }, ref) => {
+const AccordionItem = React.forwardRef<AccordionPrimitive.ItemRef, AccordionPrimitive.ItemProps & { disabled?: boolean }>(
+  ({ className, value, disabled = false, children, ...props }, ref) => {
     return (
-      <Animated.View className={'overflow-hidden'} layout={LinearTransition.duration(200)}>
+      <Animated.View className={'overflow-hidden mb-1.5'} layout={LinearTransition.duration(200)}>
         <AccordionPrimitive.Item
           ref={ref}
-          className={cn('border-b border-border', className)}
           value={value}
+          disabled={disabled}
           {...props}
-        />
+        >
+          <AccordionItemInner className={className} disabled={disabled}>
+            {children}
+          </AccordionItemInner>
+        </AccordionPrimitive.Item>
       </Animated.View>
     );
   }
 );
+
+function AccordionItemInner({ className, disabled, children }: { className?: string; disabled?: boolean; children?: React.ReactNode }) {
+  const { isExpanded } = AccordionPrimitive.useItemContext();
+  
+  return (
+    <View
+      className={cn(
+        // Base styling matching Figma exactly
+        'border rounded-md',
+        // Dynamic background and border based on expanded state
+        isExpanded && !disabled ? 'bg-sys-surface-secondary-pressed border-sys-text-secondary' : 'bg-sys-surface-neutral-0 border-sys-border-4',
+        // For disabled state
+        disabled && 'bg-sys-surface-disabled border-sys-text-disabled pointer-events-none',
+        className
+      )}
+    >
+      {children}
+    </View>
+  );
+}
 AccordionItem.displayName = AccordionPrimitive.Item.displayName;
 
 const Trigger = Platform.OS === 'web' ? View : Pressable;
 
 const AccordionTrigger = React.forwardRef<
   AccordionPrimitive.TriggerRef,
-  AccordionPrimitive.TriggerProps
->(({ className, children, ...props }, ref) => {
+  AccordionPrimitive.TriggerProps & { disabled?: boolean }
+>(({ className, children, disabled = false, ...props }, ref) => {
   const { isExpanded } = AccordionPrimitive.useItemContext();
 
   const progress = useDerivedValue(() =>
@@ -68,11 +92,13 @@ const AccordionTrigger = React.forwardRef<
   );
   const chevronStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: `${progress.value * 180}deg` }],
-    opacity: interpolate(progress.value, [0, 1], [1, 0.8], Extrapolation.CLAMP),
   }));
 
+  const textColor = disabled ? 'text-sys-text-disabled' : 'text-sys-text-body';
+  const iconColor = disabled ? 'text-sys-text-disabled' : 'text-sys-text-body';
+
   return (
-    <TextClassContext.Provider value='native:text-md text-sys-text-body font-medium web:group-hover:underline'>
+    <TextClassContext.Provider value={`text-body-base ${textColor} font-medium tracking-[-0.075px]`}>
       <AccordionPrimitive.Header className='flex'>
         <AccordionPrimitive.Trigger 
           ref={ref} 
@@ -81,13 +107,15 @@ const AccordionTrigger = React.forwardRef<
         >
           <Trigger
             className={cn(
-              'flex flex-row web:flex-1 items-center justify-between py-4 web:transition-all group web:focus-visible:outline-none web:focus-visible:ring-1 web:focus-visible:ring-muted-foreground',
+              'flex flex-row web:flex-1 items-center justify-between p-sm web:transition-all group web:focus-visible:outline-none web:focus-visible:ring-1 web:focus-visible:ring-ring',
               className
             )}
           >
-            <Text style={styles.Inter}>{children}</Text>
-            <Animated.View style={chevronStyle}>
-              <ChevronDown size={18} className={'text-sys-text-body shrink-0'} />
+            <Text style={styles.Inter} className={`flex-1 text-left text-body-base ${textColor}`}>
+              {children}
+            </Text>
+            <Animated.View style={chevronStyle} className="ml-xs">
+              <ChevronDown size={24} className={`${iconColor} shrink-0`} />
             </Animated.View>
           </Trigger>
         </AccordionPrimitive.Trigger>
@@ -99,21 +127,24 @@ AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
 const AccordionContent = React.forwardRef<
   AccordionPrimitive.ContentRef,
-  AccordionPrimitive.ContentProps
->(({ className, children, ...props }, ref) => {
+  AccordionPrimitive.ContentProps & { disabled?: boolean }
+>(({ className, children, disabled = false, ...props }, ref) => {
   const { isExpanded } = AccordionPrimitive.useItemContext();
+  
+  const textColor = disabled ? 'text-sys-text-disabled' : 'text-sys-text-body';
+  
   return (
-    <TextClassContext.Provider value='native:text-md text-sys-text-neutral-3'>
+    <TextClassContext.Provider value={`text-body-sm ${textColor} font-medium tracking-[-0.07px]`}>
       <AccordionPrimitive.Content
         className={cn(
-          'overflow-hidden text-sm web:transition-all',
+          'overflow-hidden web:transition-all',
           isExpanded ? 'web:animate-accordion-down' : 'web:animate-accordion-up'
         )}
         ref={ref}
         {...props}
       >
-        <InnerContent className={cn('pb-4', className)}>
-          <Text style={styles.Inter}>{children}</Text>
+        <InnerContent className={cn('px-sm pb-md', className)}>
+          <Text style={styles.Inter} className={`text-body-sm ${textColor}`}>{children}</Text>
         </InnerContent>
       </AccordionPrimitive.Content>
     </TextClassContext.Provider>
@@ -122,13 +153,13 @@ const AccordionContent = React.forwardRef<
 
 function InnerContent({ children, className }: { children: React.ReactNode; className?: string }) {
   if (Platform.OS === 'web') {
-    return <View className={cn('pb-4', className)}>{children}</View>;
+    return <View className={className}>{children}</View>;
   }
   return (
     <Animated.View
       entering={FadeIn}
       exiting={FadeOutUp.duration(200)}
-      className={cn('pb-4', className)}
+      className={className}
     >
       {children}
     </Animated.View>

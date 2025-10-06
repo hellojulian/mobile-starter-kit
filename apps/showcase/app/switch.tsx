@@ -8,7 +8,7 @@ export default function SwitchScreen() {
 
   return (
     <>
-      <View className='flex-1 justify-center items-center p-6 gap-xxs2'>
+      <View className='flex-1 justify-center items-center p-lg gap-xxs2'>
         <View className='flex-row items-center gap-xs'>
           <Switch checked={checked} onCheckedChange={setChecked} nativeID='airplane-mode' />
           <Label

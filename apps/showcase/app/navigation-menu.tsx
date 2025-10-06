@@ -14,7 +14,7 @@ import {
   NavigationMenuTrigger,
 } from "~/components/ui/navigation-menu"
 import { Text } from "~/components/ui/text"
-import { Sparkles } from "~/lib/icons/Sparkles"
+import { Smile } from "~/lib/icons/Smile"
 import { cn } from "~/lib/utils"
 
 export default function NavigationMenuScreen() {
@@ -61,13 +61,12 @@ export default function NavigationMenuScreen() {
                 <View role="listitem" className="web:row-span-3">
                   <NavigationMenuLink asChild>
                     <View className="flex flex-col justify-end p-6 rounded-md web:select-none web:bg-gradient-to-b web:from-muted/50 web:to-muted native:border native:border-border web:no-underline web:outline-none web:focus:shadow-md web:focus:shadow-foreground/5">
-                      <Sparkles size={16} className="text-sys-text-body" />
+                      <Smile size={16} className="text-sys-text-body" />
                       <Text className="mt-4 mb-2 text-lg font-medium text-sys-text-body native:text-2xl">
-                        react-native-reusables
+                      Mobile App Starter Kit V1.0
                       </Text>
                       <Text className="text-sm leading-tight native:text-base text-sys-text-neutral-3">
-                        Universal components that you can copy and paste into your apps. Accessible. Customizable. Open
-                        Source.
+                      A  Figma Design System with 1,805 components powered by tokens mapped to React Native. Built with React Native + Expo 53, NativeWind v4.
                       </Text>
                     </View>
                   </NavigationMenuLink>

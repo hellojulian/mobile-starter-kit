@@ -10,7 +10,7 @@ const Table = React.forwardRef<TablePrimitive.RootRef, TablePrimitive.RootProps 
   ({ className, accessibilityLabel, caption, ...props }, ref) => (
     <TablePrimitive.Root
       ref={ref}
-      className={cn('w-full caption-bottom text-sm', className)}
+      className={cn('w-full caption-bottom text-body-sm', className)}
       accessibilityRole="table"
       accessibilityLabel={accessibilityLabel || caption}
       {...props}
@@ -76,7 +76,7 @@ const TableHead = React.forwardRef<TablePrimitive.HeadRef, TablePrimitive.HeadPr
       <TablePrimitive.Head
         ref={ref}
         className={cn(
-          'h-12 px-4 text-left justify-center font-medium [&:has([role=checkbox])]:pr-0',
+          'h-12 px-md text-left justify-center font-medium [&:has([role=checkbox])]:pr-0',
           className
         )}
         accessibilityRole="columnheader"
@@ -91,7 +91,7 @@ const TableCell = React.forwardRef<TablePrimitive.CellRef, TablePrimitive.CellPr
   ({ className, ...props }, ref) => (
     <TablePrimitive.Cell
       ref={ref}
-      className={cn('p-4 align-middle [&:has([role=checkbox])]:pr-0', className)}
+      className={cn('p-md align-middle [&:has([role=checkbox])]:pr-0', className)}
       accessibilityRole="cell"
       {...props}
     />

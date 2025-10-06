@@ -34,7 +34,7 @@ export default function ContextScreen() {
 
   return (
     <>
-      <View className='flex-1 justify-center p-6 gap-xxs2'>
+      <View className='flex-1 justify-center p-lg gap-xxs2'>
         <Pressable
           className='absolute top-0 right-0 w-16 h-16 active:bg-primary/5'
           onPress={() => {
@@ -70,7 +70,7 @@ export default function ContextScreen() {
               <ContextMenuSubTrigger inset>
                 <Text>More Tools</Text>
               </ContextMenuSubTrigger>
-              <ContextMenuSubContent className='web:w-48 native:mt-1'>
+              <ContextMenuSubContent className='web:w-48 native:mt-xxs'>
                 <Animated.View entering={FadeIn.duration(200)}>
                   <ContextMenuItem>
                     <Text>Save Page As...</Text>
