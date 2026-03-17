@@ -5,7 +5,6 @@ A Mobile app starter kit featuring a clean and well-organized design system. Cra
 ---
 
 ### 📖 Documentation
-- [Getting Started Guide](https://msk.framer.wiki/getting-started/how-to-use/)
 - [MSK Docs](https://hellojulian.github.io/msk/)
 - [React Native Reusables](https://rnr-docs.vercel.app/)
 
