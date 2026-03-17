@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { View, ScrollView } from "react-native"
+import { View, ScrollView, Text } from "react-native"
 import { Label } from "~/components/ui/label"
 import { RadioGroup, RadioGroupItem, RadioTile } from "~/components/ui/radio-group"
 import { Globe, Mail, Bell } from "lucide-react-native"

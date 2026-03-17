@@ -37,7 +37,12 @@ import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { Label } from '~/components/ui/label';
 import { useFonts } from 'expo-font';
-import { Eye, EyeOff, Heart, Tv, InfoIcon } from 'lucide-react-native';
+// import { Eye, EyeOff, Heart, Tv, Info as InfoIcon } from 'lucide-react-native';
+const Eye = () => <Text>👁</Text>;
+const EyeOff = () => <Text>🙈</Text>;
+const Heart = () => <Text>❤️</Text>;
+const Tv = () => <Text>📺</Text>;
+const InfoIcon = () => <Text>ℹ️</Text>;
 import { useColorScheme } from '~/lib/useColorScheme';
 
 const styles = StyleSheet.create({

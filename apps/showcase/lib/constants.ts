@@ -1,6 +1,19 @@
-import { Lib } from '@rnr/reusables';
-
-export const { NAV_THEME } = Lib;
+export const NAV_THEME = {
+  light: {
+    background: '#ffffff',
+    border: '#e5e7eb',
+    card: '#ffffff',
+    text: '#000000',
+    primary: '#000000',
+  },
+  dark: {
+    background: '#000000',
+    border: '#374151',
+    card: '#111111',
+    text: '#ffffff',
+    primary: '#ffffff',
+  },
+};
 
 export const COMPONENTS = [
   'accordion',

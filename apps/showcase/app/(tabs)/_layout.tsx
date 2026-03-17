@@ -1,33 +1,20 @@
-import { Tabs } from 'expo-router';
-import { ModalToggle } from '~/components/ModalToggle';
-import { ThemeToggle } from '~/components/ThemeToggle';
-import { LayoutPanelLeft } from '~/lib/icons/LayoutPanelLeft';
-import { MenuSquare } from '~/lib/icons/MenuSquare';
+import { Stack } from 'expo-router';
 
 export default function TabsLayout() {
   return (
-    <Tabs>
-      <Tabs.Screen
+    <Stack>
+      <Stack.Screen
         name='index'
         options={{
-          title: 'Dashboard',
-          tabBarIcon({ color, size }) {
-            return <LayoutPanelLeft color={color} size={size} />;
-          },
-          headerLeft: () => <ModalToggle />,
-          headerRight: () => <ThemeToggle />,
+          headerShown: false,
         }}
       />
-      <Tabs.Screen
-        name='components'
+      <Stack.Screen
+        name='component-list'
         options={{
-          title: 'Components',
-          tabBarIcon({ color, size }) {
-            return <MenuSquare color={color} size={size} />;
-          },
-          headerRight: () => <ThemeToggle />,
+          headerShown: false,
         }}
       />
-    </Tabs>
+    </Stack>
   );
 }

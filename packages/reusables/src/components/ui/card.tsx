@@ -12,7 +12,7 @@ import {
 import { cn } from '../../lib/utils';
 import { TextClassContext } from './text';
 import { Button } from './button';
-import { InfoIcon } from 'lucide-react-native';
+// import { InfoIcon } from 'lucide-react-native';
 import { Badge } from './badge';
 
 const styles = StyleSheet.create({
@@ -124,7 +124,7 @@ const CardOverline = React.forwardRef<
           icon
       ) : (
         // Default to InfoIcon if no icon is provided
-        <InfoIcon size={16} color={iconColor} />
+        <Text style={{ fontSize: 16, color: iconColor }}>ℹ️</Text>
       )}
       <Text 
         className="text-sm font-medium tracking-wide"

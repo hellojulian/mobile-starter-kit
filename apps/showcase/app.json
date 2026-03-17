@@ -7,17 +7,11 @@
     "scheme": "example",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/1c179c92-fa69-4105-91fa-f50883099333"
-    },
+    "runtimeVersion": "1.0.0",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#0F0F0F"
+      "backgroundColor": "#000000"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -28,19 +22,19 @@
       "splash": {
         "image": "./assets/images/splash.png",
         "resizeMode": "cover",
-        "backgroundColor": "#0F0F0F",
+        "backgroundColor": "#000000",
         "tabletImage": "./assets/images/splash.png"
       }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#0F0F0F"
+        "backgroundColor": "#000000"
       },
       "splash": {
         "image": "./assets/images/splash.png",
         "resizeMode": "cover",
-        "backgroundColor": "#0F0F0F",
+        "backgroundColor": "#000000",
         "mdpi": "./assets/images/splash.png",
         "hdpi": "./assets/images/splash.png",
         "xhdpi": "./assets/images/splash.png",
@@ -51,27 +45,29 @@
     "web": {
       "bundler": "metro",
       "output": "single",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/icon.png"
     },
     "plugins": [
       "expo-router",
-      "expo-font"
+      "expo-font",
+      "@react-native-community/datetimepicker"
     ],
     "experiments": {
       "typedRoutes": true
     },
-    "extra": {
-      "eas": {
-        "projectId": "1c179c92-fa69-4105-91fa-f50883099333"
-      }
-    },
-    "owner": "hellojulian",
     "slug": "mobile-starter-kit",
     "developmentClient": {
       "silentLaunch": false
     },
     "packagerOpts": {
-      "assetExts": ["ttf", "png", "jpg", "jpeg", "gif", "svg"]
+      "assetExts": [
+        "ttf",
+        "png",
+        "jpg",
+        "jpeg",
+        "gif",
+        "svg"
+      ]
     }
   }
 }

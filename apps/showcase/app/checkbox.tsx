@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import { Checkbox, CheckboxTile } from '~/components/ui/checkbox';
 import { Label } from '~/components/ui/label';
 import { Globe, Mail, Bell } from 'lucide-react-native';
